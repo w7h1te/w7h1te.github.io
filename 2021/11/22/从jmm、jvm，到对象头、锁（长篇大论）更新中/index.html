@@ -1,0 +1,1166 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  
+  <title itemprop="name">从jmm、jvm，到对象头、锁（长篇大论）更新中 | w7h1te</title>
+  
+    <link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/w7h1te/PicGoCDN/img/favicon/202203090939154.ico">
+  
+  <meta http-equiv="x-dns-prefetch-control" content="on">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+SerifMerriweather|Merriweather+Sans|Source+Code+Pro|Ubuntu:400,700|Noto+Serif+SC" media="all">
+  <link rel="dns-prefetch" href="//cdn.jsdelivr.net">
+  <link rel="stylesheet" id="saukra_css-css" href="/css/style.css" type="text/css" media="all">
+  <link rel="stylesheet" href="/css/lib.min.css" media="all">
+  <link rel="stylesheet" href="/css/font.css" media="all">
+  <link rel="stylesheet" href="/css/insight.css" media="all">
+  <link rel="stylesheet" href="/css/jquery.fancybox.min.css" media="all">
+  <link rel="stylesheet" href="/css/zoom.css" media="all">
+  <link rel="stylesheet" type="text/css" href="/css/sharejs.css">
+<!--   <link rel="stylesheet" id="saukra_css-css" href="https://2heng.xin/wp-content/cache/autoptimize/css/autoptimize_ad42a61f4c7d4bdd9f91afcff6b5dda5.css
+" type="text/css" media="all"> -->
+  <script>
+  /*Initial Variables*/
+  var mashiro_option = new Object();
+  var mashiro_global = new Object();
+  mashiro_option.NProgressON = true;
+  /* 
+   * 邮箱信息之类的东西可以填在这里，这些js变量基本都作用于sakura-app.js
+   * 这样的设置仅是为了方便在基于PHP开发的主题中设置js变量，既然移植到了Node上，我想或许可以精简这一逻辑吧
+   */
+  mashiro_option.email_domain = "";
+  mashiro_option.email_name = "";
+  mashiro_option.cookie_version_control = "";
+  mashiro_option.qzone_autocomplete = false;
+  mashiro_option.site_name = "w7h1te的博客!w7h1te";
+  mashiro_option.author_name = "w7h1te";
+  mashiro_option.site_url = "https://w7h1te.github.io/";
+  mashiro_option.v_appId = "GyC3NzMvd0hT9Yyd2hYIC0MN-gzGzoHsz";
+  mashiro_option.v_appKey = "mgOpfzbkHYqU92CV4IDlAUHQ";
+  mashiro_option.mathjax = "0";
+  mashiro_option.qq_api_url = "https://api.mashiro.top/qqinfo/"; 
+  mashiro_option.qq_avatar_api_url = "https://api.mashiro.top/qqinfo/";
+
+  // mashiro_option.jsdelivr_css_src = "https://cdn.jsdelivr.net/gh/moezx/cdn@3.4.5/css/lib.min.css";
+  // mashiro_option.float_player_on = true;
+
+  /*End of Initial Variables*/
+  </script>
+  <script type="text/javascript">
+  var bg = "/images/cover/(0).jpg.webp,/images/cover/(1).jpg.webp,/images/cover/(3).jpg.webp,/images/cover/(4).jpg.webp,/images/cover/(5).jpg.webp,/images/cover/(6).jpg.webp,/images/cover/(7).jpg.webp,/images/cover/(8).jpg.webp".split(",");
+  var bgindex = Math.floor(Math.random()*bg.length);
+  if (!!window.ActiveXObject || "ActiveXObject" in window) { //is IE?
+    alert('朋友，IE浏览器未适配哦~');
+  }
+  </script>
+  <style type="text/css">
+  .hljs-ln{border-collapse:collapse}.hljs-ln td{padding:0}.hljs-ln-n:before{content:attr(data-line-number)}
+  </style>
+  <style type="text/css">.site-top .lower nav{display:block !important;}.author-profile i,.post-like a,.post-share .show-share,.sub-text,.we-info a,span.sitename,.post-more i:hover,#pagination a:hover,.post-content a:hover,.float-content i:hover{color:#FE9600}.feature i,.download,.navigator i:hover,.links ul li:before,.ar-time i,span.ar-circle,.object,.comment .comment-reply-link,.siren-checkbox-radio:checked + .siren-checkbox-radioInput:after{background:#FE9600}::-webkit-scrollbar-thumb{background:#FE9600}.download,.navigator i:hover,.link-title,.links ul li:hover,#pagination a:hover,.comment-respond input[type='submit']:hover{border-color:#FE9600}.entry-content a:hover,.site-info a:hover,.comment h4 a,#comments-navi a.prev,#comments-navi a.next,.comment h4 a:hover,.site-top ul li a:hover,.entry-title a:hover,#archives-temp h3,span.page-numbers.current,.sorry li a:hover,.site-title a:hover,i.iconfont.js-toggle-search.iconsearch:hover,.comment-respond input[type='submit']:hover{color:#FE9600}.comments .comments-main{display:block !important;}.comments .comments-hidden{display:none !important;}background-position:center center;background-attachment:inherit;}
+  </style>
+</head>
+</html>
+<body class="page-template page-template-user page-template-page-analytics page-template-userpage-analytics-php page page-id-1297 chinese-font serif isWebKit">
+  <div class="scrollbar" id="bar">
+  </div>
+  <a href="#" class="cd-top faa-float animated"></a>
+  <section id="main-container">
+    <div class="headertop filter-dot">
+  <div id="banner_wave_1"></div>
+  <div id="banner_wave_2"></div>
+  <figure id="centerbg" class="centerbg">
+    <div class="focusinfo no-select">
+      <div class="header-tou">
+        <a href="https://w7h1te.github.io/">
+          <img src="https://cdn.jsdelivr.net/gh/w7h1te/PicGoCDN/img/custom/202203090940373.jpeg">
+        </a>
+      </div>
+      <div class="header-info">
+        <p>NOW OR NEVER!</p>
+        <div class="top-social_v2">
+          <li id="bg-pre">
+            <img class="flipx" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/other/next-b.svg">
+          </li>
+          
+            
+              
+                <li>
+                  <a href="http://github.com/w7h1te" target="_blank" class="social-github" title="github">
+                    <img src="https://cdn.jsdelivr.net/gh/w7h1te/PicGoCDN/img/social/202203091541326.webp">
+                  </a>
+                </li>
+              
+            
+              
+                <li>
+                  <a href="https://gitee.com/yw-7" target="_blank" class="social-github" title="gitee">
+                    <img src="https://cdn.jsdelivr.net/gh/w7h1te/PicGoCDN/img/social/202203110720832.jfif">
+                  </a>
+                </li>
+              
+            
+              
+                <li>
+                  <a href="https://blog.csdn.net/qq_48424581?spm=1010.2135.3001.5343" target="_blank" class="social-github" title="csdn">
+                    <img src="https://cdn.jsdelivr.net/gh/w7h1te/PicGoCDN/img/social/202203110723650.jpg">
+                  </a>
+                </li>
+              
+            
+              
+                <li>
+                  <a href="http://music.163.com/#/user/home?id=510039759" target="_blank" class="social-github" title="wangyiyun">
+                    <img src="https://cdn.jsdelivr.net/gh/w7h1te/PicGoCDN/img/social/202203091543566.webp">
+                  </a>
+                </li>
+              
+            
+              
+                <li>
+                  <a href="http://www.zhihu.com/people/itxiao-hai-42" target="_blank" class="social-github" title="zhihu">
+                    <img src="https://cdn.jsdelivr.net/gh/w7h1te/PicGoCDN/img/social/202203091543644.webp">
+                  </a>
+                </li>
+              
+            
+              
+                <li class="wechat">
+                  <a href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&amp;email=kaKjoKikoaChoNHg4L-y-vw">
+                    <img src="https://cdn.jsdelivr.net/gh/w7h1te/PicGoCDN/img/social/202203091544253.webp">
+                  </a>
+                  <div class="wechatInner">
+                    <img src="https://cdn.jsdelivr.net/gh/w7h1te/PicGoCDN/img/202203101132696.jfif">
+                  </div>
+                </li>
+              
+            
+              
+                <li class="wechat">
+                  <a href="/#">
+                    <img src="https://cdn.jsdelivr.net/gh/w7h1te/PicGoCDN/img/social/202203091544051.webp">
+                  </a>
+                  <div class="wechatInner">
+                    <img src="https://cdn.jsdelivr.net/gh/w7h1te/PicGoCDN/img/custom/202203091103501.png">
+                  </div>
+                </li>
+              
+            
+              
+                <li>
+                  <a href="http://wpa.qq.com/msgrd?v=3&amp;uin=321950101&amp;site=qq&amp;menu=yes" target="_blank" class="social-github" title="qq">
+                    <img src="https://cdn.jsdelivr.net/gh/w7h1te/PicGoCDN/img/social/202203091627639.webp">
+                  </a>
+                </li>
+              
+            
+          
+          <li id="bg-next">
+            <img src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/other/next-b.svg">
+          </li>
+        </div>
+      </div>
+    </div>
+  </figure>
+  <div id="video-container" style="">
+    <video style="object-fit: fill" id="bgvideo" class="video" video-name="" src="" width="auto" preload="auto">
+    </video>
+    <div id="video-btn" class="loadvideo videolive">
+    </div>
+    <div id="video-add">
+    </div>
+    <div class="video-stu">
+    </div>
+  </div>
+  <div class="headertop-down faa-float animated" onclick="headertop_down()">
+    <span>
+      <i class="fa fa-chevron-down" aria-hidden="true">
+      </i>
+    </span>
+  </div>
+</div>
+    <div id="page" class="site wrapper">
+      <header class="site-header no-select gizle sabit" role="banner">
+  <div class="site-top">
+    <div class="site-branding">
+      <span class="site-title">
+        <span class="logolink moe-mashiro">
+          <a href="/">
+            <span class="sakurasono">w7h1te的博客!</span>
+            <span class="shironeko">w7h1te</span>
+          </a>
+        </span>
+      </span>
+    </div>
+    <div class="searchbox search-form-submit">
+      <i class="iconfont js-toggle-search iconsearch icon-search">
+      </i>
+    </div>
+    <div id="show-nav" class="showNav mobile-fit">
+      <div class="line line1">
+      </div>
+      <div class="line line2">
+      </div>
+      <div class="line line3">
+      </div>
+    </div>
+    <div class="lower-cantiner">
+      <div class="lower">
+        <nav class="mobile-fit-control hide">
+          <ul id="menu-new" class="menu">
+            
+              <li>
+                <a href="/">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-fort-awesome faa-shake" aria-hidden="true"></i>
+                    首页
+                  </span>
+                </a>
+                
+              </li>
+            
+              <li>
+                <a href="/archives">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-archive faa-shake" aria-hidden="true"></i>
+                    归档
+                  </span>
+                </a>
+                
+                  <ul class="sub-menu">
+                    
+                      <li>
+                        <a href="/categories/技术/">
+                          <i class="fa fa-code" aria-hidden="true"></i>
+                          技术
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/categories/生活/">
+                          <i class="fa fa-file-text-o" aria-hidden="true"></i>
+                          生活
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/categories/资源/">
+                          <i class="fa fa-cloud-download" aria-hidden="true"></i>
+                          资源
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/categories/随想/">
+                          <i class="fa fa-commenting-o" aria-hidden="true"></i>
+                          随想
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/categories/转载/">
+                          <i class="fa fa-book" aria-hidden="true"></i>
+                          转载
+                        </a>
+                      </li>
+                    
+                  </ul>
+                
+              </li>
+            
+              <li>
+                <a href="javascript:;">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-list-ul faa-vertical" aria-hidden="true"></i>
+                    清单
+                  </span>
+                </a>
+                
+                  <ul class="sub-menu">
+                    
+                      <li>
+                        <a href="/tags/悦读/">
+                          <i class="fa fa-th-list faa-bounce" aria-hidden="true"></i>
+                          书单
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/bangumi/">
+                          <i class="fa fa-film faa-vertical" aria-hidden="true"></i>
+                          番组
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/music/">
+                          <i class="fa fa-headphones" aria-hidden="true"></i>
+                          歌单
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/tags/图集/">
+                          <i class="fa fa-photo" aria-hidden="true"></i>
+                          图集
+                        </a>
+                      </li>
+                    
+                  </ul>
+                
+              </li>
+            
+              <li>
+                <a href="/comment/">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-pencil-square-o faa-tada" aria-hidden="true"></i>
+                    留言板
+                  </span>
+                </a>
+                
+              </li>
+            
+              <li>
+                <a href="/links/">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-link faa-shake" aria-hidden="true"></i>
+                    友人帐
+                  </span>
+                </a>
+                
+              </li>
+            
+              <li>
+                <a href="/donate/">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-heart faa-pulse" aria-hidden="true"></i>
+                    赞赏
+                  </span>
+                </a>
+                
+              </li>
+            
+              <li>
+                <a href="/">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-leaf faa-wrench" aria-hidden="true"></i>
+                    关于
+                  </span>
+                </a>
+                
+                  <ul class="sub-menu">
+                    
+                      <li>
+                        <a href="/about/">
+                          <i class="fa fa-meetup" aria-hidden="true"></i>
+                          我？
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/theme-sakura/">
+                          <i class="fa iconfont icon-sakura" aria-hidden="true"></i>
+                          主题
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/lab/">
+                          <i class="fa fa-cogs" aria-hidden="true"></i>
+                          Lab
+                        </a>
+                      </li>
+                    
+                  </ul>
+                
+              </li>
+            
+              <li>
+                <a href="/client/">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-android faa-vertical" aria-hidden="true"></i>
+                    客户端
+                  </span>
+                </a>
+                
+              </li>
+            
+              <li>
+                <a href="/atom.xml">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-rss faa-pulse" aria-hidden="true"></i>
+                    RSS
+                  </span>
+                </a>
+                
+              </li>
+            
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <link rel="stylesheet" type="text/css" href="/css/sharejs.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css">
+<div class="pattern-center-blank"></div>
+
+  <div class="pattern-center single-center">
+    <!-- 有配图默认渲染第一张 -->
+    <div class="pattern-attachment-img lazyload" style="background-image: url(https://gitee.com/yw-7/drawing-bed/raw/master/img/cover20.jpg);" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://gitee.com/yw-7/drawing-bed/raw/master/img/cover20.jpg">
+    </div>
+    <header class="pattern-header single-header">
+      <h1 class="entry-title">
+      从jmm、jvm，到对象头、锁（长篇大论）更新中</h1>
+      <p class="entry-census">
+        <span>
+          <a href="w7h1te.cn">
+            <img src="https://cdn.jsdelivr.net/gh/w7h1te/PicGoCDN/img/custom/202203090940373.jpeg">
+          </a>
+        </span>
+        <span>
+          <a href="w7h1te.cn">w7h1te</a>
+        </span>
+        <span class="bull">
+        ·</span>
+        2021-11-22<span class="bull">
+        ·</span>
+      <span id="busuanzi_value_page_pv"></span>次阅读</p>
+    </header>
+  </div>
+
+<div id="content" class="site-content">
+  <div id="primary" class="content-area">
+    <main id="main" class="site-main" role="main">
+      <article id="post-1" class="post-1 post type-post status-publish format-standard has-post-thumbnail hentry category-uncategorized">
+        <div class="toc"></div>
+        <!--<div class="toc-entry-content"><!-- 套嵌目录使用（主要为了支援评论）-->
+        
+        <div class="entry-content">
+          <h2 id="JMM-java-memory-model-java内存模型"><a href="#JMM-java-memory-model-java内存模型" class="headerlink" title="JMM(java memory model) java内存模型"></a>JMM(java memory model) java内存模型</h2><blockquote>
+<p>Java 内存模型指定 Java 虚拟机（jvm）如何使用计算机的内存 (RAM)。Java 虚拟机是整个计算机的模型，因此该模型自然包含一个内存模型——也就是 Java 内存模型。</p>
+</blockquote>
+<h3 id="为什么要有内存模型"><a href="#为什么要有内存模型" class="headerlink" title="为什么要有内存模型"></a>为什么要有内存模型</h3><p>在介绍Java内存模型之前，先来看一下到底什么是计算机内存模型，然后再来看Java内存模型在计算机内存模型的基础上做了哪些事情。要说计算机的内存模型，就要说一下一段古老的历史，看一下为什么要有内存模型。</p>
+<blockquote>
+<p>内存模型，英文名Memory Model，他是一个很老的老古董了。他是与计算机硬件有关的一个概念。那么我先给你介绍下他和硬件到底有啥关系。</p>
+</blockquote>
+<h3 id="CPU和缓存一致性"><a href="#CPU和缓存一致性" class="headerlink" title="CPU和缓存一致性"></a>CPU和缓存一致性</h3><p>我们应该都知道，计算机在执行程序的时候，每条指令都是在CPU中执行的，而执行的时候，又免不了要和数据打交道。而计算机上面的数据，是存放在主存当中的，也就是计算机的物理内存啦。</p>
+<p>刚开始，还相安无事的，但是随着CPU技术的发展，CPU的执行速度越来越快。而由于内存的技术并没有太大的变化，所以从内存中读取和写入数据的过程和CPU的执行速度比起来差距就会越来越大,这就导致CPU每次操作内存都要耗费很多等待时间。</p>
+<p>为解决上述<strong>内存的读写速度慢</strong>与<strong>发展CPU技术</strong>的矛盾，</p>
+<p>所以，人们想出来了一个好的办法，就是在CPU和内存之间增加<strong>高速缓存</strong>。缓存的概念大家都知道，就是保存一份数据拷贝。他的特点是速度快，内存小，并且昂贵。</p>
+<p><strong>当程序在运行过程中，会将运算需要的数据从主存复制一份到CPU的高速缓存当中，那么CPU进行计算时就可以直接从它的高速缓存读取数据和向其中写入数据，当运算结束之后，再将高速缓存中的数据刷新到主存当中</strong></p>
+<p>而随着CPU能力的不断提升，一层缓存就慢慢的无法满足要求了，就逐渐的衍生出多级缓存。</p>
+<p>按照数据读取顺序和与CPU结合的紧密程度，CPU缓存可以分为一级缓存（L1），二级缓存（L2），部分高端CPU还具有三级缓存（L3），每一级缓存中所储存的全部数据都是下一级缓存的一部分。</p>
+<p>这三种缓存的技术难度和制造成本是相对递减的，所以其容量也是相对递增的。</p>
+<p><img src="https://img-blog.csdnimg.cn/b0a20daaef2c42e1aead56ed3a60729f.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAQ05DU-S5i-WFieKAlOKAlOS4muS9meeahEpBVkHlrabogIVR,size_11,color_FFFFFF,t_70,g_se,x_16" alt></p>
+<p><strong>当CPU要读取一个数据时，首先从一级缓存中查找，如果没有找到再从二级缓存中查找，如果还是没有就从三级缓存或内存中查找</strong></p>
+<p>随着计算机能力不断提升，开始支持多线程。那么问题就来了。我们分别来分析下单线程、多线程在单核CPU、多核CPU中的影响。</p>
+<p><strong>单线程</strong>cpu核心的缓存只被一个线程访问。缓存独占，不会出现访问冲突等问题。</p>
+<p><strong>单核CPU，多线程</strong>进程中的多个线程会同时访问进程中的共享数据，CPU将某块内存加载到缓存后，不同线程在访问相同的物理地址的时候，都会映射到相同的缓存位置，这样即使发生线程的切换，缓存仍然不会失效。但由于任何时刻只能有一个线程在执行，因此不会出现缓存访问冲突。</p>
+<p><strong>多核CPU，多线程</strong>每个核都至少有一个L1 缓存。多个线程访问进程中的某个共享内存，且这多个线程分别在不同的核心上执行，则每个核心都会在各自的caehe中保留一份共享内存的缓冲。由于多核是可以并行的，可能会出现多个线程同时写各自的缓存的情况，而各自的cache之间的数据就有可能不同。</p>
+<p>在CPU和主存之间增加缓存，在多线程场景下就可能存在<strong>缓存一致性问题</strong>，也就是说，在多核CPU中，每个核的自己的缓存中，关于同一个数据的缓存内容可能不一致。</p>
+<h3 id="处理器重排和编译器优化"><a href="#处理器重排和编译器优化" class="headerlink" title="处理器重排和编译器优化"></a>处理器重排和编译器优化</h3><p>上面提到在在CPU和主存之间增加缓存，在多线程场景下会存在<strong>缓存一致性问题</strong>。除了这种情况，还有一种硬件问题也比较重要。那就是为了使处理器内部的运算单元能够尽量的被充分利用，处理器可能会对输入代码进行乱序执行处理。这就是<strong>处理器重排</strong>。</p>
+<p>除了现在很多流行的处理器会对代码进行优化乱序处理，很多编程语言的编译器也会有类似的优化，比如Java虚拟机的即时编译器（JIT）也会做<strong>编译器优化</strong>。</p>
+<blockquote>
+<p>至于为什么重排，我们举个例子，假设你要运一货车苹果，现在你要把苹果装箱上车。你有两种极端的选择：装一箱子苹果，搬到货车边上，再推上去摆到车厢里……一箱一箱的依次进行；另一种方式是先全部装好箱，然后全部搬到货车边上，最后全部挪进去摆好位置。</p>
+<p>那种效率更高？很明显是后者，因为前者你就需要不停地在装箱，搬运和上车摆放之间切换，这个切换过程不仅浪费时间，还耗费精力。但是后者一直做一个工作也很无聊，还会导致领导来检查时候车上一箱苹果也没装好，会觉得你在磨蹭摸鱼，所以比较合适的做法就是拿出来两三个箱子，把这些装好，一次多搬运几个过去。这样老板看到就会夸你很有工作效率。</p>
+<p>再想想，如果给你多安排有两个人，一个负责装箱，一个负责搬运，一个负责装车，就更快了。</p>
+</blockquote>
+<p>那么编译期重排序有什么好处？CPU计算的时候要访问值，如果常常利用到寄存器中已有的值就不用去内存读取了，比如说：</p>
+<pre><code>int a = 1;
+int b = 1;
+int a = a+1;
+int b = b+1; 
+</code></pre><p>就没有如下的效果好：</p>
+<pre><code>int a = 1;
+int a = a+1;
+int b = 1;
+int b = b+1;
+</code></pre><p>因为后者的 a或b可能在寄存器中了。</p>
+<p>处理器为什么要重排序？因为一个汇编指令也会涉及到很多步骤，每个步骤可能会用到不同的寄存器，CPU使用了流水线技术，也就是说，CPU有多个功能单元（如获取、解码、运算和结果），一条指令也分为多个单元，那么第一条指令执行还没完毕，就可以执行第二条指令，前提是这两条指令功能单元相同或类似，所以一般可以通过指令重排使得具有相似功能单元的指令接连执行来减少流水线中断的情况。</p>
+<h3 id="关于重排序分为以下三种："><a href="#关于重排序分为以下三种：" class="headerlink" title="关于重排序分为以下三种："></a>关于重排序分为以下三种：</h3><ol>
+<li><strong>编译器优化的重排序</strong>，编译器在不改变单线程程序语义的前提下，可以重新安排语句的执行顺序。</li>
+<li><strong>指令级并行的重排序</strong>。现代处理器采用了指令级并行技术，将多条指令重叠执行。如果不存在数据依赖性，处理器可以改变语句对应机器指令的执行顺序。</li>
+<li><strong>内存系统的重排序</strong>。由于处理器使用了缓存（cpu cache）和读/写缓冲区（store buffers），使得加载和存储操作看上去可能是乱序的。</li>
+</ol>
+<p>为了保证内存可见性，Java编译器在生成指令序列的适当位置会插入内存屏障指令来禁止特定类型的处理器重排序。</p>
+<p>JMM 属于语言级的内存模型.它确保在不同的编译器和处理器平台上, 通过禁止特定类型的编译器和处理器重排序, 对外提供一致的内存可见性保证.</p>
+<p>在多线程编程中，就涉及到线程之间的通信。为了更好的实现程序的高并发、高性能、高可用，就不得不知道JMM。至于高可用可参考<a href="https://www.linuxprobe.com/high-availability.html" target="_blank" rel="noopener">https://www.linuxprobe.com/high-availability.html</a></p>
+<h3 id="并发编程的问题"><a href="#并发编程的问题" class="headerlink" title="并发编程的问题"></a>并发编程的问题</h3><p><strong>原子性</strong>是指在一个操作中就是cpu不可以在中途暂停然后再调度，既不被中断操作，要不执行完成，要不就不执行。</p>
+<p><strong>可见性</strong>是指当多个线程访问同一个变量时，一个线程修改了这个变量的值，其他线程能够立即看得到修改的值。</p>
+<p><strong>有序性</strong>即程序执行的顺序按照代码的先后顺序执行。</p>
+<p>有没有发现，<br><strong>缓存一致性问题</strong>其实就是<strong>可见性问题</strong><br><em>编译器优化的重排序</em><br>在不改变单线程程序语义的情况下重新安排语句的执行顺序，所以破坏了顺序性。而<strong>处理器的指令级重排序</strong>则会破坏原子性。</p>
+<h2 id="什么是内存模型"><a href="#什么是内存模型" class="headerlink" title="什么是内存模型"></a>什么是内存模型</h2><p>所以，为了保证并发编程中可以满足原子性、可见性及有序性。有一个重要的概念，那就是——内存模型。</p>
+<p>为了保证共享内存的正确性（可见性、有序性、原子性），内存模型定义了共享内存系统中多线程程序读写操作行为的规范 通过这些规则来规范对内存的读写操作，从而保证指令执行的正确性。它与处理器有关、与缓存有关、与并发有关、与编译器也有关。他解决了CPU多级缓存、处理器优化、指令重排等导致的内存访问问题，保证了并发场景下的一致性、原子性和有序性。</p>
+<p>内存模型解决并发问题主要采用两种方式：<strong>限制处理器优化</strong>和<strong>使用内存屏障</strong>。</p>
+<h2 id="什么是Java内存模型"><a href="#什么是Java内存模型" class="headerlink" title="什么是Java内存模型"></a>什么是Java内存模型</h2><p>前面介绍过了计算机内存模型，这是解决多线程场景下并发问题的一个重要规范。那么具体的实现是如何的呢，不同的编程语言，在实现上可能有所不同。</p>
+<p>我们知道，Java程序是需要运行在Java虚拟机上面的，Java内存模型（Java Memory Model ,JMM）就是一种符合内存模型规范的，屏蔽了各种硬件和操作系统的访问差异的，保证了Java程序在各种平台下对内存的访问都能保证效果一致的机制及规范</p>
+<blockquote>
+<p>简要言之，jmm是jvm的一种规范，定义了jvm的内存模型。它屏蔽了各种硬件和操作系统的访问差异，不像c那样直接访问硬件内存，相对安全很多，它的主要目的是解决由于多线程通过共享内存进行通信时，存在的本地内存数据不一致、编译器会对代码指令重排序、处理器会对代码乱序执行等带来的问题。可以保证并发编程场景中的原子性、可见性和有序性。</p>
+</blockquote>
+<p>提到Java内存模型，一般指的是JDK 5 开始使用的新的内存模型，主要由<a href="http://www.cs.umd.edu/~pugh/java/memoryModel/jsr133.pdf" target="_blank" rel="noopener">JSR-133: JavaTM Memory Model and Thread Specification</a>描述。</p>
+<p>Java内存模型规定了所有的变量都存储在主内存中，每条线程还有自己的工作内存，线程的工作内存中保存了该线程中是用到的变量的主内存副本拷贝，线程对变量的所有操作都必须在工作内存中进行，而不能直接读写主内存。不同的线程之间也无法直接访问对方工作内存中的变量，线程间变量的传递均需要自己的工作内存和主存之间进行数据同步进行。</p>
+<p>而JMM就作用于工作内存和主存之间数据同步过程。他规定了如何做数据同步以及什么时候做数据同步。</p>
+<p><img src="https://img-blog.csdnimg.cn/d0d84bfb17ee493e874fc276e8919df6.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAQ05DU-S5i-WFieKAlOKAlOS4muS9meeahEpBVkHlrabogIVR,size_9,color_FFFFFF,t_70,g_se,x_16" alt></p>
+<p><img src="https://img-blog.csdnimg.cn/a6e7d9ee52dc4c8281c50dc358ac6781.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAQ05DU-S5i-WFieKAlOKAlOS4muS9meeahEpBVkHlrabogIVR,size_12,color_FFFFFF,t_70,g_se,x_16" alt></p>
+<p>推荐看一下《JAVA并发编程的艺术》</p>
+<h2 id="Java内存模型的实现"><a href="#Java内存模型的实现" class="headerlink" title="Java内存模型的实现"></a>Java内存模型的实现</h2><p>了解Java多线程的朋友都知道，在Java中提供了一系列和并发处理相关的关键字，比如<code>volatile</code>、<code>synchronized</code>、<code>final</code>、<code>concurren</code>包等。其实这些就是Java内存模型封装了底层的实现后提供给程序员使用的一些关键字。</p>
+<p>在开发多线程的代码的时候，我们可以直接使用<code>synchronized</code>等关键字来控制并发，从来就不需要关心底层的编译器优化、缓存一致性等问题。所以，Java内存模型，除了定义了一套规范，还提供了一系列原语，封装了底层实现后，供开发者直接使用。</p>
+<p>本文并不准备把所有的关键字逐一介绍其用法，因为关于各个关键字的用法，网上有很多资料。读者可以自行学习。本文还有一个重点要介绍的就是，我们前面提到，并发编程要解决原子性、有序性和一致性的问题，我们就再来看下，在Java中，分别使用什么方式来保证。</p>
+<h3 id="原子性"><a href="#原子性" class="headerlink" title="原子性"></a>原子性</h3><p>在Java中，为了保证原子性，提供了两个高级的字节码指令<code>monitorenter</code>和<code>monitorexit</code>。在<a href="http://www.hollischuang.com/archives/1883" target="_blank" rel="noopener">synchronized的实现原理</a>文章中，介绍过，这两个字节码，在Java中对应的关键字就是<code>synchronized</code>。</p>
+<p>因此，在Java中可以使用<code>synchronized</code>来保证方法和代码块内的操作是原子性的。</p>
+<h3 id="可见性"><a href="#可见性" class="headerlink" title="可见性"></a>可见性</h3><p>Java内存模型是通过在变量修改后将新值同步回主内存，在变量读取前从主内存刷新变量值的这种依赖主内存作为传递媒介的方式来实现的。</p>
+<p>Java中的<code>volatile</code>关键字提供了一个功能，那就是被其修饰的变量在被修改后可以立即同步到主内存，被其修饰的变量在每次是用之前都从主内存刷新。因此，可以使用<code>volatile</code>来保证多线程操作时变量的可见性。</p>
+<p>除了<code>volatile</code>，Java中的<code>synchronized</code>和<code>final</code>两个关键字也可以实现可见性。只不过实现方式不同，这里不再展开了。</p>
+<h3 id="有序性"><a href="#有序性" class="headerlink" title="有序性"></a>有序性</h3><p>在Java中，可以使用<code>synchronized</code>和<code>volatile</code>来保证多线程之间操作的有序性。实现方式有所区别：</p>
+<p><code>volatile</code>关键字会禁止指令重排。<code>synchronized</code>关键字保证同一时刻只允许一条线程操作。</p>
+<p>好了，这里简单的介绍完了Java并发编程中解决原子性、可见性以及有序性可以使用的关键字。读者可能发现了，好像<code>synchronized</code>关键字是万能的，他可以同时满足以上三种特性，这其实也是很多人滥用<code>synchronized</code>的原因。</p>
+<p>但是<code>synchronized</code>是比较影响性能的，虽然编译器提供了很多锁优化技术，但是也不建议过度使用。</p>
+<h2 id="jvm和jmm之间的关系"><a href="#jvm和jmm之间的关系" class="headerlink" title="jvm和jmm之间的关系"></a>jvm和jmm之间的关系</h2><p>JVM是对于JMM约定的具体实现方法，将内存分为五个部分，方法区，堆，JVM栈，本地方法栈，程序计数器。前两者属于线程共有，后三者属于线程私有。方法区存储类、常量、JIT即时编译的方法代码，类加载信息的引用等等。堆存储对象。JVM栈主要由方法栈帧组成，栈帧包含方法内的局部变量，操作数栈、动态链接和出口地址。本地方法是JVM本身运行的方法和调用其他语言的区域。程序计数器记录线程执行的地址，方便线程切换。</p>
+<p>jmm中的主内存、工作内存与jvm中的Java堆、栈、方法区等并不是同一个层次的内存划分，这两者基本上是没有关系的，如果两者一定要勉强对应起来，那从变量、主内存、工作内存的定义来看，主内存主要对应于Java堆中的对象实例数据部分，而工作内存则对应于虚拟机栈中的部分区域。从更低层次上说，主内存就直接对应于物理硬件的内存，而为了获取更好的运行速度，虚拟机（甚至是硬件系统本身的优化措施）可能会让工作内存优先存储于寄存器和高速缓存中，因为程序运行时主要访问读写的是工作内存。</p>
+<h3 id="JVM内存模型"><a href="#JVM内存模型" class="headerlink" title="JVM内存模型"></a>JVM内存模型</h3><h4 id="程序计数器-PC"><a href="#程序计数器-PC" class="headerlink" title="程序计数器(PC)"></a>程序计数器(PC)</h4><blockquote>
+<p>程序计数器是一块很小的内存空间，用于记录下一条要运行的指令。每个线程都需要一个程序计数器，各个线程之中的计数器相互独立，是线程中私有的内存空间</p>
+</blockquote>
+<h5 id="为什么需要程序计数器"><a href="#为什么需要程序计数器" class="headerlink" title="为什么需要程序计数器"></a>为什么需要程序计数器</h5><blockquote>
+<p>我们知道对于一个处理器(如果是多核cpu那就是一核)，在一个确定的时刻都只会执行一条线程中的指令，一条线程中有多个指令，为了线程切换可以恢复到正确执行位置，每个线程都需有独立的一个程序计数器，不同线程之间的程序计数器互不影响，独立存储。</p>
+<p>注意：如果线程执行的是个java方法，那么计数器记录虚拟机字节码指令的地址。如果为native【底层方法】，那么计数器为空。<strong>这块内存区域是虚拟机规范中唯一没有OutOfMemoryError的区域</strong>。</p>
+</blockquote>
+<h4 id="java虚拟机栈"><a href="#java虚拟机栈" class="headerlink" title="java虚拟机栈"></a>java虚拟机栈</h4><blockquote>
+<p>java虚拟机栈也是线程私有的内存空间，它和java线程同一时间创建，由java语言实现的，保存了局部变量、部分结果，并参与方法的调用和返回</p>
+</blockquote>
+<h4 id="本地方法栈"><a href="#本地方法栈" class="headerlink" title="本地方法栈"></a>本地方法栈</h4><blockquote>
+<p>本地方法栈和java虚拟机栈的功能相似，java虚拟机栈用于管理Java函数的调用，而本地方法栈用于管理本地方法的调用，但不是由Java实现的，而是由C实现的</p>
+</blockquote>
+<h4 id="java堆"><a href="#java堆" class="headerlink" title="java堆"></a>java堆</h4><blockquote>
+<p>为所有创建的对象和数组分配内存空间,被JVM中所有的线程共享</p>
+</blockquote>
+<h4 id="方法区"><a href="#方法区" class="headerlink" title="方法区"></a>方法区</h4><blockquote>
+<p>也被称为永久区，与堆空间相似，被JVM中所有的线程共享。方法区主要保存的信息是类的元数据，方法区中最为重要的是类的类型信息、常量池、域信息、方法信息，<strong>其中运行时常量池就在方法区</strong>，对永久区的GC回收，一是GC对永久区常量池的回收;二是永久区对元数据的回收</p>
+</blockquote>
+<h3 id="在JVM内部使用的java内存模型-JMM-将线程堆栈和堆之间的内存分开"><a href="#在JVM内部使用的java内存模型-JMM-将线程堆栈和堆之间的内存分开" class="headerlink" title="在JVM内部使用的java内存模型(JMM)将线程堆栈和堆之间的内存分开"></a>在JVM内部使用的java内存模型(JMM)将线程堆栈和堆之间的内存分开</h3><p><img src="https://img-blog.csdnimg.cn/img_convert/aca57be79db02c1653b85d0d1a4082f4.png" alt></p>
+<p>根据JMM模型，在JVM把内存分成了两部分：<em>线程栈区</em>和<em>堆区</em>。</p>
+<p>JVM中运行的每个线程都拥有自己的线程栈（也称调用栈），线程栈包含了当前线程执行的方法调用相关信息。随着代码的不断执行，调用栈会不断变化。</p>
+<h4 id="线程堆栈thread-stack"><a href="#线程堆栈thread-stack" class="headerlink" title="线程堆栈thread stack:"></a>线程堆栈<code>thread stack</code>:</h4><blockquote>
+<p>1.运行在java虚拟机上的每个线程都有自己的线程堆栈<code>thread stack</code></p>
+<p>2.线程堆栈还包含正在执行的每个方法的所有局部变量,一个线程只能访问它自己的线程堆栈。由线程创建的局部变量对于除创建它的线程之外的所有其他线程都是不可见的。</p>
+<p>3.即使两个线程正在执行完全相同的代码，两个线程仍然会在每个线程堆栈中创建该代码的局部变量,一个线程可能会将一个有限变量的副本传递给另一个线程，但它不能共享原始局部变量本身</p>
+</blockquote>
+<h4 id="堆"><a href="#堆" class="headerlink" title="堆:"></a>堆:</h4><blockquote>
+<p>1.堆包含在Java应用程序中创建的所有对象，而不管是不是由线程创建的该对象。</p>
+<p>2.堆中的对象可以被具有对象引用的所有线程访问。当一个线程访问一个对象时，它也可以访问该对象的成员变量。</p>
+<p>3.如果两个线程同时调用同一个对象上的一个方法，它们都可以访问该对象的成员变量，但每个线程都有自己的局部变量副本</p>
+<p>4.堆中的数据是共享的,线程不安全的</p>
+</blockquote>
+<h4 id="详细说明："><a href="#详细说明：" class="headerlink" title="详细说明："></a>详细说明：</h4><ul>
+<li>所有原始类型(boolean,byte,short,char,int,long,float,double)的局部变量都直接保存在线程栈当中，对于它们的值各个线程之间都是独立的。对于原始类型的局部变量，一个线程可以传递一个变量副本给另一个线程，但原始变量是不共享的。</li>
+<li>堆区包含了Java应用创建的所有对象信息(包括原始类型的封装类)，不管对象是哪个线程创建的，不管对象是属于一个成员变量还是方法中的局部变量，它都会被存储在堆区。</li>
+<li>一个局部变量如果是原始类型，那么它会被完全存储到栈区。 一个局部变量也有可能是一个对象的引用，这种情况下，这个本地引用会被存储到栈中，但是对象本身仍然存储在堆区。</li>
+<li>对于一个对象的成员方法，这些方法中包含局部变量，仍需要存储在栈区，即使它们所属的对象在堆区。</li>
+<li>对于一个对象的成员变量，不管它是原始类型还是包装类型，都会被存储到堆区。</li>
+<li>Static类型的变量以及类本身相关信息都会随着类本身存储在堆区。</li>
+</ul>
+<h4 id="基于JMM的JVM模型，既然堆中的数据是共享的，那么在多线程环境中，就可能存在数据安全性问题。主要涉及到：可见性问题，竞争性问题等"><a href="#基于JMM的JVM模型，既然堆中的数据是共享的，那么在多线程环境中，就可能存在数据安全性问题。主要涉及到：可见性问题，竞争性问题等" class="headerlink" title="基于JMM的JVM模型，既然堆中的数据是共享的，那么在多线程环境中，就可能存在数据安全性问题。主要涉及到：可见性问题，竞争性问题等"></a>基于JMM的JVM模型，既然堆中的数据是共享的，那么在多线程环境中，就可能存在数据安全性问题。<em>主要涉及到：可见性问题，竞争性问题等</em></h4><p><em>在此之前，回顾几个点</em></p>
+<p><em>A、计算机常识：</em></p>
+<ul>
+<li><em>cpu执行的操作是原子性的，是不可拆分的。</em></li>
+</ul>
+<p><em>B、造成数据安全性问题的<strong>必要条件</strong>：</em></p>
+<ul>
+<li><em>多线程环境</em></li>
+<li><em>多个线程操作共享数据</em></li>
+<li><em>操作共享数据的语句不是原子性的（多条）</em></li>
+</ul>
+<h3 id="共享对象的可见性"><a href="#共享对象的可见性" class="headerlink" title="共享对象的可见性"></a>共享对象的可见性</h3><p>如果两个或多个线程共享一个对象，但没有正确使用<code>volatile</code>声明或<code>Synchronized</code>同步机制,一个线程更新了共享变量值后，对于其他线程来讲是不可见的。如线程A,线程B同时要进行<code>modify</code>,</p>
+<pre><code>public class Account {
+
+  private float balance;
+
+  public void modify (float difference) {
+    float value=this.balance;
+    this.balance=value+difference;
+  }
+}
+</code></pre><p>首先，线程A和线程B在各自的<code>thread stack</code>中维护了一分局部变量的副本，线程A修改修改了线程A中Thread stack中的局部变量，但是还没有还没将修改的数据刷新到<code>Main Memory</code>中，而线程B获取的值依然是<code>old value</code>,就会出现问题</p>
+<p><strong>解决方案</strong></p>
+<ul>
+<li>使用<code>volatile</code>关键字</li>
+<li>使用<code>synchronized</code>同步机制</li>
+</ul>
+<p>tips：volatile与synchronized的区别：</p>
+<ul>
+<li>volatile本质是在告诉jvm当前变量在寄存器中的值是不确定的,需要从主存中读取；synchronized则是锁定当前变量,只有当前线程可以访问该变量,其他线程被阻塞住</li>
+<li>volatile仅修饰变量；synchronized则可以修饰变量、方法、代码块</li>
+<li>volatile仅保证可见性；synchronized则可以保证可见性和原子性</li>
+<li>volatile不会造成线程的阻塞；synchronized可能会造成线程的阻塞</li>
+<li>volatile修饰的变量会禁止指令重排序，因而程序不会被编译器优化；synchronized修饰的变量没有禁止指令重排序，因而程序可以被编译器优化</li>
+</ul>
+<h3 id="关于对象头，先从Java的对象模型谈起"><a href="#关于对象头，先从Java的对象模型谈起" class="headerlink" title="关于对象头，先从Java的对象模型谈起"></a>关于对象头，先从Java的对象模型谈起</h3><p>Java是一种面向对象的语言，而Java对象在JVM中的存储也是有一定的结构的。而这个关于Java对象自身的存储模型称之为Java对象模型。</p>
+<p>HotSpot虚拟机中，设计了一个OOP-Klass Model。OOP（Ordinary Object Pointer）指的是普通对象指针，而Klass用来描述对象实例的具体类型。</p>
+<p>每一个Java类，在被JVM加载的时候，JVM会给这个类创建一个<code>instanceKlass</code>，保存在方法区，用来在JVM层表示该Java类。当我们在Java代码中，使用new创建一个对象的时候，JVM会创建一个<code>instanceOopDesc</code>对象，这个对象中包含了对象头以及实例数据。</p>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/f1acb1ec282715d330ca266ae09f48fc.png" alt></p>
+<p>HotSpot虚拟机中，对象在内存中存储的布局可以分为三块区域：对象头（Header）、实例数据（Instance Data）和对齐填充（Padding）。java对象头很重要，synchronize、GC、HashCode、biasedLock、ObjectMonitor都是在对象头上做文章。</p>
+<p><img src="https://img-blog.csdnimg.cn/3a338f08ee7c4fc0af08486b52da01db.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAQ05DU-S5i-WFieKAlOKAlOS4muS9meeahEpBVkHlrabogIVR,size_9,color_FFFFFF,t_70,g_se,x_16" alt></p>
+<p>在JVM存储时，为了实现一些额外的功能，需要在对象中添加一些标记字段用于增强对象功能，这些标记字段组成了对象头。Mark Word：用来标记运行时信息。Class Pointer：用来指向生成该对象所在的类。如果是数组对象还得再加一项Array Length：告诉我们数组的长度。</p>
+<p>这里以32位JVM为例：</p>
+<p>普通对象</p>
+<p><img src="https://img-blog.csdnimg.cn/a867a466409d46f5b32902f6eaed6436.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAQ05DU-S5i-WFieKAlOKAlOS4muS9meeahEpBVkHlrabogIVR,size_10,color_FFFFFF,t_70,g_se,x_16" alt></p>
+<p>数组对象</p>
+<p><img src="https://img-blog.csdnimg.cn/563bd15263d5489b8a735ab95b42c8fb.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAQ05DU-S5i-WFieKAlOKAlOS4muS9meeahEpBVkHlrabogIVR,size_10,color_FFFFFF,t_70,g_se,x_16" alt></p>
+<h4 id="Mark-Word（标记字段）"><a href="#Mark-Word（标记字段）" class="headerlink" title="Mark Word（标记字段）"></a>Mark Word（标记字段）</h4><p>通过阅读open jdk官方文档中对对象头的解释可以知道，一个Java对象头中包含了<strong>2个word</strong>。第一部分用于存储对象自身的运行时数据， 如哈希码（HashCode）、GC分代年龄、锁状态标志、线程持有的锁、偏向线程ID、偏向时间戳等等。第二个word是<strong>klass word</strong>，主要是指向对象的元数据 。</p>
+<blockquote>
+<p>关于Word（字）：指的是计算机内存中占据 一个单独的内存单元编号的一组二进制串。一般32位计算机上一个字为4个字节长度。1 Byte = 8Bits。</p>
+</blockquote>
+<p>这部分数据的长度在32位和64位的虚拟机（暂不考虑开启压缩指针的场景）中分别为32个和64个Bits，官方称它为“Mark Word”。<code>mark word</code>的位长度为JVM的一个Word大小，也就是说32位JVM的<code>Mark word</code>为32Bits，64位JVM为64Bits。（64位虚拟机情况下，markWord、class pointer、array length一般都是8字节）</p>
+<p>考虑到虚拟机的空间效率，Mark Word被设计成一个非固定的数据结构以便在极小的空间内存储尽量多的信息，它会根据对象的状态复用自己的存储空间。<strong>例如在32位的HotSpot虚拟机</strong> 中对象未被锁定的状态下，Mark Word的32个Bits空间中的25Bits用于存储对象哈希码（HashCode），4Bits用于存储对象分代年龄，2Bits用于存储锁标志 位，1Bit固定为0，在其他状态（轻量级锁定、重量级锁定、GC标记、可偏向）下对象的存储内容如下表所示。</p>
+<p><img src="https://img-blog.csdnimg.cn/07e268a480674a2a8f85c50d5cc80d9c.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAQ05DU-S5i-WFieKAlOKAlOS4muS9meeahEpBVkHlrabogIVR,size_14,color_FFFFFF,t_70,g_se,x_16" alt></p>
+<p><img src="https://img-blog.csdnimg.cn/5e5a98c390f1426e8839cca6b2e1233b.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAQ05DU-S5i-WFieKAlOKAlOS4muS9meeahEpBVkHlrabogIVR,size_10,color_FFFFFF,t_70,g_se,x_16" alt></p>
+<p>其中各部分的含义如下：<br><strong>lock</strong>:2位的锁状态标记位，由于希望用尽可能少的二进制位表示尽可能多的信息，所以设置了lock标记。该标记的值不同，整个mark word表示的含义不同。</p>
+<p><img src="https://img-blog.csdnimg.cn/6d9b163eb5984f92b98b7ee0a5274904.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAQ05DU-S5i-WFieKAlOKAlOS4muS9meeahEpBVkHlrabogIVR,size_4,color_FFFFFF,t_70,g_se,x_16" alt></p>
+<p><em>biased_lock</em>：对象是否启用偏向锁标记，只占1个二进制位。为1时表示对象启用偏向锁，为0时表示对象没有偏向锁。<br><em>age</em>：4位的Java对象年龄。在GC中，如果对象在Survivor区复制一次，年龄增加1。当对象达到设定的阈值时，将会晋升到老年代。默认情况下，并行GC的年龄阈值为15，并发GC的年龄阈值为6。由于age只有4位，所以最大值为15，这就是<code>-XX:MaxTenuringThreshold</code>选项最大值为15的原因。<br><em>identity_hashcode</em>：25位的对象标识Hash码，采用延迟加载技术。调用方法<code>System.identityHashCode()</code>计算，并会将结果写到该对象头中。当对象被锁定时，该值会移动到管程Monitor中。<br><em>thread</em>：持有偏向锁的线程ID。<br><em>epoch</em>：偏向时间戳。<br><em>ptr_to_lock_record</em>：指向栈中锁记录的指针。<br><em>ptr_to_heavyweight_monitor</em>：指向管程Monitor的指针。</p>
+<p>64位下的标记字与32位的相似：</p>
+<p><img src="https://img-blog.csdnimg.cn/03839fd84b854491acc87d8a7581125d.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAQ05DU-S5i-WFieKAlOKAlOS4muS9meeahEpBVkHlrabogIVR,size_10,color_FFFFFF,t_70,g_se,x_16" alt></p>
+<p><img src="https://img-blog.csdnimg.cn/9d380eb6044a4e5db87aaeae606d1500.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAQ05DU-S5i-WFieKAlOKAlOS4muS9meeahEpBVkHlrabogIVR,size_7,color_FFFFFF,t_70,g_se,x_16" alt></p>
+<p><img src="https://img-blog.csdnimg.cn/1a1ff714cfd2420a8df764fab308d174.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAQ05DU-S5i-WFieKAlOKAlOS4muS9meeahEpBVkHlrabogIVR,size_10,color_FFFFFF,t_70,g_se,x_16" alt></p>
+<p>锁有不同的分类。分别是:无锁态、偏向锁、轻量级锁 (自旋锁，自适应自旋）、重量级锁。锁的相关信息必然是要被记录的而记录的载体正是对象的对象头中的markword。此外由于存储空间的有限，为了节省空间，提高空间利用率64位虚拟机下，我们将markword这8个字节根据不同的锁状态划分成了不同的结构。其中锁状态与markword的关系入下图所示。</p>
+<p><img src="https://img-blog.csdnimg.cn/a455972e1fe94de7915035fc13b26e04.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAQ05DU-S5i-WFieKAlOKAlOS4muS9meeahEpBVkHlrabogIVR,size_15,color_FFFFFF,t_70,g_se,x_16" alt></p>
+<p>关于锁的介绍，具体我会在后面，详细的说明。</p>
+<h4 id="class-pointer"><a href="#class-pointer" class="headerlink" title="class pointer"></a>class pointer</h4><p><strong>对象头</strong>的<strong>另外一部分是类型指针</strong>，即是对象指向它的类的元数据的指针，虚拟机通过这个指针来确定这个对象是哪个类的实例。并不是所有的虚拟机实现都必须在对象数据上保留类型指针，换句话说查找对象的元数据信息并不一定要经过对象本身。另外，如果对象是一个Java数组，那在对象头中还必须有一块用于记录数组长度的数据，因为虚拟机可以通过普通Java对象的元数据信息确定Java对象的大小，但是从数组的元数据中无法确定数组的大小。</p>
+<p>这一部分用于存储对象的类型指针，该指针指向它的类元数据，JVM通过这个指针确定对象是哪个类的实例。该指针的位长度为JVM的一个字大小，即32位的JVM为32位，64位的JVM为64位。<br>如果应用的对象过多，使用64位的指针将浪费大量内存，统计而言，64位的JVM将会比32位的JVM多耗费50%的内存。为了节约内存可以使用选项<code>+UseCompressedOops</code>开启指针压缩，其中，oop即ordinary object pointer普通对象指针。开启该选项后，下列指针将压缩至32位：</p>
+<ol>
+<li>每个Class的属性指针（即静态变量）</li>
+<li>每个对象的属性指针（即对象变量）</li>
+<li>普通对象数组的每个元素指针</li>
+</ol>
+<p>当然，也不是所有的指针都会压缩，一些特殊类型的指针JVM不会优化，比如指向PermGen的Class对象指针(JDK8中指向元空间的Class对象指针)、本地变量、堆栈元素、入参、返回值和NULL指针等。</p>
+<h4 id="array-length"><a href="#array-length" class="headerlink" title="array length"></a>array length</h4><p>如果对象是一个数组，那么对象头还需要有额外的空间用于存储数组的长度，这部分数据的长度也随着JVM架构的不同而不同：32位的JVM上，长度为32位；64位JVM则为64位。64位JVM如果开启<code>+UseCompressedOops</code>选项，<strong>该区域长度也将由64位压缩至32位</strong>。</p>
+<p>附上参考资料：</p>
+<p><a href="https://wiki.openjdk.java.net/display/HotSpot/CompressedOops" title="CompressedOops -     CompressedOops      -   OpenJDK Wiki" target="_blank" rel="noopener">CompressedOops - CompressedOops - OpenJDK Wiki</a></p>
+<h4 id="实例数据（Instance-Data）"><a href="#实例数据（Instance-Data）" class="headerlink" title="实例数据（Instance Data）"></a>实例数据（Instance Data）</h4><p>接下来实例数据部分是对象真正存储的有效信息，也既是我们在程序代码里面所定义的各种类型的字段内容，无论是从父类继承下来的，还是在子类中定义的都需要记录下来。 这部分的存储顺序会受到虚拟机分配策略参数（FieldsAllocationStyle）和字段在Java源码中定义顺序的影响。HotSpot虚拟机 默认的分配策略为longs/doubles、ints、shorts/chars、bytes/booleans、oops（Ordinary Object Pointers），从分配策略中可以看出，相同宽度的字段总是被分配到一起。在满足这个前提条件的情况下，在父类中定义的变量会出现在子类之前。如果 CompactFields参数值为true（默认为true），那子类之中较窄的变量也可能会插入到父类变量的空隙之中。</p>
+<h4 id="对齐填充（Padding）"><a href="#对齐填充（Padding）" class="headerlink" title="对齐填充（Padding）"></a>对齐填充（Padding）</h4><p>　第三部分对齐填充并不是必然存在的，也没有特别的含义，它仅仅起着占位符的作用。由于HotSpot VM的自动内存管理系统要求对象起始地址必须是8字节的整数倍，换句话说就是对象的大小必须是8字节的整数倍。对象头正好是8字节的倍数（1倍或者2倍），因此当对象实例数据部分没有对齐的话，就需要通过对齐填充来补全。  </p>
+<h3 id="对象的访问定位"><a href="#对象的访问定位" class="headerlink" title="对象的访问定位"></a>对象的访问定位</h3><p>java程序需要通过引用(ref)数据来操作堆上面的对象，那么如何通过引用定位、访问到对象的具体位置。</p>
+<pre><code>对象的访问方式由虚拟机决定，java虚拟机提供两种主流的方式
+1.句柄访问对象
+2.直接指针访问对象。(Sun HotSpot使用这种方式)
+
+</code></pre><p>参考<a href="https://links.jianshu.com/go?to=https%3A%2F%2Fblog.csdn.net%2Fu011080472%2Farticle%2Fdetails%2F51321769" target="_blank" rel="noopener">Java对象访问定位</a></p>
+<h4 id="句柄访问"><a href="#句柄访问" class="headerlink" title="句柄访问"></a>句柄访问</h4><blockquote>
+<p>简单来说就是java堆划出一块内存作为句柄池,引用中存储对象的句柄地址,句柄中包含对象实例数据、类型数据的地址信息。</p>
+<p>优点:引用中存储的是稳定的句柄地址,在对象被移动【垃圾收集时移动对象是常态】只需改变句柄中实例数据的指针，不需要改动引用【ref】本身。</p>
+</blockquote>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/002d9ffd00ccfe6ae0e2df1918d78f17.png" alt></p>
+<h4 id="直接指针"><a href="#直接指针" class="headerlink" title="直接指针"></a>直接指针</h4><blockquote>
+<p>与句柄访问不同的是，ref中直接存储的就是对象的实例数据,但是类型数据跟句柄访问方式一样。</p>
+<p>优点:优势很明显，就是速度快，<strong>相比于句柄访问少了一次指针定位的开销时间</strong>。【可能是出于Java中对象的访问时十分频繁的,平时我们常用的JVM HotSpot采用此种方式】</p>
+</blockquote>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/db3185fd53df740667fd345702fc0e92.png" alt></p>
+<h3 id="内存溢出"><a href="#内存溢出" class="headerlink" title="内存溢出"></a>内存溢出</h3><pre><code>两种内存溢出异常[注意内存溢出是error级别的]
+1.StackOverFlowError:当请求的栈深度大于虚拟机所允许的最大深度
+2.OutOfMemoryError:虚拟机在扩展栈时无法申请到足够的内存空间[一般都能设置扩大]
+
+</code></pre><p>java -verbose:class -version 可以查看刚开始加载的类，可以发现这两个类并不是异常出现的时候才去加载，而是jvm启动的时候就已经加载。这么做的原因是在vm启动过程中我们把类加载起来，并创建几个没有堆栈的对象缓存起来，只需要设置下不同的提示信息即可，当需要抛出特定类型的OutOfMemoryError异常的时候，就直接拿出缓存里的这几个对象就可以了。</p>
+<p>比如说OutOfMemoryError对象，jvm预留出4个对象【固定常量】，这就为什么最多出现4次有堆栈的OutOfMemoryError异常及大部分情况下都将看到没有堆栈的OutOfMemoryError对象的原因。</p>
+<p><a href="https://links.jianshu.com/go?to=http%3A%2F%2Flovestblog.cn%2Fblog%2F2016%2F08%2F29%2Foom%2F" target="_blank" rel="noopener">参考OutOfMemoryError解读</a></p>
+<h2 id="再说说JVM中的锁"><a href="#再说说JVM中的锁" class="headerlink" title="再说说JVM中的锁"></a>再说说JVM中的锁</h2><p>看完对象头，往下看虚拟机中对锁的一些实现，Java程序中对于多线程的同步操作并不是全部交由操作系统来完成的，JVM也会参与进来，例如遇到线程访问临界区资源但没能获得锁而等待时，JVM不会立刻让操作系统挂起线程，而是做一些例如自旋操作，让线程尽可能拿到锁，这样做的目的是尽可能提高程序运行速度，因为线程拿不到锁后进入阻塞态，等待下一次获取锁后进入就绪态再到运行态，这一系列动作需要耗费较大的性能和时间。</p>
+<p>先来看看synchronized机制，synchronized机制有四种用法，一种是对代码块标记，第二种对静态方法进行标记，第三种对非静态方法进行标记，第四种对类进行标记。其中反编译之后可以看到，class文件中的指令通过monitorenter和monitorexit来标识代码片段是互斥的，如果是方法，方法名之前会有ACC_SYNCHRONIZED的标识。</p>
+<p>至于底层实现，jvm通过一系列的队列来保证synchronized能够线程安全的试用。每一个对象都有一个monitor来控制是否是竞争性资源。现有的机制通过对对象头的标记来简化锁带来的负载，偏向锁，不存在竞争的线程获取资源，第二次进入不再进行同步操作。轻量锁，先尝试修改mark word的状态为轻量锁，修改成功就执行同步的代码，此时有竞争的线程自旋，自旋之后如果还不能获取到资源，锁变成重量锁。自旋锁，线程空转以免引起操作系统上下文切换。重量锁，通过synchronized机制来操作，只有在其他线程执行了monitorexit之后才能获获取资源。</p>
+<p>vilatile 是能够保证可见性和有序性。应用场景有状态标志（开关）、双重检查锁定，在底层的实现主要依靠锁，但是vilatile并不能保证原子性，所以不是线程安全的机制。对单个volatile变量的读/写具有原子性，但是部分操作不具有，比如volatile++这样的操作</p>
+<h3 id="偏向锁"><a href="#偏向锁" class="headerlink" title="偏向锁"></a>偏向锁</h3><p> 首先来看偏向锁，它的做法是，如果一个线程A获取了锁对象，那么这个锁对象就进入了偏向状态，Mark Word中标记为biased_lock:1 | 01，同时经过CAS无锁交换比较（compare and swap）操作后记录线程id，线程执行完释放锁之后，如果想要再次获得该锁对象，则不需要再进行加锁，cas等同步操作。当然，如果有其他线程试图去获取该锁对象时，这个偏向状态就会失效。</p>
+<h3 id="轻量级锁"><a href="#轻量级锁" class="headerlink" title="轻量级锁"></a>轻量级锁</h3><p>轻量级锁在JVM内部实现用的是BasicObjectLock类，类里面有轻量锁对象BasicLock，线程如果获取偏向锁失败，就会转去申请轻量级锁，轻量级锁的就是先让线程进行CAS操作来同步，期间还会将原来对象的Mark Word进行备份，然后复制BasicLock的地址到Mark Word中，如果BasicLock地址复制成功，表示线程处于轻量级锁状态，Mark Word中标记lock为00。如果地址复制失败，先会去判断线程是否之前就已经获得了锁对象，如果是就直接进入同步块，如果没有，则表明有多个线程在获取同一对象，此时轻量级锁就会膨胀成重量级锁。</p>
+<p>关于对象头和锁之间的转换，网上大神总结</p>
+<h3 id="……"><a href="#……" class="headerlink" title="……"></a>……</h3><p><img src="https://img-blog.csdnimg.cn/img_convert/7ede56c016d1b7c54fcf82b34a9e990a.png" alt></p>
+<p><a href="https://blog.csdn.net/ds19980228/article/details/84189273" target="_blank" rel="noopener">关于CAS操作</a></p>
+<p>参考资料：</p>
+<p><a href="https://www.hollischuang.com/archives/2509" target="_blank" rel="noopener">JVM内存结构 VS Java内存模型 VS Java对象模型-HollisChuang’s Blog</a></p>
+<p><a href="https://www.cnblogs.com/duanxz/p/4967042.html" target="_blank" rel="noopener">java对象在内存中的结构（HotSpot虚拟机） - duanxz - 博客园</a></p>
+<p><a href="https://blog.csdn.net/zhoufanyang_china/article/details/54601311" target="_blank" rel="noopener">【Java对象解析】不得不了解的对象头_扬帆舟的博客-CSDN博客</a></p>
+<p><a href="https://www.cnblogs.com/makai/p/12466541.html" target="_blank" rel="noopener">Java对象头详解 - 追求极致 - 博客园</a></p>
+<p><a href="https://www.jianshu.com/p/76959115d486" target="_blank" rel="noopener">深入理解JVM-内存模型（jmm）和GC - 简书</a></p>
+<p><a href="https://www.it610.com/article/1282516789900623872.htm" target="_blank" rel="noopener">JMM与JVM区别与联系（精炼总结） - it610.com</a></p>
+
+        </div>
+        <!-- .entry-content -->
+        <div class="single-reward">
+          <div class="reward-open">赏
+            <div class="reward-main">
+              <ul class="reward-row">
+                <li class="alipay-code"><img src="https://cdn.jsdelivr.net/gh/w7h1te/PicGoCDN/img/custom/donate/202203091825000.jpg"></li>
+                <li class="wechat-code"><img src="https://cdn.jsdelivr.net/gh/w7h1te/PicGoCDN/img/custom/donate/WeChanSQ.png"></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div style="text-align:center; width: 100%" class="social-share share-mobile" data-disabled="diandian, tencent"></div>
+        <footer class="post-footer">
+          <div class="post-lincenses"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="nofollow"><i class="fa fa-creative-commons" aria-hidden="true"></i> 知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议</a></div>
+          <div class="post-tags">
+          </div>
+          <div class="post-share">
+            <div class="social-share sharehidden share-component"></div>
+            <i class="iconfont show-share icon-forward"></i>
+          </div>
+        </footer><!-- .entry-footer -->
+      </article>
+      <!-- #post-## -->
+      <div class="toc" style="background: none;"></div>
+      <section class="post-squares nextprev">
+        
+          
+            <div class="post-nepre half previous">
+          
+            <a href="/2022/02/10/Markdown编辑小技巧——文字篇（一）/" rel="prev">
+              <div class="background">
+                <img class="lazyload" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://gitee.com/yw-7/drawing-bed/raw/master/img/cover19.jpg" style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;" onerror="imgError(this,3)" src="https://gitee.com/yw-7/drawing-bed/raw/master/img/cover19.jpg">
+              </div>
+              <span class="label">
+              Previous Post</span>
+              <div class="info">
+                <h3>
+                Markdown编辑小技巧——文字篇（一）</h3>
+                <hr>
+              </div>
+            </a>
+          </div>
+        
+        
+          
+            <div class="post-nepre half next">
+          
+            <a href="/2021/10/20/jvm调优实战/" rel="next">
+              <div class="background">
+                <img class="lazyload" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://gitee.com/yw-7/drawing-bed/raw/master/img/cover2.jpg" style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;" onerror="imgError(this,3)" src="https://gitee.com/yw-7/drawing-bed/raw/master/img/cover2.jpg">
+              </div>
+              <span class="label">
+              Next Post</span>
+              <div class="info">
+                <h3>
+                jvm调优——实战</h3>
+                <hr>
+              </div>
+            </a>
+          </div>
+        
+      </section>
+      
+
+
+
+      <section class="author-profile">
+        <div class="info" itemprop="author" itemscope="" itemtype="https://schema.org/Person">
+          <a href="w7h1te.cn" class="profile gravatar"><img src="https://cdn.jsdelivr.net/gh/w7h1te/PicGoCDN/img/custom/202203090940373.jpeg" itemprop="image" alt="w7h1te" height="70" width="70"></a>
+          <div class="meta">
+            <span class="title">Author</span>
+            <h3 itemprop="name">
+            <a href="w7h1te.cn" itemprop="url" rel="author">w7h1te</a>
+            </h3>
+          </div>
+        </div>
+        <hr>
+        <p><i class="iconfont icon-write"></i>把握生活，拒绝摆烂</p>
+      </section>
+    </main><!-- #main -->
+  </div><!-- #primary -->
+</div>
+
+
+
+    </div>    
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="请输入关键词..."/>
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            // PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+    <!-- <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2022 w7h1te<br>
+      powered_by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer> -->
+<footer id="colophon" class="site-footer" role="contentinfo">
+  <div class="site-info">
+    <div class="footertext">
+      <div class="img-preload">
+        <img src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/other/wordpress-rotating-ball-o.svg">
+        <img src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/other/disqus-preloader.svg">
+      </div>
+      <p style="color: #666666;">&copy 2020</p>
+    </div>
+    <div class="footer-device">
+    <p style="font-family: 'Ubuntu', sans-serif;">
+        <span style="color: #b9b9b9;">Theme <a href="https://github.com/honjun/hexo-theme-sakura" target="_blank" style="color: #b9b9b9;;text-decoration: underline dotted rgba(0, 0, 0, .1);">Sakura</a> <i class="iconfont icon-sakura rotating" style="color: #ffc0cb;display:inline-block"></i> by <a href="https://github.com/w7h1te" target="_blank" style="color: #b9b9b9;;text-decoration: underline dotted rgba(0, 0, 0, .1);">w7h1te</a>, Powered by Hexo, Hosted by Coding Pages</a>
+        </span>
+      </p>
+    </div>
+  </div><!-- .site-info -->
+</footer>
+<script type="text/javascript" src="/js/lib.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script type="text/javascript" src="/js/InsightSearch.js"></script>
+<script type="text/javascript" src="/js/jquery.fancybox.min.js"></script>
+<script type="text/javascript" src="/js/zoom.min.js"></script>
+<script type="text/javascript" src="/js/sakura-app.js"></script>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src='//unpkg.com/valine@1.3.4/dist/Valine.min.js'></script>
+<script src="/js/botui.js"></script>
+<!-- 不蒜子 网页计数器 -->
+<script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js"></script> -->
+<script type="text/javascript">
+/* <![CDATA[ */
+if (/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
+  var Poi = {"pjax":"1","movies":{"url": "https://cdn.jsdelivr.net/gh/honjun/hojun@1.2","name":"Unbroken.mp4","live":"close"},"windowheight":"fixed","codelamp":"close","ajaxurl":"","order":"asc","formpostion":"bottom"};
+} else {
+  var Poi = {"pjax":"1","movies":{"url": "https://cdn.jsdelivr.net/gh/honjun/hojun@1.2","name":"Unbroken.mp4","live":"open"},"windowheight":"auto","codelamp":"close","ajaxurl":"","order":"asc","formpostion":"bottom"};
+}
+/* ]]> */
+
+</script>
+<script>
+$(document).ready(function() {
+  if ($(".toc").length > 0 && document.body.clientWidth > 1200) {
+    if ($(".pattern-center").length > 0) { //有图的情况
+      tocbot.init({
+          // Where to render the table of contents.
+          tocSelector: '.toc', // 放置目录的容器
+          // Where to grab the headings to build the table of contents.
+          contentSelector: '.entry-content', // 正文内容所在
+          // Which headings to grab inside of the contentSelector element.
+          scrollSmooth: true,
+          headingSelector: 'h1, h2, h3, h4, h5', // 需要索引的标题级别
+          headingsOffset: -400,
+          scrollSmoothOffset: -85
+      });
+    } else {
+      tocbot.init({
+          // Where to render the table of contents.
+          tocSelector: '.toc', // 放置目录的容器
+          // Where to grab the headings to build the table of contents.
+          contentSelector: '.entry-content', // 正文内容所在
+          // Which headings to grab inside of the contentSelector element.
+          scrollSmooth: true,
+          headingSelector: 'h1, h2, h3, h4, h5', // 需要索引的标题级别
+          headingsOffset: -85,
+          scrollSmoothOffset: -85
+      });
+    }
+    var offsetTop = $('.toc').offset().top - 95;
+    window.onscroll = function() {
+      var scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
+      if (scrollTop >= offsetTop) {
+        $('.toc').addClass('toc-fixed');
+      } else {
+        $('.toc').removeClass('toc-fixed');
+      }
+    }
+  }
+});
+</script>
+
+    <div class="openNav no-select" style="height: 50px;">
+      <div class="iconflat no-select" style="width: 50px; height: 50px;">
+        <div class="icon"></div>
+      </div>
+      <div class="site-branding search-form-submit">
+        <i class="iconfont js-toggle-search iconsearch icon-search"></i>
+      </div>
+    </div>
+  </section>
+  <div id="mo-nav" class="">
+  <div class="m-avatar">
+    <img src="https://cdn.jsdelivr.net/gh/w7h1te/PicGoCDN/img/custom/202203090940373.jpeg">
+  </div>
+  <p style="text-align: center; color: #333; font-weight: 900; font-family: 'Ubuntu', sans-serif; letter-spacing: 1.5px">w7h1te的博客!w7h1te</p>
+  <p style="text-align: center; word-spacing: 20px;">
+    
+      
+        <a href="http://github.com/w7h1te" class="fa fa-github" target="_blank" style="color: #333; margin-left:20px"></a>
+      
+        <a href="http://weibo.com/u/7746344202" class="fa fa-weibo" target="_blank" style="color: #dd4b39; margin-left:20px"></a>
+      
+        <a href="http://wpa.qq.com/msgrd?v=3&uin=321950101&site=qq&menu=yes" class="fa fa-qq" target="_blank" style="color: #25c6fe; margin-left:20px"></a>
+      
+    
+  </p>
+  <ul id="menu-new-1" class="menu">
+    
+      <li>
+        <a href="/">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-fort-awesome faa-shake" aria-hidden="true"></i>
+            首页
+          </span>
+        </a>
+        
+      </li>
+    
+      <li>
+        <a href="/archives">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-archive faa-shake" aria-hidden="true"></i>
+            归档
+          </span>
+        </a>
+        
+          <ul class="sub-menu">
+            
+              <li>
+                <a href="/categories/技术/">
+                  <i class="fa fa-code" aria-hidden="true"></i>
+                  技术
+                </a>
+              </li>
+            
+              <li>
+                <a href="/categories/生活/">
+                  <i class="fa fa-file-text-o" aria-hidden="true"></i>
+                  生活
+                </a>
+              </li>
+            
+              <li>
+                <a href="/categories/资源/">
+                  <i class="fa fa-cloud-download" aria-hidden="true"></i>
+                  资源
+                </a>
+              </li>
+            
+              <li>
+                <a href="/categories/随想/">
+                  <i class="fa fa-commenting-o" aria-hidden="true"></i>
+                  随想
+                </a>
+              </li>
+            
+              <li>
+                <a href="/categories/转载/">
+                  <i class="fa fa-book" aria-hidden="true"></i>
+                  转载
+                </a>
+              </li>
+            
+          </ul>
+        
+      </li>
+    
+      <li>
+        <a href="javascript:;">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-list-ul faa-vertical" aria-hidden="true"></i>
+            清单
+          </span>
+        </a>
+        
+          <ul class="sub-menu">
+            
+              <li>
+                <a href="/tags/悦读/">
+                  <i class="fa fa-th-list faa-bounce" aria-hidden="true"></i>
+                  书单
+                </a>
+              </li>
+            
+              <li>
+                <a href="/bangumi/">
+                  <i class="fa fa-film faa-vertical" aria-hidden="true"></i>
+                  番组
+                </a>
+              </li>
+            
+              <li>
+                <a href="/music/">
+                  <i class="fa fa-headphones" aria-hidden="true"></i>
+                  歌单
+                </a>
+              </li>
+            
+              <li>
+                <a href="/tags/图集/">
+                  <i class="fa fa-photo" aria-hidden="true"></i>
+                  图集
+                </a>
+              </li>
+            
+          </ul>
+        
+      </li>
+    
+      <li>
+        <a href="/comment/">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-pencil-square-o faa-tada" aria-hidden="true"></i>
+            留言板
+          </span>
+        </a>
+        
+      </li>
+    
+      <li>
+        <a href="/links/">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-link faa-shake" aria-hidden="true"></i>
+            友人帐
+          </span>
+        </a>
+        
+      </li>
+    
+      <li>
+        <a href="/donate/">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-heart faa-pulse" aria-hidden="true"></i>
+            赞赏
+          </span>
+        </a>
+        
+      </li>
+    
+      <li>
+        <a href="/">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-leaf faa-wrench" aria-hidden="true"></i>
+            关于
+          </span>
+        </a>
+        
+          <ul class="sub-menu">
+            
+              <li>
+                <a href="/about/">
+                  <i class="fa fa-meetup" aria-hidden="true"></i>
+                  我？
+                </a>
+              </li>
+            
+              <li>
+                <a href="/theme-sakura/">
+                  <i class="fa iconfont icon-sakura" aria-hidden="true"></i>
+                  主题
+                </a>
+              </li>
+            
+              <li>
+                <a href="/lab/">
+                  <i class="fa fa-cogs" aria-hidden="true"></i>
+                  Lab
+                </a>
+              </li>
+            
+          </ul>
+        
+      </li>
+    
+      <li>
+        <a href="/client/">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-android faa-vertical" aria-hidden="true"></i>
+            客户端
+          </span>
+        </a>
+        
+      </li>
+    
+      <li>
+        <a href="/atom.xml">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-rss faa-pulse" aria-hidden="true"></i>
+            RSS
+          </span>
+        </a>
+        
+      </li>
+    
+  </ul>
+  <p style="text-align: center; font-size: 13px; color: #b9b9b9;">&copy 2019 hexo-sakura</p>
+</div>
+<button onclick="topFunction()" class="mobile-cd-top" id="moblieGoTop" title="Go to top" style="display: none;"><i class="fa fa-chevron-up" aria-hidden="true"></i></button>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+<script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+<!-- require MetingJS -->
+<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+<style>
+  .aplayer .aplayer-lrc {
+    height: 35px;
+  }
+  .aplayer .aplayer-lrc p{
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 18px !important;
+  }
+  .aplayer .aplayer-lrc p.aplayer-lrc-current{
+    color: #FF1493;
+  }
+  .aplayer.aplayer-narrow .aplayer-body{
+    left: -66px !important;
+  }
+  .aplayer.aplayer-fixed .aplayer-lrc {
+    display: none;
+  }
+  .aplayer .aplayer-lrc.aplayer-lrc-hide {
+      display:none !important;
+  }
+  .aplayer.aplayer-fixed .lrc-show {
+    display: block;
+    background: rgba(255, 255, 255, 0.8);
+  }
+</style>
+<meting-js
+
+    id="2660651585"
+
+    server="netease"
+
+    type="playlist"
+
+    fixed="true"
+
+    autoplay="false"
+
+    loop="all"
+
+    order="random"
+
+    preload="auto"
+
+    volume="0.7"
+
+    mutex="true"
+
+</meting-js>
+<script>
+  $(function(){
+    $('body').on('click', '.aplayer', function(){
+      if($('.aplayer-button').hasClass('aplayer-play')) {
+        $('.aplayer-lrc').removeClass('lrc-show');
+      } else {
+        $('.aplayer-lrc').addClass('lrc-show');
+      }
+    })
+  });
+</script>
+</body>
+</html>

@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
   
-  <title itemprop="name">archive_a: 2019/12 | w7h1te</title>
+  <title itemprop="name">人家问你：什么是JVM内存结构 、 Java内存模型 、 Java对象模型？ | w7h1te</title>
   
     <link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/w7h1te/PicGoCDN/img/favicon/202203090939154.ico">
   
@@ -402,334 +402,159 @@
   </div>
 </header>
 
-      <div class="blank" style="padding-top: 75px;">
-</div>
-<div id="content" class="site-content">
-  <div id="main">
-    <header class="page-header">
-      <h1 class="cat-title">
-      归档</h1>
-      <span class="cat-des">
-        <p>
-        Archives</p>
-      </span>
+      <link rel="stylesheet" type="text/css" href="/css/sharejs.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css">
+<div class="pattern-center-blank"></div>
+
+  <div class="pattern-center single-center">
+    <!-- 有配图默认渲染第一张 -->
+    <div class="pattern-attachment-img lazyload" style="background-image: url(https://gitee.com/yw-7/drawing-bed/raw/master/img/cover4.jpg);" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://gitee.com/yw-7/drawing-bed/raw/master/img/cover4.jpg">
+    </div>
+    <header class="pattern-header single-header">
+      <h1 class="entry-title">
+      人家问你：什么是JVM内存结构 、 Java内存模型 、 Java对象模型？</h1>
+      <p class="entry-census">
+        <span>
+          <a href="w7h1te.cn">
+            <img src="https://cdn.jsdelivr.net/gh/w7h1te/PicGoCDN/img/custom/202203090940373.jpeg">
+          </a>
+        </span>
+        <span>
+          <a href="w7h1te.cn">w7h1te</a>
+        </span>
+        <span class="bull">
+        ·</span>
+        2021-10-9<span class="bull">
+        ·</span>
+      <span id="busuanzi_value_page_pv"></span>次阅读</p>
     </header>
-    <div id="main-part">
-      <article class="art">
-        <div class="art-main">
-          <div class="art-content">
-            <div id="archives">
-              <p style="text-align:right;">
-                [<span id="al_expand_collapse" style="cursor: s-resize;">
-                全部展开/收缩</span>
-              ]</p>
-              
-              
-              
-              
-              
-                
-                <h3 class="al_year">2022年</h3>
-              
-              
-                
-                <ul class="al_mon_list">
-                  <li class="al_li">
-                    <span class="al_mon" style="cursor: s-resize;">
-                      03月(<span id="post-num">
-                      3</span>
-                    篇文章)</span>
-                    <ul class="al_post_list" style="">
-              
-                      <li>
-                        <a href="/2022/03/09/hello-world/">
-                          <span style="color:#0bf;">
-                          09日17:53:48</span>
-                          hexo的开始文档
-                        </a>
-                      </li>
-                      
-              
-              
-              
-              
-              
-                      <li>
-                        <a href="/2022/03/05/Markdown编辑小技巧——图片篇（二）/">
-                          <span style="color:#0bf;">
-                          05日10:41:24</span>
-                          Markdown编辑小技巧——图片篇（二）
-                        </a>
-                      </li>
-                      
-                    </ul>
-                  </li>
-                </ul>
-              
-              
-              
-              
-              
-              
-                
-                <ul class="al_mon_list">
-                  <li class="al_li">
-                    <span class="al_mon" style="cursor: s-resize;">
-                      02月(<span id="post-num">
-                      3</span>
-                    篇文章)</span>
-                    <ul class="al_post_list" style="">
-              
-                      <li>
-                        <a href="/2022/02/10/Markdown编辑小技巧——文字篇（一）/">
-                          <span style="color:#0bf;">
-                          10日20:09:24</span>
-                          Markdown编辑小技巧——文字篇（一）
-                        </a>
-                      </li>
-                      
-                    </ul>
-                  </li>
-                </ul>
-              
-              
-              
-              
-              
-                
-                <h3 class="al_year">2021年</h3>
-              
-              
-                
-                <ul class="al_mon_list">
-                  <li class="al_li">
-                    <span class="al_mon" style="cursor: s-resize;">
-                      11月(<span id="post-num">
-                      3</span>
-                    篇文章)</span>
-                    <ul class="al_post_list" style="">
-              
-                      <li>
-                        <a href="/2021/11/22/从jmm、jvm，到对象头、锁（长篇大论）更新中/">
-                          <span style="color:#0bf;">
-                          22日18:29:49</span>
-                          从jmm、jvm，到对象头、锁（长篇大论）更新中
-                        </a>
-                      </li>
-                      
-                    </ul>
-                  </li>
-                </ul>
-              
-              
-              
-              
-              
-              
-                
-                <ul class="al_mon_list">
-                  <li class="al_li">
-                    <span class="al_mon" style="cursor: s-resize;">
-                      10月(<span id="post-num">
-                      3</span>
-                    篇文章)</span>
-                    <ul class="al_post_list" style="">
-              
-                      <li>
-                        <a href="/2021/10/20/jvm调优实战/">
-                          <span style="color:#0bf;">
-                          20日07:16:01</span>
-                          jvm调优——实战
-                        </a>
-                      </li>
-                      
-              
-              
-              
-              
-              
-                      <li>
-                        <a href="/2021/10/12/jvm的部分操作，jvm调优——栈上分配。/">
-                          <span style="color:#0bf;">
-                          12日09:16:01</span>
-                          jvm调优——栈上分配
-                        </a>
-                      </li>
-                      
-              
-              
-              
-              
-              
-                      <li>
-                        <a href="/2021/10/09/人家问你：什么是JVM内存结构 、 Java内存模型 、 Java对象模型/">
-                          <span style="color:#0bf;">
-                          09日16:56:08</span>
-                          人家问你：什么是JVM内存结构 、 Java内存模型 、 Java对象模型？
-                        </a>
-                      </li>
-                      
-                    </ul>
-                  </li>
-                </ul>
-              
-              
-              
-              
-              
-              
-                
-                <ul class="al_mon_list">
-                  <li class="al_li">
-                    <span class="al_mon" style="cursor: s-resize;">
-                      09月(<span id="post-num">
-                      3</span>
-                    篇文章)</span>
-                    <ul class="al_post_list" style="">
-              
-                      <li>
-                        <a href="/2021/09/20/Mysql调优（一）/">
-                          <span style="color:#0bf;">
-                          20日22:37:26</span>
-                          Mysql调优(一)
-                        </a>
-                      </li>
-                      
-                    </ul>
-                  </li>
-                </ul>
-              
-              
-              
-              
-              
-                
-                <h3 class="al_year">2020年</h3>
-              
-              
-                
-                <ul class="al_mon_list">
-                  <li class="al_li">
-                    <span class="al_mon" style="cursor: s-resize;">
-                      12月(<span id="post-num">
-                      3</span>
-                    篇文章)</span>
-                    <ul class="al_post_list" style="">
-              
-                      <li>
-                        <a href="/2020/12/12/Hexo-Theme-Sakura/">
-                          <span style="color:#0bf;">
-                          12日22:16:01</span>
-                          Hexo-Theme-Sakura
-                        </a>
-                      </li>
-                      
-              
-              
-              
-              
-              
-                      <li>
-                        <a href="/2020/12/12/idea/">
-                          <span style="color:#0bf;">
-                          12日22:16:01</span>
-                          idea
-                        </a>
-                      </li>
-                      
-              
-              
-              
-              
-              
-                      <li>
-                        <a href="/2020/12/12/zhuanzai/">
-                          <span style="color:#0bf;">
-                          12日22:16:01</span>
-                          转载
-                        </a>
-                      </li>
-                      
-              
-              
-              
-              
-              
-                      <li>
-                        <a href="/2020/12/12/ziyuan/">
-                          <span style="color:#0bf;">
-                          12日22:16:01</span>
-                          资源
-                        </a>
-                      </li>
-                      
-                    </ul>
-                  </li>
-                </ul>
-              
-              
-              
-              
-              
-                
-                <h3 class="al_year">2019年</h3>
-              
-              
-                
-                <ul class="al_mon_list">
-                  <li class="al_li">
-                    <span class="al_mon" style="cursor: s-resize;">
-                      12月(<span id="post-num">
-                      3</span>
-                    篇文章)</span>
-                    <ul class="al_post_list" style="">
-              
-                      <li>
-                        <a href="/2019/12/12/bibilink/">
-                          <span style="color:#0bf;">
-                          12日22:16:01</span>
-                          哔哩哔哩外链插入
-                        </a>
-                      </li>
-                      
-              
-              
-              
-              
-              
-                      <li>
-                        <a href="/2019/12/12/daxueshenghuo/">
-                          <span style="color:#0bf;">
-                          12日22:16:01</span>
-                          大学生活
-                        </a>
-                      </li>
-                      
-              
-              
-              
-              
-              
-                      <li>
-                        <a href="/2019/12/12/life/">
-                          <span style="color:#0bf;">
-                          12日22:16:01</span>
-                          life
-                        </a>
-                      </li>
-                      
-                    </ul>
-                  </li>
-                </ul>
-              
-              
+  </div>
+
+<div id="content" class="site-content">
+  <div id="primary" class="content-area">
+    <main id="main" class="site-main" role="main">
+      <article id="post-1" class="post-1 post type-post status-publish format-standard has-post-thumbnail hentry category-uncategorized">
+        <div class="toc"></div>
+        <!--<div class="toc-entry-content"><!-- 套嵌目录使用（主要为了支援评论）-->
+        
+        <div class="entry-content">
+          <p>你说：啊对对对！？</p>
+<p>文章出自：<a href="https://www.hollischuang.com/archives/2509" target="_blank" rel="noopener">JVM内存结构 VS Java内存模型 VS Java对象模型-HollisChuang’s Blog</a></p>
+<h2 id="JVM内存结构"><a href="#JVM内存结构" class="headerlink" title="JVM内存结构"></a>JVM内存结构</h2><p>我们都知道，Java代码是要运行在虚拟机上的，而虚拟机在执行Java程序的过程中会把所管理的内存划分为若干个不同的数据区域，这些区域都有各自的用途。其中有些区域随着虚拟机进程的启动而存在，而有些区域则依赖用户线程的启动和结束而建立和销毁。</p>
+<p>在《 <a href="https://docs.oracle.com/javase/specs/jvms/se8/html/jvms-2.html#jvms-2.5.4" target="_blank" rel="noopener">Java虚拟机规范（Java SE 8）</a> 》中描述了JVM运行时内存区域结构如下：<br><img src="https://img-blog.csdnimg.cn/img_convert/1ca124a61bc51f96c66ea12fdfd0fe5f.png#pic_center" alt="jvm运行时内存结构！"></p>
+<p>各个区域的功能不是本文重点，就不在这里详细介绍了。这里简单提几个需要特别注意的点：</p>
+<p>1、以上是Java虚拟机规范，不同的虚拟机实现会各有不同，但是一般会遵守规范。</p>
+<p>2、规范中定义的方法区，只是一种概念上的区域，并说明了其应该具有什么功能。但是并没有规定这个区域到底应该处于何处。所以，对于不同的虚拟机实现来说，是由一定的自由度的。</p>
+<p>3、不同版本的方法区所处位置不同，上图中划分的是逻辑区域，并不是绝对意义上的物理区域。因为某些版本的JDK中方法区其实是在堆中实现的。</p>
+<p>4、运行时常量池用于存放编译期生成的各种字面量和符号应用。但是，Java语言并不要求常量只有在编译期才能产生。比如在运行期，String.intern也会把新的常量放入池中。</p>
+<p>5、除了以上介绍的JVM运行时内存外，还有一块内存区域可供使用，那就是直接内存。Java虚拟机规范并没有定义这块内存区域，所以他并不由JVM管理，是利用本地方法库直接在堆外申请的内存区域。</p>
+<p>6、堆和栈的数据划分也不是绝对的，如HotSpot的JIT会针对对象分配做相应的优化。</p>
+<p>如上，做个总结，JVM内存结构，由Java虚拟机规范定义。描述的是Java程序执行过程中，由JVM管理的不同数据区域。各个区域有其特定的功能。</p>
+<h2 id="Java内存模型"><a href="#Java内存模型" class="headerlink" title="Java内存模型"></a>Java内存模型</h2><p>Java内存模型看上去和Java内存结构（JVM内存结构）差不多，很多人会误以为两者是一回事儿，这也就导致面试过程中经常答非所为。</p>
+<p>在前面的关于JVM的内存结构的图中，我们可以看到，其中Java堆和方法区的区域是多个线程共享的数据区域。也就是说，多个线程可能可以操作保存在堆或者方法区中的同一个数据。这也就是我们常说的“Java的线程间通过共享内存进行通信”。</p>
+<p>Java内存模型是根据英文Java Memory Model（JMM）翻译过来的。其实JMM并不像JVM内存结构一样是真实存在的。他只是一个抽象的概念。<a href="http://www.cs.umd.edu/~pugh/java/memoryModel/jsr133.pdf" target="_blank" rel="noopener">JSR-133: Java Memory Model and Thread Specification</a>中描述了，JMM是和<strong>多线程</strong>相关的，他描述了一组规则或规范，这个规范定义了一个线程对共享变量的写入时对另一个线程是可见的。</p>
+<p>那么，简单总结下，Java的多线程之间是通过共享内存进行通信的，而由于采用共享内存进行通信，在通信过程中会存在一系列如<b><font size="4" color="red" face="华文彩云">可见性、原子性、顺序性</font></b>等问题，而JMM就是围绕着多线程通信以及与其相关的一系列特性而建立的模型。JMM定义了一些语法集，这些语法集映射到Java语言中就是<b><font size="4" color="red" face="华文彩云">volatile、synchronized</font></b>等关键字。</p>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/9316fb303a22f5935279fcf9f40faa8e.png#pic_center" alt="这是一个经典配图，哦不，典中典"></p>
+<p>在Java中，JMM是一个非常重要的概念，正是由于有了JMM，Java的并发编程才能避免很多问题。这里就不对Java内存模型做更加详细的介绍了，想了解更多的朋友可以参考《Java并发编程的艺术》。</p>
+<h2 id="Java对象模型"><a href="#Java对象模型" class="headerlink" title="Java对象模型"></a>Java对象模型</h2><p>Java是一种面向对象的语言，而Java对象在JVM中的存储也是有一定的结构的。而这个关于Java对象自身的存储模型称之为Java对象模型。</p>
+<p>HotSpot虚拟机中，设计了一个OOP-Klass Model。OOP（Ordinary Object Pointer）指的是普通对象指针，而Klass用来描述对象实例的具体类型。</p>
+<p>每一个Java类，在<strong>被JVM加载的时候</strong>，JVM会给这个类创建一个instanceKlass，保存在<strong>方法区</strong>，用来在JVM层表示该Java类。当我们在Java代码中，使用new创建一个对象的时候，JVM会创建一个instanceOopDesc对象，这个对象中包含了<strong>对象头</strong>以及<strong>实例数据</strong>。</p>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/6fef7377c4ffc6cb4db0831212510be7.png#pic_center" alt="这是一个经典配图，哦不，典中典"></p>
+<p>这就是一个简单的Java对象的OOP-Klass模型，即Java对象模型。</p>
+<blockquote>
+<p><a href="https://blog.csdn.net/linxdcn/article/details/73287490" target="_blank" rel="noopener">【理解HotSpot虚拟机】对象在jvm!链机制,建议将下的表示：OOP-Klass模型接nxd(CSDi博客_klass</a></p>
+</blockquote>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>我们再来区分下JVM内存结构、 Java内存模型 以及 Java对象模型 三个概念。</p>
+<p><b><font size="4" color="red" face="华文彩云">JVM内存结构，和Java虚拟机的运行时区域有关。</font></b></p>
+<p><b><font size="4" color="red" face="华文彩云">Java内存模型，和Java的并发编程有关。</font></b></p>
+<p><b><font size="4" color="red" face="华文彩云">Java对象模型，和Java对象在虚拟机中的表现形式有关。</font></b></p>
+<p>后面我会将本文中所引申的内容整理分享出来。</p>
+
+        </div>
+        <!-- .entry-content -->
+        <div class="single-reward">
+          <div class="reward-open">赏
+            <div class="reward-main">
+              <ul class="reward-row">
+                <li class="alipay-code"><img src="https://cdn.jsdelivr.net/gh/w7h1te/PicGoCDN/img/custom/donate/202203091825000.jpg"></li>
+                <li class="wechat-code"><img src="https://cdn.jsdelivr.net/gh/w7h1te/PicGoCDN/img/custom/donate/WeChanSQ.png"></li>
+              </ul>
             </div>
           </div>
         </div>
+        <div style="text-align:center; width: 100%" class="social-share share-mobile" data-disabled="diandian, tencent"></div>
+        <footer class="post-footer">
+          <div class="post-lincenses"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="nofollow"><i class="fa fa-creative-commons" aria-hidden="true"></i> 知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议</a></div>
+          <div class="post-tags">
+          </div>
+          <div class="post-share">
+            <div class="social-share sharehidden share-component"></div>
+            <i class="iconfont show-share icon-forward"></i>
+          </div>
+        </footer><!-- .entry-footer -->
       </article>
-    </div>
-  </div>
+      <!-- #post-## -->
+      <div class="toc" style="background: none;"></div>
+      <section class="post-squares nextprev">
+        
+          
+            <div class="post-nepre half previous">
+          
+            <a href="/2021/10/12/jvm的部分操作，jvm调优——栈上分配。/" rel="prev">
+              <div class="background">
+                <img class="lazyload" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://gitee.com/yw-7/drawing-bed/raw/master/img/cover1.jpg" style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;" onerror="imgError(this,3)" src="https://gitee.com/yw-7/drawing-bed/raw/master/img/cover1.jpg">
+              </div>
+              <span class="label">
+              Previous Post</span>
+              <div class="info">
+                <h3>
+                jvm调优——栈上分配</h3>
+                <hr>
+              </div>
+            </a>
+          </div>
+        
+        
+          
+            <div class="post-nepre half next">
+          
+            <a href="/2021/09/20/Mysql调优（一）/" rel="next">
+              <div class="background">
+                <img class="lazyload" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://gitee.com/yw-7/drawing-bed/raw/master/img/cover3.jpg" style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;" onerror="imgError(this,3)" src="https://gitee.com/yw-7/drawing-bed/raw/master/img/cover3.jpg">
+              </div>
+              <span class="label">
+              Next Post</span>
+              <div class="info">
+                <h3>
+                Mysql调优(一)</h3>
+                <hr>
+              </div>
+            </a>
+          </div>
+        
+      </section>
+      
+
+
+
+      <section class="author-profile">
+        <div class="info" itemprop="author" itemscope="" itemtype="https://schema.org/Person">
+          <a href="w7h1te.cn" class="profile gravatar"><img src="https://cdn.jsdelivr.net/gh/w7h1te/PicGoCDN/img/custom/202203090940373.jpeg" itemprop="image" alt="w7h1te" height="70" width="70"></a>
+          <div class="meta">
+            <span class="title">Author</span>
+            <h3 itemprop="name">
+            <a href="w7h1te.cn" itemprop="url" rel="author">w7h1te</a>
+            </h3>
+          </div>
+        </div>
+        <hr>
+        <p><i class="iconfont icon-write"></i>把握生活，拒绝摆烂</p>
+      </section>
+    </main><!-- #main -->
+  </div><!-- #primary -->
 </div>
+
+
 
     </div>    
     <div class="ins-search">
