@@ -440,9 +440,9 @@
     
       <category term="技术" scheme="/tags/%E6%8A%80%E6%9C%AF/"/>
     
-      <category term="总结" scheme="/tags/%E6%80%BB%E7%BB%93/"/>
-    
       <category term="IDEA" scheme="/tags/IDEA/"/>
+    
+      <category term="总结" scheme="/tags/%E6%80%BB%E7%BB%93/"/>
     
       <category term="Vue" scheme="/tags/Vue/"/>
     
@@ -468,11 +468,11 @@
     
       <category term="技术" scheme="/tags/%E6%8A%80%E6%9C%AF/"/>
     
+      <category term="IDEA" scheme="/tags/IDEA/"/>
+    
       <category term="总结" scheme="/tags/%E6%80%BB%E7%BB%93/"/>
     
       <category term="解决方案" scheme="/tags/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/"/>
-    
-      <category term="IDEA" scheme="/tags/IDEA/"/>
     
   </entry>
   
