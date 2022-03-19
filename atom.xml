@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="/"/>
-  <updated>2022-03-14T03:48:02.413Z</updated>
+  <updated>2022-03-19T16:41:45.809Z</updated>
   <id>/</id>
   
   <author>
@@ -15,6 +15,54 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>【转载及推荐】JWT Token的基本使用和基本流程</title>
+    <link href="/2022/03/18/%E3%80%90%E8%BD%AC%E8%BD%BD%E3%80%91JWT%20Token%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8%E5%92%8C%E5%9F%BA%E6%9C%AC%E6%B5%81%E7%A8%8B/"/>
+    <id>/2022/03/18/【转载】JWT Token的基本使用和基本流程/</id>
+    <published>2022-03-18T08:31:24.000Z</published>
+    <updated>2022-03-19T16:41:45.809Z</updated>
+    
+    <summary type="html">
+    
+      对后端技术的理解与掌握！
+    
+    </summary>
+    
+      <category term="转载" scheme="/categories/%E8%BD%AC%E8%BD%BD/"/>
+    
+    
+      <category term="技术" scheme="/tags/%E6%8A%80%E6%9C%AF/"/>
+    
+      <category term="总结" scheme="/tags/%E6%80%BB%E7%BB%93/"/>
+    
+      <category term="JAVA" scheme="/tags/JAVA/"/>
+    
+      <category term="后端" scheme="/tags/%E5%90%8E%E7%AB%AF/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>解决端口号占用</title>
+    <link href="/2022/03/12/%E8%A7%A3%E5%86%B3%E7%AB%AF%E5%8F%A3%E5%8F%B7%E5%8D%A0%E7%94%A8/"/>
+    <id>/2022/03/12/解决端口号占用/</id>
+    <published>2022-03-12T03:27:24.000Z</published>
+    <updated>2022-03-19T16:46:51.094Z</updated>
+    
+    <summary type="html">
+    
+      对后端技术出现的问题，理解与解决！
+    
+    </summary>
+    
+      <category term="技术" scheme="/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+      <category term="技术" scheme="/tags/%E6%8A%80%E6%9C%AF/"/>
+    
+      <category term="总结" scheme="/tags/%E6%80%BB%E7%BB%93/"/>
+    
+  </entry>
   
   <entry>
     <title>Markdown编辑小技巧——图片篇（二）</title>
@@ -37,6 +85,56 @@
       <category term="总结" scheme="/tags/%E6%80%BB%E7%BB%93/"/>
     
       <category term="Markdown" scheme="/tags/Markdown/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>后端问题逐一排坑</title>
+    <link href="/2022/02/27/%E5%90%8E%E7%AB%AF%E9%97%AE%E9%A2%98%E9%80%90%E4%B8%80%E6%8E%92%E5%9D%91/"/>
+    <id>/2022/02/27/后端问题逐一排坑/</id>
+    <published>2022-02-27T02:31:24.000Z</published>
+    <updated>2022-03-19T16:50:39.495Z</updated>
+    
+    <summary type="html">
+    
+      对后端技术出现的问题，理解与解决！
+    
+    </summary>
+    
+      <category term="技术" scheme="/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+      <category term="技术" scheme="/tags/%E6%8A%80%E6%9C%AF/"/>
+    
+      <category term="总结" scheme="/tags/%E6%80%BB%E7%BB%93/"/>
+    
+      <category term="JAVA" scheme="/tags/JAVA/"/>
+    
+      <category term="后端" scheme="/tags/%E5%90%8E%E7%AB%AF/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>git提交与回退</title>
+    <link href="/2022/02/15/git%E6%8F%90%E4%BA%A4%E4%B8%8E%E5%9B%9E%E9%80%80/"/>
+    <id>/2022/02/15/git提交与回退/</id>
+    <published>2022-02-15T02:21:24.000Z</published>
+    <updated>2022-03-19T16:42:36.470Z</updated>
+    
+    <summary type="html">
+    
+      git的错误推送如何回档
+    
+    </summary>
+    
+      <category term="技术" scheme="/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+      <category term="技术" scheme="/tags/%E6%8A%80%E6%9C%AF/"/>
+    
+      <category term="总结" scheme="/tags/%E6%80%BB%E7%BB%93/"/>
+    
+      <category term="解决方案" scheme="/tags/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/"/>
     
   </entry>
   
@@ -265,6 +363,30 @@
   </entry>
   
   <entry>
+    <title>资源</title>
+    <link href="/2020/12/12/ziyuan/"/>
+    <id>/2020/12/12/ziyuan/</id>
+    <published>2020-12-12T14:16:01.000Z</published>
+    <updated>2022-03-14T03:48:02.345Z</updated>
+    
+    <summary type="html">
+    
+      分享
+    
+    </summary>
+    
+      <category term="资源" scheme="/categories/%E8%B5%84%E6%BA%90/"/>
+    
+    
+      <category term="技术" scheme="/tags/%E6%8A%80%E6%9C%AF/"/>
+    
+      <category term="web" scheme="/tags/web/"/>
+    
+      <category term="资源" scheme="/tags/%E8%B5%84%E6%BA%90/"/>
+    
+  </entry>
+  
+  <entry>
     <title>idea</title>
     <link href="/2020/12/12/idea/"/>
     <id>/2020/12/12/idea/</id>
@@ -323,26 +445,30 @@
   </entry>
   
   <entry>
-    <title>资源</title>
-    <link href="/2020/12/12/ziyuan/"/>
-    <id>/2020/12/12/ziyuan/</id>
-    <published>2020-12-12T14:16:01.000Z</published>
-    <updated>2022-03-14T03:48:02.345Z</updated>
+    <title>Vue结合项目开发 踩坑....</title>
+    <link href="/2020/09/06/Vue%E7%BB%93%E5%90%88%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91%20%E8%B8%A9%E5%9D%91..../"/>
+    <id>/2020/09/06/Vue结合项目开发 踩坑..../</id>
+    <published>2020-09-06T04:41:24.000Z</published>
+    <updated>2022-03-19T16:43:22.439Z</updated>
     
     <summary type="html">
     
-      分享
+      对前端Vue的简单学习，与快速上手
     
     </summary>
     
-      <category term="资源" scheme="/categories/%E8%B5%84%E6%BA%90/"/>
+      <category term="技术" scheme="/categories/%E6%8A%80%E6%9C%AF/"/>
     
     
       <category term="技术" scheme="/tags/%E6%8A%80%E6%9C%AF/"/>
     
-      <category term="web" scheme="/tags/web/"/>
+      <category term="总结" scheme="/tags/%E6%80%BB%E7%BB%93/"/>
     
-      <category term="资源" scheme="/tags/%E8%B5%84%E6%BA%90/"/>
+      <category term="IDEA" scheme="/tags/IDEA/"/>
+    
+      <category term="Vue" scheme="/tags/Vue/"/>
+    
+      <category term="前端" scheme="/tags/%E5%89%8D%E7%AB%AF/"/>
     
   </entry>
   
@@ -419,126 +545,6 @@
       <category term="Vue" scheme="/tags/Vue/"/>
     
       <category term="前端" scheme="/tags/%E5%89%8D%E7%AB%AF/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>从零搭建考试系统——多模块的项目环境搭建（idea）</title>
-    <link href="/2020/05/06/Vue%20_%20vue%20cli%E6%96%B0%E6%89%8B%E5%85%A5%E9%97%A8%20%E8%AF%A6%E7%BB%86%E8%A7%A3%E8%AF%BB/"/>
-    <id>/2020/05/06/Vue _ vue cli新手入门 详细解读/</id>
-    <published>2020-05-06T04:41:24.000Z</published>
-    <updated>2022-03-14T05:32:53.244Z</updated>
-    
-    <summary type="html">
-    
-      对前端Vue的简单学习，与快速上手
-    
-    </summary>
-    
-      <category term="技术" scheme="/categories/%E6%8A%80%E6%9C%AF/"/>
-    
-    
-      <category term="技术" scheme="/tags/%E6%8A%80%E6%9C%AF/"/>
-    
-      <category term="总结" scheme="/tags/%E6%80%BB%E7%BB%93/"/>
-    
-      <category term="IDEA" scheme="/tags/IDEA/"/>
-    
-      <category term="Vue" scheme="/tags/Vue/"/>
-    
-      <category term="前端" scheme="/tags/%E5%89%8D%E7%AB%AF/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>从零搭建考试系统——多模块的项目环境搭建（idea）</title>
-    <link href="/2020/04/11/%E4%BB%8E%E9%9B%B6%E6%90%AD%E5%BB%BA%E8%80%83%E8%AF%95%E7%B3%BB%E7%BB%9F%E2%80%94%E2%80%94%E5%A4%9A%E6%A8%A1%E5%9D%97%E7%9A%84%E9%A1%B9%E7%9B%AE%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%EF%BC%88idea%EF%BC%89/"/>
-    <id>/2020/04/11/从零搭建考试系统——多模块的项目环境搭建（idea）/</id>
-    <published>2020-04-10T22:41:24.000Z</published>
-    <updated>2022-03-14T05:32:53.244Z</updated>
-    
-    <summary type="html">
-    
-      idea的基本使用
-    
-    </summary>
-    
-      <category term="技术" scheme="/categories/%E6%8A%80%E6%9C%AF/"/>
-    
-    
-      <category term="技术" scheme="/tags/%E6%8A%80%E6%9C%AF/"/>
-    
-      <category term="总结" scheme="/tags/%E6%80%BB%E7%BB%93/"/>
-    
-      <category term="解决方案" scheme="/tags/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/"/>
-    
-      <category term="IDEA" scheme="/tags/IDEA/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>哔哩哔哩外链插入</title>
-    <link href="/2019/12/12/bibilink/"/>
-    <id>/2019/12/12/bibilink/</id>
-    <published>2019-12-12T14:16:01.000Z</published>
-    <updated>2022-03-11T09:51:19.184Z</updated>
-    
-    <summary type="html">
-    
-      外链视频插入
-    
-    </summary>
-    
-      <category term="技术" scheme="/categories/%E6%8A%80%E6%9C%AF/"/>
-    
-    
-      <category term="技术" scheme="/tags/%E6%8A%80%E6%9C%AF/"/>
-    
-      <category term="转载" scheme="/tags/%E8%BD%AC%E8%BD%BD/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>大学生活</title>
-    <link href="/2019/12/12/daxueshenghuo/"/>
-    <id>/2019/12/12/daxueshenghuo/</id>
-    <published>2019-12-12T14:16:01.000Z</published>
-    <updated>2022-03-12T11:20:33.937Z</updated>
-    
-    <summary type="html">
-    
-      这是一页关于大学生活的部分回忆
-    
-    </summary>
-    
-      <category term="生活" scheme="/categories/%E7%94%9F%E6%B4%BB/"/>
-    
-    
-      <category term="生活" scheme="/tags/%E7%94%9F%E6%B4%BB/"/>
-    
-      <category term="图集" scheme="/tags/%E5%9B%BE%E9%9B%86/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>life</title>
-    <link href="/2019/12/12/life/"/>
-    <id>/2019/12/12/life/</id>
-    <published>2019-12-12T14:16:01.000Z</published>
-    <updated>2022-03-11T08:56:38.798Z</updated>
-    
-    <summary type="html">
-    
-      这是一页关于初中陈旧回忆
-    
-    </summary>
-    
-      <category term="生活" scheme="/categories/%E7%94%9F%E6%B4%BB/"/>
-    
-    
-      <category term="生活" scheme="/tags/%E7%94%9F%E6%B4%BB/"/>
-    
-      <category term="图集" scheme="/tags/%E5%9B%BE%E9%9B%86/"/>
     
   </entry>
   
