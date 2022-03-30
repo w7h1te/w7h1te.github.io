@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="/"/>
-  <updated>2022-03-30T05:04:23.785Z</updated>
+  <updated>2022-03-30T07:34:51.232Z</updated>
   <id>/</id>
   
   <author>
@@ -15,6 +15,56 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>jsdelivr是什么以及利用GitHub+jsdelivr搭建一个高速图床</title>
+    <link href="/2022/03/30/jsdelivr%E6%98%AF%E4%BB%80%E4%B9%88%E4%BB%A5%E5%8F%8A%E5%88%A9%E7%94%A8GitHub+jsdelivr%E6%90%AD%E5%BB%BA%E4%B8%80%E4%B8%AA%E9%AB%98%E9%80%9F%E5%9B%BE%E5%BA%8A/"/>
+    <id>/2022/03/30/jsdelivr是什么以及利用GitHub+jsdelivr搭建一个高速图床/</id>
+    <published>2022-03-30T07:34:06.000Z</published>
+    <updated>2022-03-30T07:34:51.232Z</updated>
+    
+    <summary type="html">
+    
+      图床问题的解决以及CDN原理的理解
+    
+    </summary>
+    
+      <category term="技术" scheme="/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+      <category term="技术" scheme="/tags/%E6%8A%80%E6%9C%AF/"/>
+    
+      <category term="资源" scheme="/tags/%E8%B5%84%E6%BA%90/"/>
+    
+      <category term="转载" scheme="/tags/%E8%BD%AC%E8%BD%BD/"/>
+    
+      <category term="总结" scheme="/tags/%E6%80%BB%E7%BB%93/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>关于gitee禁止使用图床</title>
+    <link href="/2022/03/28/%E5%85%B3%E4%BA%8Egitee%E7%A6%81%E6%AD%A2%E4%BD%BF%E7%94%A8%E5%9B%BE%E5%BA%8A/"/>
+    <id>/2022/03/28/关于gitee禁止使用图床/</id>
+    <published>2022-03-28T08:05:24.000Z</published>
+    <updated>2022-03-30T07:34:03.640Z</updated>
+    
+    <summary type="html">
+    
+      最近两天，先是使用PicGo上传图片失败，查日志发现一直报403，换了个插件解决了。隔日更新博客时发现图片已经无法加载，排查到是图床的问题。前面，我一直是gitee作为图床，有点不解，又询问客服说是禁止使用来当图床的。好吧，gitee图床已经成为过去式了。
+    
+    </summary>
+    
+      <category term="技术" scheme="/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+      <category term="技术" scheme="/tags/%E6%8A%80%E6%9C%AF/"/>
+    
+      <category term="资源" scheme="/tags/%E8%B5%84%E6%BA%90/"/>
+    
+      <category term="总结" scheme="/tags/%E6%80%BB%E7%BB%93/"/>
+    
+  </entry>
   
   <entry>
     <title>【转载及推荐】JWT Token的基本使用和基本流程</title>
@@ -156,11 +206,11 @@
     
       <category term="技术" scheme="/tags/%E6%8A%80%E6%9C%AF/"/>
     
+      <category term="转载" scheme="/tags/%E8%BD%AC%E8%BD%BD/"/>
+    
       <category term="总结" scheme="/tags/%E6%80%BB%E7%BB%93/"/>
     
       <category term="Markdown" scheme="/tags/Markdown/"/>
-    
-      <category term="转载" scheme="/tags/%E8%BD%AC%E8%BD%BD/"/>
     
       <category term="解决方案" scheme="/tags/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/"/>
     
@@ -443,7 +493,7 @@
     <link href="/2020/12/12/Hexo-Theme-Sakura/"/>
     <id>/2020/12/12/Hexo-Theme-Sakura/</id>
     <published>2020-12-12T14:16:01.000Z</published>
-    <updated>2022-03-30T04:44:37.282Z</updated>
+    <updated>2022-03-30T07:39:20.761Z</updated>
     
     <summary type="html">
     
@@ -454,13 +504,11 @@
       <category term="技术" scheme="/categories/%E6%8A%80%E6%9C%AF/"/>
     
     
-      <category term="技术" scheme="/tags/%E6%8A%80%E6%9C%AF/"/>
-    
-      <category term="转载" scheme="/tags/%E8%BD%AC%E8%BD%BD/"/>
-    
       <category term="web" scheme="/tags/web/"/>
     
       <category term="悦读" scheme="/tags/%E6%82%A6%E8%AF%BB/"/>
+    
+      <category term="技术" scheme="/tags/%E6%8A%80%E6%9C%AF/"/>
     
       <category term="生活" scheme="/tags/%E7%94%9F%E6%B4%BB/"/>
     
@@ -468,65 +516,9 @@
     
       <category term="随想" scheme="/tags/%E9%9A%8F%E6%83%B3/"/>
     
-      <category term="图集" scheme="/tags/%E5%9B%BE%E9%9B%86/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>idea</title>
-    <link href="/2020/12/12/idea/"/>
-    <id>/2020/12/12/idea/</id>
-    <published>2020-12-12T14:16:01.000Z</published>
-    <updated>2022-03-14T03:48:02.425Z</updated>
-    
-    <summary type="html">
-    
-      感悟：后知后觉。也许就在洗澡、洗头发的时候，我的头脑才会那么的充满平静。
-    
-    </summary>
-    
-      <category term="随想" scheme="/categories/%E9%9A%8F%E6%83%B3/"/>
-    
-    
-      <category term="技术" scheme="/tags/%E6%8A%80%E6%9C%AF/"/>
-    
       <category term="转载" scheme="/tags/%E8%BD%AC%E8%BD%BD/"/>
     
-      <category term="web" scheme="/tags/web/"/>
-    
-      <category term="悦读" scheme="/tags/%E6%82%A6%E8%AF%BB/"/>
-    
-      <category term="生活" scheme="/tags/%E7%94%9F%E6%B4%BB/"/>
-    
-      <category term="资源" scheme="/tags/%E8%B5%84%E6%BA%90/"/>
-    
-      <category term="随想" scheme="/tags/%E9%9A%8F%E6%83%B3/"/>
-    
       <category term="图集" scheme="/tags/%E5%9B%BE%E9%9B%86/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>资源</title>
-    <link href="/2020/12/12/ziyuan/"/>
-    <id>/2020/12/12/ziyuan/</id>
-    <published>2020-12-12T14:16:01.000Z</published>
-    <updated>2022-03-30T04:59:56.484Z</updated>
-    
-    <summary type="html">
-    
-      分享
-    
-    </summary>
-    
-      <category term="资源" scheme="/categories/%E8%B5%84%E6%BA%90/"/>
-    
-    
-      <category term="技术" scheme="/tags/%E6%8A%80%E6%9C%AF/"/>
-    
-      <category term="web" scheme="/tags/web/"/>
-    
-      <category term="资源" scheme="/tags/%E8%B5%84%E6%BA%90/"/>
     
   </entry>
   
