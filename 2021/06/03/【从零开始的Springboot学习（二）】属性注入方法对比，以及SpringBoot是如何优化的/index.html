@@ -1,0 +1,1186 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  
+  <title itemprop="name">【从零开始的Springboot学习（二）】属性注入方法对比，以及SpringBoot是如何优化的 | w7h1te</title>
+  
+    <link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/w7h1te/PicGoCDN/img/favicon/202203090939154.ico">
+  
+  <meta http-equiv="x-dns-prefetch-control" content="on">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+SerifMerriweather|Merriweather+Sans|Source+Code+Pro|Ubuntu:400,700|Noto+Serif+SC" media="all">
+  <link rel="dns-prefetch" href="//cdn.jsdelivr.net">
+  <link rel="stylesheet" id="saukra_css-css" href="/css/style.css" type="text/css" media="all">
+  <link rel="stylesheet" href="/css/lib.min.css" media="all">
+  <link rel="stylesheet" href="/css/font.css" media="all">
+  <link rel="stylesheet" href="/css/insight.css" media="all">
+  <link rel="stylesheet" href="/css/jquery.fancybox.min.css" media="all">
+  <link rel="stylesheet" href="/css/zoom.css" media="all">
+  <link rel="stylesheet" type="text/css" href="/css/sharejs.css">
+<!--   <link rel="stylesheet" id="saukra_css-css" href="https://2heng.xin/wp-content/cache/autoptimize/css/autoptimize_ad42a61f4c7d4bdd9f91afcff6b5dda5.css
+" type="text/css" media="all"> -->
+  <script>
+  /*Initial Variables*/
+  var mashiro_option = new Object();
+  var mashiro_global = new Object();
+  mashiro_option.NProgressON = true;
+  /* 
+   * 邮箱信息之类的东西可以填在这里，这些js变量基本都作用于sakura-app.js
+   * 这样的设置仅是为了方便在基于PHP开发的主题中设置js变量，既然移植到了Node上，我想或许可以精简这一逻辑吧
+   */
+  mashiro_option.email_domain = "";
+  mashiro_option.email_name = "";
+  mashiro_option.cookie_version_control = "";
+  mashiro_option.qzone_autocomplete = false;
+  mashiro_option.site_name = "w7h1te的博客!w7h1te";
+  mashiro_option.author_name = "w7h1te";
+  mashiro_option.site_url = "https://w7h1te.github.io/";
+  mashiro_option.v_appId = "GyC3NzMvd0hT9Yyd2hYIC0MN-gzGzoHsz";
+  mashiro_option.v_appKey = "mgOpfzbkHYqU92CV4IDlAUHQ";
+  mashiro_option.mathjax = "0";
+  mashiro_option.qq_api_url = "https://api.mashiro.top/qqinfo/"; 
+  mashiro_option.qq_avatar_api_url = "https://api.mashiro.top/qqinfo/";
+
+  // mashiro_option.jsdelivr_css_src = "https://cdn.jsdelivr.net/gh/moezx/cdn@3.4.5/css/lib.min.css";
+  // mashiro_option.float_player_on = true;
+
+  /*End of Initial Variables*/
+  </script>
+  <script type="text/javascript">
+  var bg = "/images/cover/(0).jpg.webp,/images/cover/(1).jpg.webp,/images/cover/(3).jpg.webp,/images/cover/(4).jpg.webp,/images/cover/(5).jpg.webp,/images/cover/(6).jpg.webp,/images/cover/(7).jpg.webp,/images/cover/(8).jpg.webp".split(",");
+  var bgindex = Math.floor(Math.random()*bg.length);
+  if (!!window.ActiveXObject || "ActiveXObject" in window) { //is IE?
+    alert('朋友，IE浏览器未适配哦~');
+  }
+  </script>
+  <style type="text/css">
+  .hljs-ln{border-collapse:collapse}.hljs-ln td{padding:0}.hljs-ln-n:before{content:attr(data-line-number)}
+  </style>
+  <style type="text/css">.site-top .lower nav{display:block !important;}.author-profile i,.post-like a,.post-share .show-share,.sub-text,.we-info a,span.sitename,.post-more i:hover,#pagination a:hover,.post-content a:hover,.float-content i:hover{color:#FE9600}.feature i,.download,.navigator i:hover,.links ul li:before,.ar-time i,span.ar-circle,.object,.comment .comment-reply-link,.siren-checkbox-radio:checked + .siren-checkbox-radioInput:after{background:#FE9600}::-webkit-scrollbar-thumb{background:#FE9600}.download,.navigator i:hover,.link-title,.links ul li:hover,#pagination a:hover,.comment-respond input[type='submit']:hover{border-color:#FE9600}.entry-content a:hover,.site-info a:hover,.comment h4 a,#comments-navi a.prev,#comments-navi a.next,.comment h4 a:hover,.site-top ul li a:hover,.entry-title a:hover,#archives-temp h3,span.page-numbers.current,.sorry li a:hover,.site-title a:hover,i.iconfont.js-toggle-search.iconsearch:hover,.comment-respond input[type='submit']:hover{color:#FE9600}.comments .comments-main{display:block !important;}.comments .comments-hidden{display:none !important;}background-position:center center;background-attachment:inherit;}
+  </style>
+</head>
+</html>
+<body class="page-template page-template-user page-template-page-analytics page-template-userpage-analytics-php page page-id-1297 chinese-font serif isWebKit">
+  <div class="scrollbar" id="bar">
+  </div>
+  <a href="#" class="cd-top faa-float animated"></a>
+  <section id="main-container">
+    <div class="headertop filter-dot">
+  <div id="banner_wave_1"></div>
+  <div id="banner_wave_2"></div>
+  <figure id="centerbg" class="centerbg">
+    <div class="focusinfo no-select">
+      <div class="header-tou">
+        <a href="https://w7h1te.github.io/">
+          <img src="https://cdn.jsdelivr.net/gh/w7h1te/PicGoCDN/img/custom/202203090940373.jpeg">
+        </a>
+      </div>
+      <div class="header-info">
+        <p>NOW OR NEVER!</p>
+        <div class="top-social_v2">
+          <li id="bg-pre">
+            <img class="flipx" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/other/next-b.svg">
+          </li>
+          
+            
+              
+                <li>
+                  <a href="http://github.com/w7h1te" target="_blank" class="social-github" title="github">
+                    <img src="https://cdn.jsdelivr.net/gh/w7h1te/PicGoCDN/img/social/202203091541326.webp">
+                  </a>
+                </li>
+              
+            
+              
+                <li>
+                  <a href="https://gitee.com/yw-7" target="_blank" class="social-github" title="gitee">
+                    <img src="https://cdn.jsdelivr.net/gh/w7h1te/PicGoCDN/img/social/202203110720832.jfif">
+                  </a>
+                </li>
+              
+            
+              
+                <li>
+                  <a href="https://blog.csdn.net/qq_48424581?spm=1010.2135.3001.5343" target="_blank" class="social-github" title="csdn">
+                    <img src="https://cdn.jsdelivr.net/gh/w7h1te/PicGoCDN/img/social/202203110723650.jpg">
+                  </a>
+                </li>
+              
+            
+              
+                <li>
+                  <a href="http://music.163.com/#/user/home?id=510039759" target="_blank" class="social-github" title="wangyiyun">
+                    <img src="https://cdn.jsdelivr.net/gh/w7h1te/PicGoCDN/img/social/202203091543566.webp">
+                  </a>
+                </li>
+              
+            
+              
+                <li>
+                  <a href="http://www.zhihu.com/people/itxiao-hai-42" target="_blank" class="social-github" title="zhihu">
+                    <img src="https://cdn.jsdelivr.net/gh/w7h1te/PicGoCDN/img/social/202203091543644.webp">
+                  </a>
+                </li>
+              
+            
+              
+                <li class="wechat">
+                  <a href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&amp;email=kaKjoKikoaChoNHg4L-y-vw">
+                    <img src="https://cdn.jsdelivr.net/gh/w7h1te/PicGoCDN/img/social/202203091544253.webp">
+                  </a>
+                  <div class="wechatInner">
+                    <img src="https://cdn.jsdelivr.net/gh/w7h1te/PicGoCDN/img/202203101132696.jfif">
+                  </div>
+                </li>
+              
+            
+              
+                <li class="wechat">
+                  <a href="/#">
+                    <img src="https://cdn.jsdelivr.net/gh/w7h1te/PicGoCDN/img/social/202203091544051.webp">
+                  </a>
+                  <div class="wechatInner">
+                    <img src="https://cdn.jsdelivr.net/gh/w7h1te/PicGoCDN/img/custom/202203091103501.png">
+                  </div>
+                </li>
+              
+            
+              
+                <li>
+                  <a href="http://wpa.qq.com/msgrd?v=3&amp;uin=321950101&amp;site=qq&amp;menu=yes" target="_blank" class="social-github" title="qq">
+                    <img src="https://cdn.jsdelivr.net/gh/w7h1te/PicGoCDN/img/social/202203091627639.webp">
+                  </a>
+                </li>
+              
+            
+          
+          <li id="bg-next">
+            <img src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/other/next-b.svg">
+          </li>
+        </div>
+      </div>
+    </div>
+  </figure>
+  <div id="video-container" style="">
+    <video style="object-fit: fill" id="bgvideo" class="video" video-name="" src="" width="auto" preload="auto">
+    </video>
+    <div id="video-btn" class="loadvideo videolive">
+    </div>
+    <div id="video-add">
+    </div>
+    <div class="video-stu">
+    </div>
+  </div>
+  <div class="headertop-down faa-float animated" onclick="headertop_down()">
+    <span>
+      <i class="fa fa-chevron-down" aria-hidden="true">
+      </i>
+    </span>
+  </div>
+</div>
+    <div id="page" class="site wrapper">
+      <header class="site-header no-select gizle sabit" role="banner">
+  <div class="site-top">
+    <div class="site-branding">
+      <span class="site-title">
+        <span class="logolink moe-mashiro">
+          <a href="/">
+            <span class="sakurasono">w7h1te的博客!</span>
+            <span class="shironeko">w7h1te</span>
+          </a>
+        </span>
+      </span>
+    </div>
+    <div class="searchbox search-form-submit">
+      <i class="iconfont js-toggle-search iconsearch icon-search">
+      </i>
+    </div>
+    <div id="show-nav" class="showNav mobile-fit">
+      <div class="line line1">
+      </div>
+      <div class="line line2">
+      </div>
+      <div class="line line3">
+      </div>
+    </div>
+    <div class="lower-cantiner">
+      <div class="lower">
+        <nav class="mobile-fit-control hide">
+          <ul id="menu-new" class="menu">
+            
+              <li>
+                <a href="/">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-fort-awesome faa-shake" aria-hidden="true"></i>
+                    首页
+                  </span>
+                </a>
+                
+              </li>
+            
+              <li>
+                <a href="/archives">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-archive faa-shake" aria-hidden="true"></i>
+                    归档
+                  </span>
+                </a>
+                
+                  <ul class="sub-menu">
+                    
+                      <li>
+                        <a href="/categories/技术/">
+                          <i class="fa fa-code" aria-hidden="true"></i>
+                          技术
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/categories/生活/">
+                          <i class="fa fa-file-text-o" aria-hidden="true"></i>
+                          生活
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/categories/资源/">
+                          <i class="fa fa-cloud-download" aria-hidden="true"></i>
+                          资源
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/categories/随想/">
+                          <i class="fa fa-commenting-o" aria-hidden="true"></i>
+                          随想
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/categories/转载/">
+                          <i class="fa fa-book" aria-hidden="true"></i>
+                          转载
+                        </a>
+                      </li>
+                    
+                  </ul>
+                
+              </li>
+            
+              <li>
+                <a href="javascript:;">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-list-ul faa-vertical" aria-hidden="true"></i>
+                    清单
+                  </span>
+                </a>
+                
+                  <ul class="sub-menu">
+                    
+                      <li>
+                        <a href="/tags/悦读/">
+                          <i class="fa fa-th-list faa-bounce" aria-hidden="true"></i>
+                          书单
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/bangumi/">
+                          <i class="fa fa-film faa-vertical" aria-hidden="true"></i>
+                          番组
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/music/">
+                          <i class="fa fa-headphones" aria-hidden="true"></i>
+                          歌单
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/tags/图集/">
+                          <i class="fa fa-photo" aria-hidden="true"></i>
+                          图集
+                        </a>
+                      </li>
+                    
+                  </ul>
+                
+              </li>
+            
+              <li>
+                <a href="/comment/">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-pencil-square-o faa-tada" aria-hidden="true"></i>
+                    留言板
+                  </span>
+                </a>
+                
+              </li>
+            
+              <li>
+                <a href="/links/">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-link faa-shake" aria-hidden="true"></i>
+                    友人帐
+                  </span>
+                </a>
+                
+              </li>
+            
+              <li>
+                <a href="/donate/">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-heart faa-pulse" aria-hidden="true"></i>
+                    赞赏
+                  </span>
+                </a>
+                
+              </li>
+            
+              <li>
+                <a href="/">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-leaf faa-wrench" aria-hidden="true"></i>
+                    关于
+                  </span>
+                </a>
+                
+                  <ul class="sub-menu">
+                    
+                      <li>
+                        <a href="/about/">
+                          <i class="fa fa-meetup" aria-hidden="true"></i>
+                          我？
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/theme-sakura/">
+                          <i class="fa iconfont icon-sakura" aria-hidden="true"></i>
+                          主题
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/lab/">
+                          <i class="fa fa-cogs" aria-hidden="true"></i>
+                          Lab
+                        </a>
+                      </li>
+                    
+                  </ul>
+                
+              </li>
+            
+              <li>
+                <a href="/client/">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-android faa-vertical" aria-hidden="true"></i>
+                    客户端
+                  </span>
+                </a>
+                
+              </li>
+            
+              <li>
+                <a href="/atom.xml">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-rss faa-pulse" aria-hidden="true"></i>
+                    RSS
+                  </span>
+                </a>
+                
+              </li>
+            
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <link rel="stylesheet" type="text/css" href="/css/sharejs.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css">
+<div class="pattern-center-blank"></div>
+
+  <div class="pattern-center single-center">
+    <!-- 有配图默认渲染第一张 -->
+    <div class="pattern-attachment-img lazyload" style="background-image: url(https://cdn.jsdelivr.net/gh/w7h1te/PicGoCDN/img/bolg/cover005.png);" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://cdn.jsdelivr.net/gh/w7h1te/PicGoCDN/img/bolg/cover005.png">
+    </div>
+    <header class="pattern-header single-header">
+      <h1 class="entry-title">
+      【从零开始的Springboot学习（二）】属性注入方法对比，以及SpringBoot是如何优化的</h1>
+      <p class="entry-census">
+        <span>
+          <a href="w7h1te.cn">
+            <img src="https://cdn.jsdelivr.net/gh/w7h1te/PicGoCDN/img/custom/202203090940373.jpeg">
+          </a>
+        </span>
+        <span>
+          <a href="w7h1te.cn">w7h1te</a>
+        </span>
+        <span class="bull">
+        ·</span>
+        2021-6-3<span class="bull">
+        ·</span>
+      <span id="busuanzi_value_page_pv"></span>次阅读</p>
+    </header>
+  </div>
+
+<div id="content" class="site-content">
+  <div id="primary" class="content-area">
+    <main id="main" class="site-main" role="main">
+      <article id="post-1" class="post-1 post type-post status-publish format-standard has-post-thumbnail hentry category-uncategorized">
+        <div class="toc"></div>
+        <!--<div class="toc-entry-content"><!-- 套嵌目录使用（主要为了支援评论）-->
+        
+        <div class="entry-content">
+          <h2 id="查看源码的注解"><a href="#查看源码的注解" class="headerlink" title="查看源码的注解"></a>查看源码的注解</h2><p><img src="https://img-blog.csdnimg.cn/7b44e9b6e9ba41a4a8637ff265c758e8.png" alt="在这里插入图片描述"><br>接上一篇，我们写了一个简单demo后，可以通过：</p>
+<p>按住ctrl键，点击某个方法、注解，进去源码之后，右上角会出现下载源码，点击下载，之后就可以看到英文的注释，接着在对应方法、注解上按ctrl+q 可以看到对应注释<br><img src="https://img-blog.csdnimg.cn/3764e33197724d42beefe233c090e91e.png" alt="在这里插入图片描述"></p>
+<h3 id="EnableAutoConfiguration"><a href="#EnableAutoConfiguration" class="headerlink" title="@EnableAutoConfiguration"></a>@EnableAutoConfiguration</h3><p><img src="https://img-blog.csdnimg.cn/01aa1fa68e9a41ea9b1b6f975d16d747.png" alt="在这里插入图片描述"><br>就是先根据classpath引入了哪些依赖，然后猜测你要使用哪些配置，然后自动配置。</p>
+<p>如果多个controller应该如何操作：<br><strong>就是main方法不能出现在controller里面</strong>，一个端口不能启动两个tomcat，也就不能启动两个main方法，应该独立出来；<strong>自动配置</strong>也是一样，启动一次就可以</p>
+<h2 id="SpringBoot引入一个全局的引导类"><a href="#SpringBoot引入一个全局的引导类" class="headerlink" title="SpringBoot引入一个全局的引导类"></a>SpringBoot引入一个全局的<strong>引导类</strong></h2><p>（放到基包下，是springboot应用入口）</p>
+<p><img src="https://img-blog.csdnimg.cn/3591820ee3f34e529ec832b7b28c5078.png" alt="在这里插入图片描述"></p>
+<pre><code class="java">@EnableAutoConfiguration//启动springboot应用的自动配置
+@ComponentScan //类似于&lt;context:componnet-scan base-package=&quot;&quot;&gt;
+public class TextApplication {
+    public static void main(String[] args) {
+        SpringApplication.run(TextApplication.class,args);
+    }
+}
+
+</code></pre>
+<h3 id="ComponentScan"><a href="#ComponentScan" class="headerlink" title="@ComponentScan"></a>@ComponentScan</h3><p>配置组件扫描，类似于context:componnet-scan，可以通过指定base-package的值来扫描特定的包；如果未指定，会从这个类所在包进行扫描，以及它所包含的所有包。</p>
+<h3 id="使用-SpringBootApplication优化注解"><a href="#使用-SpringBootApplication优化注解" class="headerlink" title="使用@SpringBootApplication优化注解"></a>使用@SpringBootApplication优化注解</h3><p>组合注解，相当于@EnableAutoConfiguration+@ComponentScan+@SpringBootConfiguration<br><img src="https://img-blog.csdnimg.cn/cc3ddabce7e7436082aa6d3029b3b614.png" alt="在这里插入图片描述"></p>
+<h3 id="SpringBootConfiguration"><a href="#SpringBootConfiguration" class="headerlink" title="@SpringBootConfiguration"></a>@SpringBootConfiguration</h3><p>相当于@Configuration注解<br>声明一个类是java配置类<br><img src="https://img-blog.csdnimg.cn/8a37adf402a544c9ba93ad4f716b1478.png" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/849658d64d5c4fe08c3bcf9e54c5df23.png" alt="在这里插入图片描述"></p>
+<p>应用应该只能包含一个@SpringBootConfiguration，这个注解已经在组合注解内部了，也就是后面无需自己添加。</p>
+<h2 id="默认配置原理"><a href="#默认配置原理" class="headerlink" title="默认配置原理"></a>默认配置原理</h2><p>SpringBoot的默认配置方式无序任何的xml。<br><img src="https://img-blog.csdnimg.cn/bac1f8065b7c4385927c4de6ba765936.png" alt="在这里插入图片描述"></p>
+<h2 id="发展"><a href="#发展" class="headerlink" title="发展"></a>发展</h2><p><img src="https://img-blog.csdnimg.cn/fdc905c02de2468fa44caaca0b9370c2.png" alt="在这里插入图片描述"></p>
+<h3 id="通过配置一个德鲁伊（Druid）连接池来进行一个对比："><a href="#通过配置一个德鲁伊（Druid）连接池来进行一个对比：" class="headerlink" title="通过配置一个德鲁伊（Druid）连接池来进行一个对比："></a>通过配置一个德鲁伊（Druid）连接池来进行一个对比：</h3><p>先添加pom依赖</p>
+<pre><code class="xml">        &lt;dependency&gt;
+            &lt;groupId&gt;com.github.drtrang&lt;/groupId&gt;
+            &lt;artifactId&gt;druid-spring-boot2-starter&lt;/artifactId&gt;
+            &lt;version&gt;1.1.10&lt;/version&gt;
+        &lt;/dependency&gt;
+</code></pre>
+<p>创建一个config包，添加JdbcConfiguration类</p>
+<pre><code class="java">@Configuration //声明一个类是一个java配置类，相当于一个xml配置文件
+public class JdbcConfiguration {
+    @Bean //将方法的返回值注入给spring容器
+    public DataSource dataSource(){
+        new DruidDataSource().var //idea快捷补全代码小技巧
+        return 
+    }
+}
+</code></pre>
+<p><code>new DruidDataSource().var</code> +table键<br><img src="https://img-blog.csdnimg.cn/a9f9e51d90f448eb88411f5758a33011.png" alt="在这里插入图片描述"></p>
+<p>这里可以通过这样的方式idea会自动补全代码 如下<br><code>DruidDataSource dataSource = new DruidDataSource();</code></p>
+<pre><code class="java">@Configuration //声明一个类是一个java配置类，相当于一个xml配置文件
+public class JdbcConfiguration {
+    @Bean //将方法的返回值注入给spring容器
+    public DataSource dataSource(){
+        DruidDataSource dataSource = new DruidDataSource();
+        //设置四大参数，这里不写死，先去添加资源文件
+        dataSource.setDriverClassName();
+        dataSource.setUrl();
+        dataSource.setUsername();
+        dataSource.setPassword();
+        return 
+    }
+}
+
+</code></pre>
+<p>添加资源文件<br><img src="https://img-blog.csdnimg.cn/d04013ed4f034534891ad4093a5c8485.png" alt="在这里插入图片描述"></p>
+<pre><code class="xml">jdbc.driverClassName=com.mysql.jdbc.Driver
+jdbc.url=jdbc:mysql://127.0.0.1:65535:21sb
+jdbc.username=root
+jdbc.password=123456
+</code></pre>
+<p>接着完善JdbcConfiguration<br>这里使用@Value(“${}”)来引入资源文件的值<br>@Bean将方法的返回值dataSource注入到spring容器</p>
+<pre><code class="java">@Configuration //声明一个类是一个java配置类，相当于一个xml配置文件
+@PropertySource(&quot;classpath:jdbc.properties&quot;)//读取资源文件
+public class JdbcConfiguration {
+
+    @Value(&quot;${jdbc.driverClassName}&quot;)
+    private String driverClassName;
+    @Value(&quot;${jdbc.url}&quot;)
+    private String url;
+    @Value(&quot;${jdbc.username}&quot;)
+    private String username;
+    @Value(&quot;${jdbc.password}&quot;)
+    private String password;
+
+    @Bean //将方法的返回值注入给spring容器
+    public DataSource dataSource(){
+        DruidDataSource dataSource = new DruidDataSource();
+        dataSource.setDriverClassName(this.driverClassName);//加this代表这是全局变量
+        dataSource.setUrl(this.url);
+        dataSource.setUsername(this.username);
+        dataSource.setPassword(this.password);
+        return dataSource;
+    }
+}
+</code></pre>
+<p>再到HelloController类<br>我们使用@Autowired的方式来注入dataSource属性</p>
+<pre><code class="java">@RequestMapping(&quot;hello2&quot;)
+@RestController//@Controller+@ResponseBody 返回的是json的数据
+@EnableAutoConfiguration//自动配置
+public class HelloController2 {
+
+    @Autowired
+    private DataSource dataSource;
+
+    @GetMapping(&quot;show2&quot;)
+    public String test(){
+        return &quot;hello springboot2&quot;;
+    }
+
+}
+
+</code></pre>
+<p>接着打一个断点，进行debug<br><img src="https://img-blog.csdnimg.cn/e090a16d1b024326b89fc83706fe3797.png" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/7acf992ad880426bbae35dfd5930a8e7.png" alt="在这里插入图片描述"></p>
+<p><img src="https://img-blog.csdnimg.cn/53e7ded69ac941b29f1501a5030143a2.png" alt="在这里插入图片描述"><br>回到调试点开this<br><img src="https://img-blog.csdnimg.cn/dd78fbaeafa847a8b75f039de89ae1ec.png" alt="在这里插入图片描述"><br>向下面划找到我们注入的四大参数<br><img src="https://img-blog.csdnimg.cn/b048192919c34c5d8185e091f1aa600f.png" alt="在这里插入图片描述"><br><strong>spring底层就是基于java的配置方式来进行注入的。</strong></p>
+<p>可以看到，这里面dataSource属性如果在其他类就不能使用了，需要再次注入了，存在<strong>代码冗余</strong>问题。</p>
+<h3 id="springboot的方案是：定义一个属性读取类"><a href="#springboot的方案是：定义一个属性读取类" class="headerlink" title="springboot的方案是：定义一个属性读取类"></a>springboot的方案是：定义一个属性读取类</h3><p>我们创建一个<strong>JdbcProProperties</strong>类<br>加上@ConfigurationProperties注解<br><img src="https://img-blog.csdnimg.cn/4fec4a3e4ea84cc2926e0af16da3b577.png" alt="在这里插入图片描述"><br>报红了，没有关系<br><img src="https://img-blog.csdnimg.cn/2c2faf12b2c34f82bc49994f0d18943d.png" alt="在这里插入图片描述"><br>直接关掉这个提示<br><img src="https://img-blog.csdnimg.cn/34b97c6f41864be2a4da6328bc2882a8.png" alt="在这里插入图片描述"></p>
+<h3 id="ConfigurationProperties"><a href="#ConfigurationProperties" class="headerlink" title="@ConfigurationProperties"></a>@ConfigurationProperties</h3><p>点开这个注解：</p>
+<p><img src="https://img-blog.csdnimg.cn/b8f26fad42314be693b211cf3bfc10fd.png" alt="在这里插入图片描述"><br>发现这里的注入方式是与前缀有关的，但是这个注解提供读取资源文件的功能<br>当我们SpringBoot程序启动的 时候会读取一个application.properties的文件，这也是我们放所有配置的文件。然鹅，如何区分这里哪些是jdbc的配置哪些是其他的呢？就是根据我们这个<code>@ConfigurationProperties</code>注解里的前缀属性<code>prefix=&quot;&quot;</code>来区分了</p>
+<pre><code class="java">@ConfigurationProperties(prefix = &quot;jdbc&quot;)
+public class JdbcProProperties {
+    //这里已经不需要@Value注解了
+    private String driverClassName;
+    private String url;
+    private String username;
+    private String password;
+//通过alt+ins 快速生成 get和set方法
+    public String getDriverClassName() {
+        return driverClassName;
+    }
+
+    public void setDriverClassName(String driverClassName) {
+        this.driverClassName = driverClassName;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+}
+
+</code></pre>
+<p>定义相应属性之后，通过set()方法来设置相应参数，注意<code>set属性字段名一定要和资源文件里面的一致</code>否则，读取不到。</p>
+<h5 id="回到JdbcConfiguration中"><a href="#回到JdbcConfiguration中" class="headerlink" title="回到JdbcConfiguration中"></a>回到<strong>JdbcConfiguration</strong>中</h5><p>填加：启用属性读取类的注解<br>@EnableConfigurationProperties(JdbcProProperties.class)<br>接下来去掉多余注解：<br>//@PropertySource(“classpath:jdbc.properties”)<br>//注入属性的地方 改为 使用@Autowrid注入JdbcProProperties这个<strong>属性读取类</strong></p>
+<h6 id="SpringBoot的第一个注入方法："><a href="#SpringBoot的第一个注入方法：" class="headerlink" title="SpringBoot的第一个注入方法："></a>SpringBoot的第一个注入方法：</h6><pre><code class="java">@Configuration //声明一个类是一个java配置类，相当于一个xml配置文件
+//@PropertySource(&quot;classpath:jdbc.properties&quot;)//读取资源文件
+@EnableConfigurationProperties(JdbcProProperties.class)
+public class JdbcConfiguration {
+
+    @Autowired
+    private JdbcProProperties jdbcProProperties;
+
+/*    @Value(&quot;${jdbc.driverClassName}&quot;)
+    private String driverClassName;
+    @Value(&quot;${jdbc.url}&quot;)
+    private String url;
+    @Value(&quot;${jdbc.username}&quot;)
+    private String username;
+    @Value(&quot;${jdbc.password}&quot;)
+    private String password;*/
+
+    @Bean //将方法的返回值注入给spring容器
+    public DataSource dataSource(){
+        DruidDataSource dataSource = new DruidDataSource();
+        dataSource.setDriverClassName(this.jdbcProProperties.getDriverClassName());//加this代表这是全局变量
+        dataSource.setUrl(this.jdbcProProperties.getUrl());
+        dataSource.setUsername(this.jdbcProProperties.getUsername());
+        dataSource.setPassword(this.jdbcProProperties.getPassword());
+        return dataSource;
+    }
+}
+</code></pre>
+<p>再次进行debug结果如下：<br><img src="https://img-blog.csdnimg.cn/b51b9faa05754fd0a9f921331ddfe726.png" alt="在这里插入图片描述"></p>
+<h6 id="第二个注入方法："><a href="#第二个注入方法：" class="headerlink" title="第二个注入方法："></a>第二个注入方法：</h6><p>不使用@Autowrid注解<br>采用构造方法的方式</p>
+<pre><code class="java">@Configuration //声明一个类是一个java配置类，相当于一个xml配置文件
+//@PropertySource(&quot;classpath:jdbc.properties&quot;)//读取资源文件
+@EnableConfigurationProperties(JdbcProProperties.class)
+public class JdbcConfiguration {
+
+//    @Autowired
+    private JdbcProProperties jdbcProProperties;
+
+    public JdbcConfiguration(JdbcProProperties jdbcProProperties){
+        this.jdbcProProperties = jdbcProProperties;
+    }
+/*    @Value(&quot;${jdbc.driverClassName}&quot;)
+    private String driverClassName;
+    @Value(&quot;${jdbc.url}&quot;)
+    private String url;
+    @Value(&quot;${jdbc.username}&quot;)
+    private String username;
+    @Value(&quot;${jdbc.password}&quot;)
+    private String password;*/
+
+    @Bean //将方法的返回值注入给spring容器
+    public DataSource dataSource(){
+        DruidDataSource dataSource = new DruidDataSource();
+        dataSource.setDriverClassName(this.jdbcProProperties.getDriverClassName());//加this代表这是全局变量
+        dataSource.setUrl(this.jdbcProProperties.getUrl());
+        dataSource.setUsername(this.jdbcProProperties.getUsername());
+        dataSource.setPassword(this.jdbcProProperties.getPassword());
+        return dataSource;
+    }
+}
+</code></pre>
+<p>依然是可以读取到对应的参数的<br><img src="https://img-blog.csdnimg.cn/029cfb9283fe4b62b228185554fc616c.png" alt="在这里插入图片描述"></p>
+<h6 id="第三个注入方法："><a href="#第三个注入方法：" class="headerlink" title="第三个注入方法："></a>第三个注入方法：</h6><p>直接通过bean方法的形参来配置</p>
+<pre><code class="java">@Configuration //声明一个类是一个java配置类，相当于一个xml配置文件
+//@PropertySource(&quot;classpath:jdbc.properties&quot;)//读取资源文件
+@EnableConfigurationProperties(JdbcProProperties.class)
+public class JdbcConfiguration {
+
+    @Bean //将方法的返回值注入给spring容器
+    public DataSource dataSource(JdbcProProperties jdbcProProperties){
+        DruidDataSource dataSource = new DruidDataSource();
+        dataSource.setDriverClassName(jdbcProProperties.getDriverClassName());//加this代表这是全局变量
+        dataSource.setUrl(jdbcProProperties.getUrl());
+        dataSource.setUsername(jdbcProProperties.getUsername());
+        dataSource.setPassword(jdbcProProperties.getPassword());
+        return dataSource;
+    }
+}
+</code></pre>
+<p>结果依然没有问题<br><img src="https://img-blog.csdnimg.cn/3e9c0f2020ae4ad2a1d9fdbfe1b195b5.png" alt="在这里插入图片描述"></p>
+<h6 id="第四个注入方法："><a href="#第四个注入方法：" class="headerlink" title="第四个注入方法："></a>第四个注入方法：</h6><p>也是最精简的方法</p>
+<pre><code class="java">@Configuration //声明一个类是一个java配置类，相当于一个xml配置文件
+public class JdbcConfiguration {
+    @Bean //将方法的返回值注入给spring容器
+    @ConfigurationProperties(prefix = &quot;jdbc&quot;)
+    public DataSource dataSource(){
+        DruidDataSource dataSource = new DruidDataSource();
+        return dataSource;
+    }
+}
+
+</code></pre>
+<p>@ConfigurationProperties这个注解在类上的时候，会调用类的set()方法注入参数，在方法上也一样，会调用DataSource的set()方法，也会注入。debug依然ok的。<br><img src="https://img-blog.csdnimg.cn/ce2b0ae6cbb842e49aa2c337d2ef9275.png" alt="在这里插入图片描述"></p>
+<h6 id="SpringBoot的四种属性注入方法总结："><a href="#SpringBoot的四种属性注入方法总结：" class="headerlink" title="SpringBoot的四种属性注入方法总结："></a>SpringBoot的四种属性注入方法总结：</h6><ol>
+<li>@Autowrid注入</li>
+<li>构造方法注入</li>
+<li>@Bean方法形参注入</li>
+<li>直接在@Bean方法上使用@ConfigurationProperties(prefix = “jdbc”)</li>
+</ol>
+<p>第四种看起来很好，但是需要保证：</p>
+<ul>
+<li>返回值(上面的dataSource)有相应的set()方法</li>
+<li>资源文件配置要和属性名一致<br>有一定的局限性。</li>
+</ul>
+<p>平常使用最多的是第一种方法。</p>
+<p>这两篇文章所包含的注解<br><img src="https://img-blog.csdnimg.cn/79c121010d524d37b7ec77ee7299f713.png" alt="在这里插入图片描述"></p>
+
+        </div>
+        <!-- .entry-content -->
+        <div class="single-reward">
+          <div class="reward-open">赏
+            <div class="reward-main">
+              <ul class="reward-row">
+                <li class="alipay-code"><img src="https://cdn.jsdelivr.net/gh/w7h1te/PicGoCDN/img/custom/donate/202203091825000.jpg"></li>
+                <li class="wechat-code"><img src="https://cdn.jsdelivr.net/gh/w7h1te/PicGoCDN/img/custom/donate/WeChanSQ.png"></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div style="text-align:center; width: 100%" class="social-share share-mobile" data-disabled="diandian, tencent"></div>
+        <footer class="post-footer">
+          <div class="post-lincenses"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="nofollow"><i class="fa fa-creative-commons" aria-hidden="true"></i> 知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议</a></div>
+          <div class="post-tags">
+          </div>
+          <div class="post-share">
+            <div class="social-share sharehidden share-component"></div>
+            <i class="iconfont show-share icon-forward"></i>
+          </div>
+        </footer><!-- .entry-footer -->
+      </article>
+      <!-- #post-## -->
+      <div class="toc" style="background: none;"></div>
+      <section class="post-squares nextprev">
+        
+          
+            <div class="post-nepre half previous">
+          
+            <a href="/2021/06/04/【从零开始的Springboot学习（三）】SpringBoot中的默认配置/" rel="prev">
+              <div class="background">
+                <img class="lazyload" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://cdn.jsdelivr.net/gh/w7h1te/PicGoCDN/img/bolg/cover006.jpg" style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;" onerror="imgError(this,3)" src="https://cdn.jsdelivr.net/gh/w7h1te/PicGoCDN/img/bolg/cover006.jpg">
+              </div>
+              <span class="label">
+              Previous Post</span>
+              <div class="info">
+                <h3>
+                【从零开始的Springboot学习（三）】SpringBoot中的默认配置</h3>
+                <hr>
+              </div>
+            </a>
+          </div>
+        
+        
+          
+            <div class="post-nepre half next">
+          
+            <a href="/2021/06/02/【从零开始的Springboot学习（一）】入门demo/" rel="next">
+              <div class="background">
+                <img class="lazyload" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://cdn.jsdelivr.net/gh/w7h1te/PicGoCDN/img/bolg/cover004.png" style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;" onerror="imgError(this,3)" src="https://cdn.jsdelivr.net/gh/w7h1te/PicGoCDN/img/bolg/cover004.png">
+              </div>
+              <span class="label">
+              Next Post</span>
+              <div class="info">
+                <h3>
+                【从零开始的Springboot学习（一）】入门demo</h3>
+                <hr>
+              </div>
+            </a>
+          </div>
+        
+      </section>
+      
+
+
+
+      <section class="author-profile">
+        <div class="info" itemprop="author" itemscope="" itemtype="https://schema.org/Person">
+          <a href="w7h1te.cn" class="profile gravatar"><img src="https://cdn.jsdelivr.net/gh/w7h1te/PicGoCDN/img/custom/202203090940373.jpeg" itemprop="image" alt="w7h1te" height="70" width="70"></a>
+          <div class="meta">
+            <span class="title">Author</span>
+            <h3 itemprop="name">
+            <a href="w7h1te.cn" itemprop="url" rel="author">w7h1te</a>
+            </h3>
+          </div>
+        </div>
+        <hr>
+        <p><i class="iconfont icon-write"></i>我认为所谓技术的革新，就是在不断试错中形成更好的方案！</p>
+      </section>
+    </main><!-- #main -->
+  </div><!-- #primary -->
+</div>
+
+
+
+    </div>    
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="请输入关键词..."/>
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            // PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+    <!-- <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2022 w7h1te<br>
+      powered_by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer> -->
+<footer id="colophon" class="site-footer" role="contentinfo">
+  <div class="site-info">
+    <div class="footertext">
+      <div class="img-preload">
+        <img src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/other/wordpress-rotating-ball-o.svg">
+        <img src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/other/disqus-preloader.svg">
+      </div>
+      <p style="color: #666666;">&copy 2020</p>
+    </div>
+    <div class="footer-device">
+    <p style="font-family: 'Ubuntu', sans-serif;">
+        <span style="color: #b9b9b9;">Theme <a href="https://github.com/honjun/hexo-theme-sakura" target="_blank" style="color: #b9b9b9;;text-decoration: underline dotted rgba(0, 0, 0, .1);">Sakura</a> <i class="iconfont icon-sakura rotating" style="color: #ffc0cb;display:inline-block"></i> by <a href="https://github.com/w7h1te" target="_blank" style="color: #b9b9b9;;text-decoration: underline dotted rgba(0, 0, 0, .1);">w7h1te</a>, Powered by Hexo, Hosted by Coding Pages</a>
+        </span>
+      </p>
+    </div>
+  </div><!-- .site-info -->
+</footer>
+<script type="text/javascript" src="/js/lib.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script type="text/javascript" src="/js/InsightSearch.js"></script>
+<script type="text/javascript" src="/js/jquery.fancybox.min.js"></script>
+<script type="text/javascript" src="/js/zoom.min.js"></script>
+<script type="text/javascript" src="/js/sakura-app.js"></script>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src='//unpkg.com/valine@1.3.4/dist/Valine.min.js'></script>
+<script src="/js/botui.js"></script>
+<!-- 不蒜子 网页计数器 -->
+<script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js"></script> -->
+<script type="text/javascript">
+/* <![CDATA[ */
+if (/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
+  var Poi = {"pjax":"1","movies":{"url": "https://cdn.jsdelivr.net/gh/honjun/hojun@1.2","name":"Unbroken.mp4","live":"close"},"windowheight":"fixed","codelamp":"close","ajaxurl":"","order":"asc","formpostion":"bottom"};
+} else {
+  var Poi = {"pjax":"1","movies":{"url": "https://cdn.jsdelivr.net/gh/honjun/hojun@1.2","name":"Unbroken.mp4","live":"open"},"windowheight":"auto","codelamp":"close","ajaxurl":"","order":"asc","formpostion":"bottom"};
+}
+/* ]]> */
+
+</script>
+<script>
+$(document).ready(function() {
+  if ($(".toc").length > 0 && document.body.clientWidth > 1200) {
+    if ($(".pattern-center").length > 0) { //有图的情况
+      tocbot.init({
+          // Where to render the table of contents.
+          tocSelector: '.toc', // 放置目录的容器
+          // Where to grab the headings to build the table of contents.
+          contentSelector: '.entry-content', // 正文内容所在
+          // Which headings to grab inside of the contentSelector element.
+          scrollSmooth: true,
+          headingSelector: 'h1, h2, h3, h4, h5', // 需要索引的标题级别
+          headingsOffset: -400,
+          scrollSmoothOffset: -85
+      });
+    } else {
+      tocbot.init({
+          // Where to render the table of contents.
+          tocSelector: '.toc', // 放置目录的容器
+          // Where to grab the headings to build the table of contents.
+          contentSelector: '.entry-content', // 正文内容所在
+          // Which headings to grab inside of the contentSelector element.
+          scrollSmooth: true,
+          headingSelector: 'h1, h2, h3, h4, h5', // 需要索引的标题级别
+          headingsOffset: -85,
+          scrollSmoothOffset: -85
+      });
+    }
+    var offsetTop = $('.toc').offset().top - 95;
+    window.onscroll = function() {
+      var scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
+      if (scrollTop >= offsetTop) {
+        $('.toc').addClass('toc-fixed');
+      } else {
+        $('.toc').removeClass('toc-fixed');
+      }
+    }
+  }
+});
+</script>
+
+    <div class="openNav no-select" style="height: 50px;">
+      <div class="iconflat no-select" style="width: 50px; height: 50px;">
+        <div class="icon"></div>
+      </div>
+      <div class="site-branding search-form-submit">
+        <i class="iconfont js-toggle-search iconsearch icon-search"></i>
+      </div>
+    </div>
+  </section>
+  <div id="mo-nav" class="">
+  <div class="m-avatar">
+    <img src="https://cdn.jsdelivr.net/gh/w7h1te/PicGoCDN/img/custom/202203090940373.jpeg">
+  </div>
+  <p style="text-align: center; color: #333; font-weight: 900; font-family: 'Ubuntu', sans-serif; letter-spacing: 1.5px">w7h1te的博客!w7h1te</p>
+  <p style="text-align: center; word-spacing: 20px;">
+    
+      
+        <a href="http://github.com/w7h1te" class="fa fa-github" target="_blank" style="color: #333; margin-left:20px"></a>
+      
+        <a href="http://weibo.com/u/7746344202" class="fa fa-weibo" target="_blank" style="color: #dd4b39; margin-left:20px"></a>
+      
+        <a href="http://wpa.qq.com/msgrd?v=3&uin=321950101&site=qq&menu=yes" class="fa fa-qq" target="_blank" style="color: #25c6fe; margin-left:20px"></a>
+      
+    
+  </p>
+  <ul id="menu-new-1" class="menu">
+    
+      <li>
+        <a href="/">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-fort-awesome faa-shake" aria-hidden="true"></i>
+            首页
+          </span>
+        </a>
+        
+      </li>
+    
+      <li>
+        <a href="/archives">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-archive faa-shake" aria-hidden="true"></i>
+            归档
+          </span>
+        </a>
+        
+          <ul class="sub-menu">
+            
+              <li>
+                <a href="/categories/技术/">
+                  <i class="fa fa-code" aria-hidden="true"></i>
+                  技术
+                </a>
+              </li>
+            
+              <li>
+                <a href="/categories/生活/">
+                  <i class="fa fa-file-text-o" aria-hidden="true"></i>
+                  生活
+                </a>
+              </li>
+            
+              <li>
+                <a href="/categories/资源/">
+                  <i class="fa fa-cloud-download" aria-hidden="true"></i>
+                  资源
+                </a>
+              </li>
+            
+              <li>
+                <a href="/categories/随想/">
+                  <i class="fa fa-commenting-o" aria-hidden="true"></i>
+                  随想
+                </a>
+              </li>
+            
+              <li>
+                <a href="/categories/转载/">
+                  <i class="fa fa-book" aria-hidden="true"></i>
+                  转载
+                </a>
+              </li>
+            
+          </ul>
+        
+      </li>
+    
+      <li>
+        <a href="javascript:;">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-list-ul faa-vertical" aria-hidden="true"></i>
+            清单
+          </span>
+        </a>
+        
+          <ul class="sub-menu">
+            
+              <li>
+                <a href="/tags/悦读/">
+                  <i class="fa fa-th-list faa-bounce" aria-hidden="true"></i>
+                  书单
+                </a>
+              </li>
+            
+              <li>
+                <a href="/bangumi/">
+                  <i class="fa fa-film faa-vertical" aria-hidden="true"></i>
+                  番组
+                </a>
+              </li>
+            
+              <li>
+                <a href="/music/">
+                  <i class="fa fa-headphones" aria-hidden="true"></i>
+                  歌单
+                </a>
+              </li>
+            
+              <li>
+                <a href="/tags/图集/">
+                  <i class="fa fa-photo" aria-hidden="true"></i>
+                  图集
+                </a>
+              </li>
+            
+          </ul>
+        
+      </li>
+    
+      <li>
+        <a href="/comment/">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-pencil-square-o faa-tada" aria-hidden="true"></i>
+            留言板
+          </span>
+        </a>
+        
+      </li>
+    
+      <li>
+        <a href="/links/">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-link faa-shake" aria-hidden="true"></i>
+            友人帐
+          </span>
+        </a>
+        
+      </li>
+    
+      <li>
+        <a href="/donate/">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-heart faa-pulse" aria-hidden="true"></i>
+            赞赏
+          </span>
+        </a>
+        
+      </li>
+    
+      <li>
+        <a href="/">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-leaf faa-wrench" aria-hidden="true"></i>
+            关于
+          </span>
+        </a>
+        
+          <ul class="sub-menu">
+            
+              <li>
+                <a href="/about/">
+                  <i class="fa fa-meetup" aria-hidden="true"></i>
+                  我？
+                </a>
+              </li>
+            
+              <li>
+                <a href="/theme-sakura/">
+                  <i class="fa iconfont icon-sakura" aria-hidden="true"></i>
+                  主题
+                </a>
+              </li>
+            
+              <li>
+                <a href="/lab/">
+                  <i class="fa fa-cogs" aria-hidden="true"></i>
+                  Lab
+                </a>
+              </li>
+            
+          </ul>
+        
+      </li>
+    
+      <li>
+        <a href="/client/">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-android faa-vertical" aria-hidden="true"></i>
+            客户端
+          </span>
+        </a>
+        
+      </li>
+    
+      <li>
+        <a href="/atom.xml">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-rss faa-pulse" aria-hidden="true"></i>
+            RSS
+          </span>
+        </a>
+        
+      </li>
+    
+  </ul>
+  <p style="text-align: center; font-size: 13px; color: #b9b9b9;">&copy 2019 hexo-sakura</p>
+</div>
+<button onclick="topFunction()" class="mobile-cd-top" id="moblieGoTop" title="Go to top" style="display: none;"><i class="fa fa-chevron-up" aria-hidden="true"></i></button>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+<script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+<!-- require MetingJS -->
+<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+<style>
+  .aplayer .aplayer-lrc {
+    height: 35px;
+  }
+  .aplayer .aplayer-lrc p{
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 18px !important;
+  }
+  .aplayer .aplayer-lrc p.aplayer-lrc-current{
+    color: #FF1493;
+  }
+  .aplayer.aplayer-narrow .aplayer-body{
+    left: -66px !important;
+  }
+  .aplayer.aplayer-fixed .aplayer-lrc {
+    display: none;
+  }
+  .aplayer .aplayer-lrc.aplayer-lrc-hide {
+      display:none !important;
+  }
+  .aplayer.aplayer-fixed .lrc-show {
+    display: block;
+    background: rgba(255, 255, 255, 0.8);
+  }
+</style>
+<meting-js
+
+    id="2660651585"
+
+    server="netease"
+
+    type="playlist"
+
+    fixed="true"
+
+    autoplay="false"
+
+    loop="all"
+
+    order="random"
+
+    preload="auto"
+
+    volume="0.7"
+
+    mutex="true"
+
+</meting-js>
+<script>
+  $(function(){
+    $('body').on('click', '.aplayer', function(){
+      if($('.aplayer-button').hasClass('aplayer-play')) {
+        $('.aplayer-lrc').removeClass('lrc-show');
+      } else {
+        $('.aplayer-lrc').addClass('lrc-show');
+      }
+    })
+  });
+</script>
+</body>
+</html>

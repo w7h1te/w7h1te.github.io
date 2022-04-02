@@ -297,6 +297,30 @@
   </entry>
   
   <entry>
+    <title>【MySQL解决方案】Can‘t connect to MySQL server on localhost (0)</title>
+    <link href="/2021/11/03/%E3%80%90MySQL%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%E3%80%91Can%E2%80%98%E2%80%98t%20connect%20to%20MySQL%20server%20on%20localhost%20(0)/"/>
+    <id>/2021/11/03/【MySQL解决方案】Can‘‘t connect to MySQL server on localhost (0)/</id>
+    <published>2021-11-03T01:24:01.000Z</published>
+    <updated>2022-04-02T12:18:05.148Z</updated>
+    
+    <summary type="html">
+    
+      Mysql启动报错，提示：Can‘t connect to MySQL server on localhost (0)
+    
+    </summary>
+    
+      <category term="技术" scheme="/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+      <category term="技术" scheme="/tags/%E6%8A%80%E6%9C%AF/"/>
+    
+      <category term="转载" scheme="/tags/%E8%BD%AC%E8%BD%BD/"/>
+    
+      <category term="Mysql" scheme="/tags/Mysql/"/>
+    
+  </entry>
+  
+  <entry>
     <title>jvm调优——栈上分配</title>
     <link href="/2021/10/12/jvm%E7%9A%84%E9%83%A8%E5%88%86%E6%93%8D%E4%BD%9C%EF%BC%8Cjvm%E8%B0%83%E4%BC%98%E2%80%94%E2%80%94%E6%A0%88%E4%B8%8A%E5%88%86%E9%85%8D%E3%80%82/"/>
     <id>/2021/10/12/jvm的部分操作，jvm调优——栈上分配。/</id>
@@ -401,6 +425,84 @@
   </entry>
   
   <entry>
+    <title>【从零开始的Springboot学习（三）】SpringBoot中的默认配置</title>
+    <link href="/2021/06/04/%E3%80%90%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E7%9A%84Springboot%E5%AD%A6%E4%B9%A0%EF%BC%88%E4%B8%89%EF%BC%89%E3%80%91SpringBoot%E4%B8%AD%E7%9A%84%E9%BB%98%E8%AE%A4%E9%85%8D%E7%BD%AE/"/>
+    <id>/2021/06/04/【从零开始的Springboot学习（三）】SpringBoot中的默认配置/</id>
+    <published>2021-06-04T01:42:29.000Z</published>
+    <updated>2022-04-02T12:58:44.398Z</updated>
+    
+    <summary type="html">
+    
+      SpringBoot中的默认配置原理
+    
+    </summary>
+    
+      <category term="技术" scheme="/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+      <category term="web" scheme="/tags/web/"/>
+    
+      <category term="技术" scheme="/tags/%E6%8A%80%E6%9C%AF/"/>
+    
+      <category term="总结" scheme="/tags/%E6%80%BB%E7%BB%93/"/>
+    
+      <category term="IDEA" scheme="/tags/IDEA/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>【从零开始的Springboot学习（二）】属性注入方法对比，以及SpringBoot是如何优化的</title>
+    <link href="/2021/06/03/%E3%80%90%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E7%9A%84Springboot%E5%AD%A6%E4%B9%A0%EF%BC%88%E4%BA%8C%EF%BC%89%E3%80%91%E5%B1%9E%E6%80%A7%E6%B3%A8%E5%85%A5%E6%96%B9%E6%B3%95%E5%AF%B9%E6%AF%94%EF%BC%8C%E4%BB%A5%E5%8F%8ASpringBoot%E6%98%AF%E5%A6%82%E4%BD%95%E4%BC%98%E5%8C%96%E7%9A%84/"/>
+    <id>/2021/06/03/【从零开始的Springboot学习（二）】属性注入方法对比，以及SpringBoot是如何优化的/</id>
+    <published>2021-06-03T10:09:35.000Z</published>
+    <updated>2022-04-02T12:54:29.463Z</updated>
+    
+    <summary type="html">
+    
+      属性注入方法对比，以及SpringBoot是如何优化的
+    
+    </summary>
+    
+      <category term="技术" scheme="/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+      <category term="web" scheme="/tags/web/"/>
+    
+      <category term="技术" scheme="/tags/%E6%8A%80%E6%9C%AF/"/>
+    
+      <category term="总结" scheme="/tags/%E6%80%BB%E7%BB%93/"/>
+    
+      <category term="IDEA" scheme="/tags/IDEA/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>【从零开始的Springboot学习（一）】入门demo</title>
+    <link href="/2021/06/02/%E3%80%90%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E7%9A%84Springboot%E5%AD%A6%E4%B9%A0%EF%BC%88%E4%B8%80%EF%BC%89%E3%80%91%E5%85%A5%E9%97%A8demo/"/>
+    <id>/2021/06/02/【从零开始的Springboot学习（一）】入门demo/</id>
+    <published>2021-06-02T02:37:29.000Z</published>
+    <updated>2022-04-02T12:49:25.266Z</updated>
+    
+    <summary type="html">
+    
+      我说这是第二次的学习与总结你会相信嘛
+    
+    </summary>
+    
+      <category term="技术" scheme="/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+      <category term="web" scheme="/tags/web/"/>
+    
+      <category term="技术" scheme="/tags/%E6%8A%80%E6%9C%AF/"/>
+    
+      <category term="总结" scheme="/tags/%E6%80%BB%E7%BB%93/"/>
+    
+      <category term="IDEA" scheme="/tags/IDEA/"/>
+    
+  </entry>
+  
+  <entry>
     <title>【计网】TCP协议20问（四）</title>
     <link href="/2021/03/18/%E3%80%90%E8%AE%A1%E7%BD%91%E3%80%91TCP%E5%8D%8F%E8%AE%AE%EF%BC%88%E5%9B%9B%EF%BC%89/"/>
     <id>/2021/03/18/【计网】TCP协议（四）/</id>
@@ -419,106 +521,6 @@
       <category term="技术" scheme="/tags/%E6%8A%80%E6%9C%AF/"/>
     
       <category term="总结" scheme="/tags/%E6%80%BB%E7%BB%93/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>【计网】TCP协议20问（三）</title>
-    <link href="/2021/03/02/%E3%80%90%E8%AE%A1%E7%BD%91%E3%80%91TCP%E5%8D%8F%E8%AE%AE%EF%BC%88%E4%B8%89%EF%BC%89/"/>
-    <id>/2021/03/02/【计网】TCP协议（三）/</id>
-    <published>2021-03-02T04:31:24.000Z</published>
-    <updated>2022-03-30T05:02:25.798Z</updated>
-    
-    <summary type="html">
-    
-      对于TCP协议的知识总结与思考。
-    
-    </summary>
-    
-      <category term="技术" scheme="/categories/%E6%8A%80%E6%9C%AF/"/>
-    
-    
-      <category term="技术" scheme="/tags/%E6%8A%80%E6%9C%AF/"/>
-    
-      <category term="总结" scheme="/tags/%E6%80%BB%E7%BB%93/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>【计网】TCP协议20问（二）</title>
-    <link href="/2021/02/04/%E3%80%90%E8%AE%A1%E7%BD%91%E3%80%91TCP%E5%8D%8F%E8%AE%AE%EF%BC%88%E4%BA%8C%EF%BC%89/"/>
-    <id>/2021/02/04/【计网】TCP协议（二）/</id>
-    <published>2021-02-04T04:31:24.000Z</published>
-    <updated>2022-03-30T05:03:20.020Z</updated>
-    
-    <summary type="html">
-    
-      对于TCP协议的知识总结与思考。
-    
-    </summary>
-    
-      <category term="技术" scheme="/categories/%E6%8A%80%E6%9C%AF/"/>
-    
-    
-      <category term="技术" scheme="/tags/%E6%8A%80%E6%9C%AF/"/>
-    
-      <category term="总结" scheme="/tags/%E6%80%BB%E7%BB%93/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>【计网】TCP协议20问（一）</title>
-    <link href="/2021/01/17/%E3%80%90%E8%AE%A1%E7%BD%91%E3%80%91TCP%E5%8D%8F%E8%AE%AE%EF%BC%88%E4%B8%80%EF%BC%89/"/>
-    <id>/2021/01/17/【计网】TCP协议（一）/</id>
-    <published>2021-01-17T08:31:24.000Z</published>
-    <updated>2022-03-30T05:01:41.051Z</updated>
-    
-    <summary type="html">
-    
-      对于TCP协议的知识总结与思考。
-    
-    </summary>
-    
-      <category term="技术" scheme="/categories/%E6%8A%80%E6%9C%AF/"/>
-    
-    
-      <category term="技术" scheme="/tags/%E6%8A%80%E6%9C%AF/"/>
-    
-      <category term="总结" scheme="/tags/%E6%80%BB%E7%BB%93/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Hexo-Theme-Sakura</title>
-    <link href="/2020/12/12/Hexo-Theme-Sakura/"/>
-    <id>/2020/12/12/Hexo-Theme-Sakura/</id>
-    <published>2020-12-12T14:16:01.000Z</published>
-    <updated>2022-03-30T07:39:20.761Z</updated>
-    
-    <summary type="html">
-    
-      hexo-sakura主题使用教程
-    
-    </summary>
-    
-      <category term="技术" scheme="/categories/%E6%8A%80%E6%9C%AF/"/>
-    
-    
-      <category term="web" scheme="/tags/web/"/>
-    
-      <category term="悦读" scheme="/tags/%E6%82%A6%E8%AF%BB/"/>
-    
-      <category term="技术" scheme="/tags/%E6%8A%80%E6%9C%AF/"/>
-    
-      <category term="生活" scheme="/tags/%E7%94%9F%E6%B4%BB/"/>
-    
-      <category term="资源" scheme="/tags/%E8%B5%84%E6%BA%90/"/>
-    
-      <category term="随想" scheme="/tags/%E9%9A%8F%E6%83%B3/"/>
-    
-      <category term="转载" scheme="/tags/%E8%BD%AC%E8%BD%BD/"/>
-    
-      <category term="图集" scheme="/tags/%E5%9B%BE%E9%9B%86/"/>
     
   </entry>
   
