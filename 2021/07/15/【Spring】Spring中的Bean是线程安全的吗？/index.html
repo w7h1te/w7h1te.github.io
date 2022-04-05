@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
   
-  <title itemprop="name">Category: 技术 | w7h1te</title>
+  <title itemprop="name">【Spring】Spring中的Bean是线程安全的吗？ | w7h1te</title>
   
     <link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/w7h1te/PicGoCDN/img/favicon/202203090939154.ico">
   
@@ -402,704 +402,150 @@
   </div>
 </header>
 
-      
+      <link rel="stylesheet" type="text/css" href="/css/sharejs.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css">
 <div class="pattern-center-blank"></div>
-<div class="pattern-center ">
-  <div class="pattern-attachment-img">
-    <img data-src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/banner/coding.jpg" class="lazyload" onerror="imgError(this,3)" style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;">
+
+  <div class="pattern-center single-center">
+    <!-- 有配图默认渲染第一张 -->
+    <div class="pattern-attachment-img lazyload" style="background-image: url(https://cdn.jsdelivr.net/gh/w7h1te/PicGoCDN/img/bolg/cover007.png);" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://cdn.jsdelivr.net/gh/w7h1te/PicGoCDN/img/bolg/cover007.png">
+    </div>
+    <header class="pattern-header single-header">
+      <h1 class="entry-title">
+      【Spring】Spring中的Bean是线程安全的吗？</h1>
+      <p class="entry-census">
+        <span>
+          <a href="w7h1te.cn">
+            <img src="https://cdn.jsdelivr.net/gh/w7h1te/PicGoCDN/img/custom/202203090940373.jpeg">
+          </a>
+        </span>
+        <span>
+          <a href="w7h1te.cn">w7h1te</a>
+        </span>
+        <span class="bull">
+        ·</span>
+        2021-7-15<span class="bull">
+        ·</span>
+      <span id="busuanzi_value_page_pv"></span>次阅读</p>
+    </header>
   </div>
-  <header class="pattern-header ">
-    <h1 class="cat-title">野生技术协会</h1>
-    <span class="cat-des">
-      <p>Wildlife Technology Association</p>
-    </span>
-  </header>
-</div>
+
 <div id="content" class="site-content">
   <div id="primary" class="content-area">
     <main id="main" class="site-main" role="main">
-      
-  <!-- 首页默认取最最新文章集 -->
-  
-    <article class="post post-list" itemscope="" itemtype="https://schema.org/BlogPosting">
-  <div class="post-entry">
-    <div class="feature">
-      <a href="/2021/03/02/【计网】TCP协议（三）/">
-        <div class="overlay">
-          <i class="iconfont icon-text">
-          </i>
-        </div>
-        <img width="150" height="150" src="https://cdn.jsdelivr.net/gh/w7h1te/PicGoCDN/img/bolg/836713b152b64b809fe409cdf1008fae.png" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="" >
-      </a>
-    </div>
-    <h1 class="entry-title">
-    <a href="/2021/03/02/【计网】TCP协议（三）/">
-    【计网】TCP协议20问（三）</a>
-    </h1>
-    <div class="p-time">
-      <i class="iconfont icon-time">
-      </i>
-    2021-3-2</div>
-    <p>
-    对于TCP协议的知识总结与思考。</p>
-    <footer class="entry-footer">
-      <div class="post-more">
-        <a href="/2021/03/02/【计网】TCP协议（三）/">
-          <i class="iconfont icon-caidan">
-          </i>
-        </a>
-      </div>
-    </footer>
-  </div>
-  <hr>
-</article>
-  
-    <article class="post post-list" itemscope="" itemtype="https://schema.org/BlogPosting">
-  <div class="post-entry">
-    <div class="feature">
-      <a href="/2021/02/04/【计网】TCP协议（二）/">
-        <div class="overlay">
-          <i class="iconfont icon-text">
-          </i>
-        </div>
-        <img width="150" height="150" src="https://cdn.jsdelivr.net/gh/w7h1te/PicGoCDN/img/bolg/35af5124880511ebb6edd017c2d2eca2.jpg" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="" >
-      </a>
-    </div>
-    <h1 class="entry-title">
-    <a href="/2021/02/04/【计网】TCP协议（二）/">
-    【计网】TCP协议20问（二）</a>
-    </h1>
-    <div class="p-time">
-      <i class="iconfont icon-time">
-      </i>
-    2021-2-4</div>
-    <p>
-    对于TCP协议的知识总结与思考。</p>
-    <footer class="entry-footer">
-      <div class="post-more">
-        <a href="/2021/02/04/【计网】TCP协议（二）/">
-          <i class="iconfont icon-caidan">
-          </i>
-        </a>
-      </div>
-    </footer>
-  </div>
-  <hr>
-</article>
-  
-    <article class="post post-list" itemscope="" itemtype="https://schema.org/BlogPosting">
-  <div class="post-entry">
-    <div class="feature">
-      <a href="/2021/01/17/【计网】TCP协议（一）/">
-        <div class="overlay">
-          <i class="iconfont icon-text">
-          </i>
-        </div>
-        <img width="150" height="150" src="https://cdn.jsdelivr.net/gh/w7h1te/PicGoCDN/img/bolg/cover20.jpg" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="" >
-      </a>
-    </div>
-    <h1 class="entry-title">
-    <a href="/2021/01/17/【计网】TCP协议（一）/">
-    【计网】TCP协议20问（一）</a>
-    </h1>
-    <div class="p-time">
-      <i class="iconfont icon-time">
-      </i>
-    2021-1-17</div>
-    <p>
-    对于TCP协议的知识总结与思考。</p>
-    <footer class="entry-footer">
-      <div class="post-more">
-        <a href="/2021/01/17/【计网】TCP协议（一）/">
-          <i class="iconfont icon-caidan">
-          </i>
-        </a>
-      </div>
-    </footer>
-  </div>
-  <hr>
-</article>
-  
-    <article class="post post-list" itemscope="" itemtype="https://schema.org/BlogPosting">
-  <div class="post-entry">
-    <div class="feature">
-      <a href="/2020/12/12/Hexo-Theme-Sakura/">
-        <div class="overlay">
-          <i class="iconfont icon-text">
-          </i>
-        </div>
-        <img width="150" height="150" src="https://cdn.jsdelivr.net/gh/w7h1te/PicGoCDN/img/bolg/202203111654908.jpg" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="" >
-      </a>
-    </div>
-    <h1 class="entry-title">
-    <a href="/2020/12/12/Hexo-Theme-Sakura/">
-    Hexo-Theme-Sakura</a>
-    </h1>
-    <div class="p-time">
-      <i class="iconfont icon-time">
-      </i>
-    2020-12-12</div>
-    <p>
-    hexo-sakura主题使用教程</p>
-    <footer class="entry-footer">
-      <div class="post-more">
-        <a href="/2020/12/12/Hexo-Theme-Sakura/">
-          <i class="iconfont icon-caidan">
-          </i>
-        </a>
-      </div>
-    </footer>
-  </div>
-  <hr>
-</article>
-  
-    <article class="post post-list" itemscope="" itemtype="https://schema.org/BlogPosting">
-  <div class="post-entry">
-    <div class="feature">
-      <a href="/2020/10/02/mybatis和mybatisplus区别/">
-        <div class="overlay">
-          <i class="iconfont icon-text">
-          </i>
-        </div>
-        <img width="150" height="150" src="https://cdn.jsdelivr.net/gh/w7h1te/PicGoCDN/img/bolg/cover001.png" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="" >
-      </a>
-    </div>
-    <h1 class="entry-title">
-    <a href="/2020/10/02/mybatis和mybatisplus区别/">
-    mybatis和mybatisplus区别</a>
-    </h1>
-    <div class="p-time">
-      <i class="iconfont icon-time">
-      </i>
-    2020-10-2</div>
-    <p>
-    mybatis和mybatisplus区别</p>
-    <footer class="entry-footer">
-      <div class="post-more">
-        <a href="/2020/10/02/mybatis和mybatisplus区别/">
-          <i class="iconfont icon-caidan">
-          </i>
-        </a>
-      </div>
-    </footer>
-  </div>
-  <hr>
-</article>
-  
-    <article class="post post-list" itemscope="" itemtype="https://schema.org/BlogPosting">
-  <div class="post-entry">
-    <div class="feature">
-      <a href="/2020/09/06/Vue结合项目开发 踩坑..../">
-        <div class="overlay">
-          <i class="iconfont icon-text">
-          </i>
-        </div>
-        <img width="150" height="150" src="https://cdn.jsdelivr.net/gh/w7h1te/PicGoCDN/img/bolg/cover4.jpg" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="" >
-      </a>
-    </div>
-    <h1 class="entry-title">
-    <a href="/2020/09/06/Vue结合项目开发 踩坑..../">
-    Vue结合项目开发 踩坑....</a>
-    </h1>
-    <div class="p-time">
-      <i class="iconfont icon-time">
-      </i>
-    2020-9-6</div>
-    <p>
-    对前端Vue的简单学习，与快速上手</p>
-    <footer class="entry-footer">
-      <div class="post-more">
-        <a href="/2020/09/06/Vue结合项目开发 踩坑..../">
-          <i class="iconfont icon-caidan">
-          </i>
-        </a>
-      </div>
-    </footer>
-  </div>
-  <hr>
-</article>
-  
-    <article class="post post-list" itemscope="" itemtype="https://schema.org/BlogPosting">
-  <div class="post-entry">
-    <div class="feature">
-      <a href="/2020/05/06/Vue _ vue cli新手入门 详细解读/">
-        <div class="overlay">
-          <i class="iconfont icon-text">
-          </i>
-        </div>
-        <img width="150" height="150" src="https://cdn.jsdelivr.net/gh/w7h1te/PicGoCDN/img/bolg/cover13.jpg" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="" >
-      </a>
-    </div>
-    <h1 class="entry-title">
-    <a href="/2020/05/06/Vue _ vue cli新手入门 详细解读/">
-    Vue _ vue cli新手入门 详细解读</a>
-    </h1>
-    <div class="p-time">
-      <i class="iconfont icon-time">
-      </i>
-    2020-5-6</div>
-    <p>
-    对前端Vue的简单学习，与快速上手</p>
-    <footer class="entry-footer">
-      <div class="post-more">
-        <a href="/2020/05/06/Vue _ vue cli新手入门 详细解读/">
-          <i class="iconfont icon-caidan">
-          </i>
-        </a>
-      </div>
-    </footer>
-  </div>
-  <hr>
-</article>
-  
-    <article class="post post-list" itemscope="" itemtype="https://schema.org/BlogPosting">
-  <div class="post-entry">
-    <div class="feature">
-      <a href="/2020/04/11/从零搭建考试系统——多模块的项目环境搭建（idea）/">
-        <div class="overlay">
-          <i class="iconfont icon-text">
-          </i>
-        </div>
-        <img width="150" height="150" src="https://cdn.jsdelivr.net/gh/w7h1te/PicGoCDN/img/bolg/cover22.png" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="" >
-      </a>
-    </div>
-    <h1 class="entry-title">
-    <a href="/2020/04/11/从零搭建考试系统——多模块的项目环境搭建（idea）/">
-    从零搭建考试系统——多模块的项目环境搭建（idea）</a>
-    </h1>
-    <div class="p-time">
-      <i class="iconfont icon-time">
-      </i>
-    2020-4-11</div>
-    <p>
-    idea的基本使用</p>
-    <footer class="entry-footer">
-      <div class="post-more">
-        <a href="/2020/04/11/从零搭建考试系统——多模块的项目环境搭建（idea）/">
-          <i class="iconfont icon-caidan">
-          </i>
-        </a>
-      </div>
-    </footer>
-  </div>
-  <hr>
-</article>
-  
-    <article class="post post-list" itemscope="" itemtype="https://schema.org/BlogPosting">
-  <div class="post-entry">
-    <div class="feature">
-      <a href="/2020/02/27/【数据结构】栈和队列/">
-        <div class="overlay">
-          <i class="iconfont icon-text">
-          </i>
-        </div>
-        <img width="150" height="150" src="https://cdn.jsdelivr.net/gh/w7h1te/PicGoCDN/img/bolg/cover003.png" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="" >
-      </a>
-    </div>
-    <h1 class="entry-title">
-    <a href="/2020/02/27/【数据结构】栈和队列/">
-    【数据结构】栈和队列</a>
-    </h1>
-    <div class="p-time">
-      <i class="iconfont icon-time">
-      </i>
-    2020-2-27</div>
-    <p>
-    栈和队列的比较</p>
-    <footer class="entry-footer">
-      <div class="post-more">
-        <a href="/2020/02/27/【数据结构】栈和队列/">
-          <i class="iconfont icon-caidan">
-          </i>
-        </a>
-      </div>
-    </footer>
-  </div>
-  <hr>
-</article>
-  
-    <article class="post post-list" itemscope="" itemtype="https://schema.org/BlogPosting">
-  <div class="post-entry">
-    <div class="feature">
-      <a href="/2019/12/12/bibilink/">
-        <div class="overlay">
-          <i class="iconfont icon-text">
-          </i>
-        </div>
-        <img width="150" height="150" src="https://cdn.jsdelivr.net/gh/w7h1te/PicGoCDN/img/bolg/202203111737972.jpg" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="" >
-      </a>
-    </div>
-    <h1 class="entry-title">
-    <a href="/2019/12/12/bibilink/">
-    哔哩哔哩外链插入</a>
-    </h1>
-    <div class="p-time">
-      <i class="iconfont icon-time">
-      </i>
-    2019-12-12</div>
-    <p>
-    外链视频插入</p>
-    <footer class="entry-footer">
-      <div class="post-more">
-        <a href="/2019/12/12/bibilink/">
-          <i class="iconfont icon-caidan">
-          </i>
-        </a>
-      </div>
-    </footer>
-  </div>
-  <hr>
-</article>
-  
-
-
-      <div class="clearer">
-      </div>
-    </main>
-    <!-- 
-      <nav class="navigator">
+      <article id="post-1" class="post-1 post type-post status-publish format-standard has-post-thumbnail hentry category-uncategorized">
+        <div class="toc"></div>
+        <!--<div class="toc-entry-content"><!-- 套嵌目录使用（主要为了支援评论）-->
         
-        <a class="extend prev" rel="prev" href="/categories/技术/page/2/"><i class="iconfont icon-back"></i></a><a class="page-number" href="/categories/技术/">1</a><a class="page-number" href="/categories/技术/page/2/">2</a><span class="page-number current">3</span>
-      </nav>
-     -->
-    
-  </div>
+        <div class="entry-content">
+          <h2 id="结论："><a href="#结论：" class="headerlink" title="结论："></a>结论：</h2><p>Spring中的Bean是否线程安全，跟Spring容器本身无关。<br>Spring中的Bean本身也不具备线程安全的特性。</p>
+<h2 id="Spring中的Bean从哪里来的？"><a href="#Spring中的Bean从哪里来的？" class="headerlink" title="Spring中的Bean从哪里来的？"></a>Spring中的Bean从哪里来的？</h2><p>除了Spring中内置的，其他的Bean我们自己通过Spring配置来声明的，然后由Spring容器来统一进行加载。</p>
+<h3 id="Spring声明配置中通常会配置以下内容："><a href="#Spring声明配置中通常会配置以下内容：" class="headerlink" title="Spring声明配置中通常会配置以下内容："></a>Spring声明配置中通常会配置以下内容：</h3><p>比如：</p>
+<ul>
+<li><strong>class</strong>（全类名）</li>
+<li><strong>id</strong>（也就是Bean的唯一标识）</li>
+<li><strong>scope</strong>（作用域）</li>
+<li><strong>lazy-init</strong>（是否延时加载）</li>
+<li>等等<br>之后Spring容器会根据这些配置内容来使用对应的策略来进行创建实例，因此，Spring中的Bean都是根据我们自己写的类来创建的实例，Spring中的Bean是否线程安全，跟Spring容器本身无关。只是交给Spring容器托管而已。<h2 id="Spring容器中什么样的Bean会存在线程安全问题？"><a href="#Spring容器中什么样的Bean会存在线程安全问题？" class="headerlink" title="Spring容器中什么样的Bean会存在线程安全问题？"></a>Spring容器中什么样的Bean会存在线程安全问题？</h2><h3 id="Spring-Bean的作用域："><a href="#Spring-Bean的作用域：" class="headerlink" title="Spring Bean的作用域："></a>Spring Bean的作用域：</h3></li>
+<li><strong>prototype</strong>（多例Bean）<br><code>每次getBean的时候都会创建一个新的对象实例</code><br>也就是线程之间不存在Bean共享的问题，多例Bean是不存在线程共享问题的。</li>
+<li><strong>singleton</strong>（单例Bean）<br><code>在Spring容器中只会存在一个全局共享的实例</code><br>因此可能会存在线程安全问题。<br>单例Bean又分为：</li>
+<li>无状态Bean<br><code>多线程操作中，只会对Bean的成员变量进行查询操作，不会修改成员变量的值</code></li>
+<li>有状态Bean</li>
+<li><p><code>多线程操作中，如果需要对Bean中的成员变量进行数据更新操作，可能存在线程安全问题</code></p>
+<h2 id="如何处理有状态Bean的线程安全问题？"><a href="#如何处理有状态Bean的线程安全问题？" class="headerlink" title="如何处理有状态Bean的线程安全问题？"></a>如何处理有状态Bean的线程安全问题？</h2></li>
+</ul>
+<ul>
+<li><strong>将 “singleton” 改为 “prototype”</strong></li>
+<li><strong>避免定义可变的成员变量</strong></li>
+<li><strong>在类中定义ThreadLocal的成员变量，并将需要的可变成员变量，保存在ThreadLocal中，ThreadLocal本身具备线程隔离的特性，这就相当于为每个线程提供了一个独立的变量副本，每个线程只需要操作自己的线程变量副本，从而解决线程安全问题。</strong></li>
+</ul>
+
+        </div>
+        <!-- .entry-content -->
+        <div class="single-reward">
+          <div class="reward-open">赏
+            <div class="reward-main">
+              <ul class="reward-row">
+                <li class="alipay-code"><img src="https://cdn.jsdelivr.net/gh/w7h1te/PicGoCDN/img/custom/donate/202203091825000.jpg"></li>
+                <li class="wechat-code"><img src="https://cdn.jsdelivr.net/gh/w7h1te/PicGoCDN/img/custom/donate/WeChanSQ.png"></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div style="text-align:center; width: 100%" class="social-share share-mobile" data-disabled="diandian, tencent"></div>
+        <footer class="post-footer">
+          <div class="post-lincenses"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="nofollow"><i class="fa fa-creative-commons" aria-hidden="true"></i> 知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议</a></div>
+          <div class="post-tags">
+          </div>
+          <div class="post-share">
+            <div class="social-share sharehidden share-component"></div>
+            <i class="iconfont show-share icon-forward"></i>
+          </div>
+        </footer><!-- .entry-footer -->
+      </article>
+      <!-- #post-## -->
+      <div class="toc" style="background: none;"></div>
+      <section class="post-squares nextprev">
+        
+          
+            <div class="post-nepre half previous">
+          
+            <a href="/2021/09/20/Mysql调优（一）/" rel="prev">
+              <div class="background">
+                <img class="lazyload" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://cdn.jsdelivr.net/gh/w7h1te/PicGoCDN/img/bolg/cover3.jpg" style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;" onerror="imgError(this,3)" src="https://cdn.jsdelivr.net/gh/w7h1te/PicGoCDN/img/bolg/cover3.jpg">
+              </div>
+              <span class="label">
+              Previous Post</span>
+              <div class="info">
+                <h3>
+                Mysql调优(一)</h3>
+                <hr>
+              </div>
+            </a>
+          </div>
+        
+        
+          
+            <div class="post-nepre half next">
+          
+            <a href="/2021/06/27/阿里云OSSUtil在win环境下的使用/" rel="next">
+              <div class="background">
+                <img class="lazyload" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://s2.loli.net/2022/03/30/4rLSwPRQbx72Mqk.jpg" style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;" onerror="imgError(this,3)" src="https://s2.loli.net/2022/03/30/4rLSwPRQbx72Mqk.jpg">
+              </div>
+              <span class="label">
+              Next Post</span>
+              <div class="info">
+                <h3>
+                阿里云OSSUtil在win环境下的使用</h3>
+                <hr>
+              </div>
+            </a>
+          </div>
+        
+      </section>
+      
+
+
+
+      <section class="author-profile">
+        <div class="info" itemprop="author" itemscope="" itemtype="https://schema.org/Person">
+          <a href="w7h1te.cn" class="profile gravatar"><img src="https://cdn.jsdelivr.net/gh/w7h1te/PicGoCDN/img/custom/202203090940373.jpeg" itemprop="image" alt="w7h1te" height="70" width="70"></a>
+          <div class="meta">
+            <span class="title">Author</span>
+            <h3 itemprop="name">
+            <a href="w7h1te.cn" itemprop="url" rel="author">w7h1te</a>
+            </h3>
+          </div>
+        </div>
+        <hr>
+        <p><i class="iconfont icon-write"></i>我认为所谓技术的革新，就是在不断试错中形成更好的方案！</p>
+      </section>
+    </main><!-- #main -->
+  </div><!-- #primary -->
 </div>
 
-<!-- 
-  
-    <article class="post post-list" itemscope="" itemtype="https://schema.org/BlogPosting">
-  <div class="post-entry">
-    <div class="feature">
-      <a href="/2021/03/02/【计网】TCP协议（三）/">
-        <div class="overlay">
-          <i class="iconfont icon-text">
-          </i>
-        </div>
-        <img width="150" height="150" src="https://cdn.jsdelivr.net/gh/w7h1te/PicGoCDN/img/bolg/836713b152b64b809fe409cdf1008fae.png" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="" >
-      </a>
-    </div>
-    <h1 class="entry-title">
-    <a href="/2021/03/02/【计网】TCP协议（三）/">
-    【计网】TCP协议20问（三）</a>
-    </h1>
-    <div class="p-time">
-      <i class="iconfont icon-time">
-      </i>
-    2021-3-2</div>
-    <p>
-    对于TCP协议的知识总结与思考。</p>
-    <footer class="entry-footer">
-      <div class="post-more">
-        <a href="/2021/03/02/【计网】TCP协议（三）/">
-          <i class="iconfont icon-caidan">
-          </i>
-        </a>
-      </div>
-    </footer>
-  </div>
-  <hr>
-</article>
-  
-    <article class="post post-list" itemscope="" itemtype="https://schema.org/BlogPosting">
-  <div class="post-entry">
-    <div class="feature">
-      <a href="/2021/02/04/【计网】TCP协议（二）/">
-        <div class="overlay">
-          <i class="iconfont icon-text">
-          </i>
-        </div>
-        <img width="150" height="150" src="https://cdn.jsdelivr.net/gh/w7h1te/PicGoCDN/img/bolg/35af5124880511ebb6edd017c2d2eca2.jpg" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="" >
-      </a>
-    </div>
-    <h1 class="entry-title">
-    <a href="/2021/02/04/【计网】TCP协议（二）/">
-    【计网】TCP协议20问（二）</a>
-    </h1>
-    <div class="p-time">
-      <i class="iconfont icon-time">
-      </i>
-    2021-2-4</div>
-    <p>
-    对于TCP协议的知识总结与思考。</p>
-    <footer class="entry-footer">
-      <div class="post-more">
-        <a href="/2021/02/04/【计网】TCP协议（二）/">
-          <i class="iconfont icon-caidan">
-          </i>
-        </a>
-      </div>
-    </footer>
-  </div>
-  <hr>
-</article>
-  
-    <article class="post post-list" itemscope="" itemtype="https://schema.org/BlogPosting">
-  <div class="post-entry">
-    <div class="feature">
-      <a href="/2021/01/17/【计网】TCP协议（一）/">
-        <div class="overlay">
-          <i class="iconfont icon-text">
-          </i>
-        </div>
-        <img width="150" height="150" src="https://cdn.jsdelivr.net/gh/w7h1te/PicGoCDN/img/bolg/cover20.jpg" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="" >
-      </a>
-    </div>
-    <h1 class="entry-title">
-    <a href="/2021/01/17/【计网】TCP协议（一）/">
-    【计网】TCP协议20问（一）</a>
-    </h1>
-    <div class="p-time">
-      <i class="iconfont icon-time">
-      </i>
-    2021-1-17</div>
-    <p>
-    对于TCP协议的知识总结与思考。</p>
-    <footer class="entry-footer">
-      <div class="post-more">
-        <a href="/2021/01/17/【计网】TCP协议（一）/">
-          <i class="iconfont icon-caidan">
-          </i>
-        </a>
-      </div>
-    </footer>
-  </div>
-  <hr>
-</article>
-  
-    <article class="post post-list" itemscope="" itemtype="https://schema.org/BlogPosting">
-  <div class="post-entry">
-    <div class="feature">
-      <a href="/2020/12/12/Hexo-Theme-Sakura/">
-        <div class="overlay">
-          <i class="iconfont icon-text">
-          </i>
-        </div>
-        <img width="150" height="150" src="https://cdn.jsdelivr.net/gh/w7h1te/PicGoCDN/img/bolg/202203111654908.jpg" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="" >
-      </a>
-    </div>
-    <h1 class="entry-title">
-    <a href="/2020/12/12/Hexo-Theme-Sakura/">
-    Hexo-Theme-Sakura</a>
-    </h1>
-    <div class="p-time">
-      <i class="iconfont icon-time">
-      </i>
-    2020-12-12</div>
-    <p>
-    hexo-sakura主题使用教程</p>
-    <footer class="entry-footer">
-      <div class="post-more">
-        <a href="/2020/12/12/Hexo-Theme-Sakura/">
-          <i class="iconfont icon-caidan">
-          </i>
-        </a>
-      </div>
-    </footer>
-  </div>
-  <hr>
-</article>
-  
-    <article class="post post-list" itemscope="" itemtype="https://schema.org/BlogPosting">
-  <div class="post-entry">
-    <div class="feature">
-      <a href="/2020/10/02/mybatis和mybatisplus区别/">
-        <div class="overlay">
-          <i class="iconfont icon-text">
-          </i>
-        </div>
-        <img width="150" height="150" src="https://cdn.jsdelivr.net/gh/w7h1te/PicGoCDN/img/bolg/cover001.png" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="" >
-      </a>
-    </div>
-    <h1 class="entry-title">
-    <a href="/2020/10/02/mybatis和mybatisplus区别/">
-    mybatis和mybatisplus区别</a>
-    </h1>
-    <div class="p-time">
-      <i class="iconfont icon-time">
-      </i>
-    2020-10-2</div>
-    <p>
-    mybatis和mybatisplus区别</p>
-    <footer class="entry-footer">
-      <div class="post-more">
-        <a href="/2020/10/02/mybatis和mybatisplus区别/">
-          <i class="iconfont icon-caidan">
-          </i>
-        </a>
-      </div>
-    </footer>
-  </div>
-  <hr>
-</article>
-  
-    <article class="post post-list" itemscope="" itemtype="https://schema.org/BlogPosting">
-  <div class="post-entry">
-    <div class="feature">
-      <a href="/2020/09/06/Vue结合项目开发 踩坑..../">
-        <div class="overlay">
-          <i class="iconfont icon-text">
-          </i>
-        </div>
-        <img width="150" height="150" src="https://cdn.jsdelivr.net/gh/w7h1te/PicGoCDN/img/bolg/cover4.jpg" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="" >
-      </a>
-    </div>
-    <h1 class="entry-title">
-    <a href="/2020/09/06/Vue结合项目开发 踩坑..../">
-    Vue结合项目开发 踩坑....</a>
-    </h1>
-    <div class="p-time">
-      <i class="iconfont icon-time">
-      </i>
-    2020-9-6</div>
-    <p>
-    对前端Vue的简单学习，与快速上手</p>
-    <footer class="entry-footer">
-      <div class="post-more">
-        <a href="/2020/09/06/Vue结合项目开发 踩坑..../">
-          <i class="iconfont icon-caidan">
-          </i>
-        </a>
-      </div>
-    </footer>
-  </div>
-  <hr>
-</article>
-  
-    <article class="post post-list" itemscope="" itemtype="https://schema.org/BlogPosting">
-  <div class="post-entry">
-    <div class="feature">
-      <a href="/2020/05/06/Vue _ vue cli新手入门 详细解读/">
-        <div class="overlay">
-          <i class="iconfont icon-text">
-          </i>
-        </div>
-        <img width="150" height="150" src="https://cdn.jsdelivr.net/gh/w7h1te/PicGoCDN/img/bolg/cover13.jpg" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="" >
-      </a>
-    </div>
-    <h1 class="entry-title">
-    <a href="/2020/05/06/Vue _ vue cli新手入门 详细解读/">
-    Vue _ vue cli新手入门 详细解读</a>
-    </h1>
-    <div class="p-time">
-      <i class="iconfont icon-time">
-      </i>
-    2020-5-6</div>
-    <p>
-    对前端Vue的简单学习，与快速上手</p>
-    <footer class="entry-footer">
-      <div class="post-more">
-        <a href="/2020/05/06/Vue _ vue cli新手入门 详细解读/">
-          <i class="iconfont icon-caidan">
-          </i>
-        </a>
-      </div>
-    </footer>
-  </div>
-  <hr>
-</article>
-  
-    <article class="post post-list" itemscope="" itemtype="https://schema.org/BlogPosting">
-  <div class="post-entry">
-    <div class="feature">
-      <a href="/2020/04/11/从零搭建考试系统——多模块的项目环境搭建（idea）/">
-        <div class="overlay">
-          <i class="iconfont icon-text">
-          </i>
-        </div>
-        <img width="150" height="150" src="https://cdn.jsdelivr.net/gh/w7h1te/PicGoCDN/img/bolg/cover22.png" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="" >
-      </a>
-    </div>
-    <h1 class="entry-title">
-    <a href="/2020/04/11/从零搭建考试系统——多模块的项目环境搭建（idea）/">
-    从零搭建考试系统——多模块的项目环境搭建（idea）</a>
-    </h1>
-    <div class="p-time">
-      <i class="iconfont icon-time">
-      </i>
-    2020-4-11</div>
-    <p>
-    idea的基本使用</p>
-    <footer class="entry-footer">
-      <div class="post-more">
-        <a href="/2020/04/11/从零搭建考试系统——多模块的项目环境搭建（idea）/">
-          <i class="iconfont icon-caidan">
-          </i>
-        </a>
-      </div>
-    </footer>
-  </div>
-  <hr>
-</article>
-  
-    <article class="post post-list" itemscope="" itemtype="https://schema.org/BlogPosting">
-  <div class="post-entry">
-    <div class="feature">
-      <a href="/2020/02/27/【数据结构】栈和队列/">
-        <div class="overlay">
-          <i class="iconfont icon-text">
-          </i>
-        </div>
-        <img width="150" height="150" src="https://cdn.jsdelivr.net/gh/w7h1te/PicGoCDN/img/bolg/cover003.png" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="" >
-      </a>
-    </div>
-    <h1 class="entry-title">
-    <a href="/2020/02/27/【数据结构】栈和队列/">
-    【数据结构】栈和队列</a>
-    </h1>
-    <div class="p-time">
-      <i class="iconfont icon-time">
-      </i>
-    2020-2-27</div>
-    <p>
-    栈和队列的比较</p>
-    <footer class="entry-footer">
-      <div class="post-more">
-        <a href="/2020/02/27/【数据结构】栈和队列/">
-          <i class="iconfont icon-caidan">
-          </i>
-        </a>
-      </div>
-    </footer>
-  </div>
-  <hr>
-</article>
-  
-    <article class="post post-list" itemscope="" itemtype="https://schema.org/BlogPosting">
-  <div class="post-entry">
-    <div class="feature">
-      <a href="/2019/12/12/bibilink/">
-        <div class="overlay">
-          <i class="iconfont icon-text">
-          </i>
-        </div>
-        <img width="150" height="150" src="https://cdn.jsdelivr.net/gh/w7h1te/PicGoCDN/img/bolg/202203111737972.jpg" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="" >
-      </a>
-    </div>
-    <h1 class="entry-title">
-    <a href="/2019/12/12/bibilink/">
-    哔哩哔哩外链插入</a>
-    </h1>
-    <div class="p-time">
-      <i class="iconfont icon-time">
-      </i>
-    2019-12-12</div>
-    <p>
-    外链视频插入</p>
-    <footer class="entry-footer">
-      <div class="post-more">
-        <a href="/2019/12/12/bibilink/">
-          <i class="iconfont icon-caidan">
-          </i>
-        </a>
-      </div>
-    </footer>
-  </div>
-  <hr>
-</article>
-  
 
- -->
+
     </div>    
     <div class="ins-search">
     <div class="ins-search-mask"></div>
