@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="/"/>
-  <updated>2022-03-30T07:34:51.232Z</updated>
+  <updated>2022-04-11T14:08:52.978Z</updated>
   <id>/</id>
   
   <author>
@@ -15,6 +15,56 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>什么是接口测试和性能测试？</title>
+    <link href="/2022/04/08/%E4%BB%80%E4%B9%88%E6%98%AF%E6%8E%A5%E5%8F%A3%E6%B5%8B%E8%AF%95%E5%92%8C%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95%EF%BC%9F/"/>
+    <id>/2022/04/08/什么是接口测试和性能测试？/</id>
+    <published>2022-04-08T01:56:12.000Z</published>
+    <updated>2022-04-11T14:08:52.978Z</updated>
+    
+    <summary type="html">
+    
+      在按照接口文档完成对应的接口实现后，我们会使用Postman做接口测试，那么什么是接口测试呢？性能测试、功能测试又是什么呢？
+    
+    </summary>
+    
+      <category term="技术" scheme="/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+      <category term="技术" scheme="/tags/%E6%8A%80%E6%9C%AF/"/>
+    
+      <category term="总结" scheme="/tags/%E6%80%BB%E7%BB%93/"/>
+    
+      <category term="JAVA" scheme="/tags/JAVA/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>【转载】JIT</title>
+    <link href="/2022/04/05/%E3%80%90%E8%BD%AC%E8%BD%BD%E3%80%91JIT/"/>
+    <id>/2022/04/05/【转载】JIT/</id>
+    <published>2022-04-05T08:22:19.000Z</published>
+    <updated>2022-04-11T14:12:56.241Z</updated>
+    
+    <summary type="html">
+    
+      关于java代码编译时的JIT技术的认知。
+    
+    </summary>
+    
+      <category term="转载" scheme="/categories/%E8%BD%AC%E8%BD%BD/"/>
+    
+    
+      <category term="技术" scheme="/tags/%E6%8A%80%E6%9C%AF/"/>
+    
+      <category term="转载" scheme="/tags/%E8%BD%AC%E8%BD%BD/"/>
+    
+      <category term="总结" scheme="/tags/%E6%80%BB%E7%BB%93/"/>
+    
+      <category term="JAVA" scheme="/tags/JAVA/"/>
+    
+  </entry>
   
   <entry>
     <title>jsdelivr是什么以及利用GitHub+jsdelivr搭建一个高速图床</title>
@@ -422,9 +472,9 @@
     
       <category term="技术" scheme="/tags/%E6%8A%80%E6%9C%AF/"/>
     
-      <category term="IDEA" scheme="/tags/IDEA/"/>
-    
       <category term="总结" scheme="/tags/%E6%80%BB%E7%BB%93/"/>
+    
+      <category term="IDEA" scheme="/tags/IDEA/"/>
     
   </entry>
   
@@ -470,61 +520,9 @@
     
       <category term="技术" scheme="/tags/%E6%8A%80%E6%9C%AF/"/>
     
-      <category term="IDEA" scheme="/tags/IDEA/"/>
-    
       <category term="总结" scheme="/tags/%E6%80%BB%E7%BB%93/"/>
     
-  </entry>
-  
-  <entry>
-    <title>【从零开始的Springboot学习（二）】属性注入方法对比，以及SpringBoot是如何优化的</title>
-    <link href="/2021/06/03/%E3%80%90%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E7%9A%84Springboot%E5%AD%A6%E4%B9%A0%EF%BC%88%E4%BA%8C%EF%BC%89%E3%80%91%E5%B1%9E%E6%80%A7%E6%B3%A8%E5%85%A5%E6%96%B9%E6%B3%95%E5%AF%B9%E6%AF%94%EF%BC%8C%E4%BB%A5%E5%8F%8ASpringBoot%E6%98%AF%E5%A6%82%E4%BD%95%E4%BC%98%E5%8C%96%E7%9A%84/"/>
-    <id>/2021/06/03/【从零开始的Springboot学习（二）】属性注入方法对比，以及SpringBoot是如何优化的/</id>
-    <published>2021-06-03T10:09:35.000Z</published>
-    <updated>2022-04-02T12:54:29.463Z</updated>
-    
-    <summary type="html">
-    
-      属性注入方法对比，以及SpringBoot是如何优化的
-    
-    </summary>
-    
-      <category term="技术" scheme="/categories/%E6%8A%80%E6%9C%AF/"/>
-    
-    
-      <category term="web" scheme="/tags/web/"/>
-    
-      <category term="技术" scheme="/tags/%E6%8A%80%E6%9C%AF/"/>
-    
       <category term="IDEA" scheme="/tags/IDEA/"/>
-    
-      <category term="总结" scheme="/tags/%E6%80%BB%E7%BB%93/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>【从零开始的Springboot学习（一）】入门demo</title>
-    <link href="/2021/06/02/%E3%80%90%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E7%9A%84Springboot%E5%AD%A6%E4%B9%A0%EF%BC%88%E4%B8%80%EF%BC%89%E3%80%91%E5%85%A5%E9%97%A8demo/"/>
-    <id>/2021/06/02/【从零开始的Springboot学习（一）】入门demo/</id>
-    <published>2021-06-02T02:37:29.000Z</published>
-    <updated>2022-04-02T12:49:25.266Z</updated>
-    
-    <summary type="html">
-    
-      我说这是第二次的学习与总结你会相信嘛
-    
-    </summary>
-    
-      <category term="技术" scheme="/categories/%E6%8A%80%E6%9C%AF/"/>
-    
-    
-      <category term="web" scheme="/tags/web/"/>
-    
-      <category term="技术" scheme="/tags/%E6%8A%80%E6%9C%AF/"/>
-    
-      <category term="IDEA" scheme="/tags/IDEA/"/>
-    
-      <category term="总结" scheme="/tags/%E6%80%BB%E7%BB%93/"/>
     
   </entry>
   
