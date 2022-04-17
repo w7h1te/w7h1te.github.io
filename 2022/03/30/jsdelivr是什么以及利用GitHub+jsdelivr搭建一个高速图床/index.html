@@ -438,7 +438,10 @@
         <!--<div class="toc-entry-content"><!-- 套嵌目录使用（主要为了支援评论）-->
         
         <div class="entry-content">
-          <h2 id="一、jsdelivr是什么"><a href="#一、jsdelivr是什么" class="headerlink" title="一、jsdelivr是什么"></a>一、jsdelivr是什么</h2><p>jsDelivr由ProspectOne维护的公共库，使用的融合CDN技术，由Cloudflare、Fastly、StackPath、QUANTIL等CDN供应商提供了全球超过750个CDN节点。<br>最重要的是，jsDelivr在中国大陆也拥有超过数百个节点，因为jsDelivr拥有正规的ICP备案，解决了中国大陆的访问速度优化，实现真正的全球极速低延迟体验。<br>jsDelivr是免费的、不限制带宽的，可以加速<strong>NPM</strong>、<strong>Github</strong>、<strong>wordpress</strong>内的文件。 </p>
+          <blockquote>
+<p>文章背景：利用GitHub+jsdelivr搭建一个高速图床<br>cdn好处<br>1、集群抗攻击 广泛分布的CDN节点加上节点之间的智能冗余机制，可以有效地预防黑客入侵以及降低各种D.D.o.S攻击对网站的影响，同时保证较好的服务质量 。<br>2、带宽优化 自动生成服务器的远程Mirror(镜像)cache服务器，远程用户访问时从cache服务器上读取数据，减少远程访问的带宽、分担网络流量、减轻原站点WEB服务器负载等功能。<br>3、远程加速 远程访问用户根据DNS负载均衡技术智能自动选择Cache服务器，选择最快的Cache服务器，加快远程访问的速度<br>4、镜像服务 消除了不同运营商之间互联的瓶颈造成的影响，实现了跨运营商的网络加速，保证不同网络中的用户都能得到良好的访问质量。<br>5、本地Cache加速 提高了企业站点(尤其含有大量图片和静态页面站点)的访问速度，并大大提高以上性质站点的稳定性。</p>
+</blockquote>
+<h2 id="一、jsdelivr是什么"><a href="#一、jsdelivr是什么" class="headerlink" title="一、jsdelivr是什么"></a>一、jsdelivr是什么</h2><p>jsDelivr由ProspectOne维护的公共库，使用的融合CDN技术，由Cloudflare、Fastly、StackPath、QUANTIL等CDN供应商提供了全球超过750个CDN节点。<br>最重要的是，jsDelivr在中国大陆也拥有超过数百个节点，因为jsDelivr拥有正规的ICP备案，解决了中国大陆的访问速度优化，实现真正的全球极速低延迟体验。<br>jsDelivr是免费的、不限制带宽的，可以加速<strong>NPM</strong>、<strong>Github</strong>、<strong>wordpress</strong>内的文件。 </p>
 <p>大部分情况下外国的网站国内是不能使用的，为什么国内可以使用jsdelivr呢？要回答这个问题，必须得思考几个概念：域名，cdn，ICP。<br><img src="https://img-blog.csdnimg.cn/33d3b896d6ae41d28a5205776affca1f.png" alt="在这里插入图片描述"></p>
 <h3 id="1-1-cdn是什么？"><a href="#1-1-cdn是什么？" class="headerlink" title="1.1 cdn是什么？"></a>1.1 cdn是什么？</h3><h4 id="1-1-1-概念"><a href="#1-1-1-概念" class="headerlink" title="1.1.1 概念"></a>1.1.1 概念</h4><p>CDN全称叫做“Content Delivery Network”，中文叫<strong>内容分发网络</strong>。<br>实际上CDN这个概念是在1996年由美国麻省理工学院的一个研究小组为<strong>改善互联网的服务质量</strong>而提出的。那么它到底是怎么改善互联网服务质量的呢？</p>
 <h4 id="1-1-2-工作原理"><a href="#1-1-2-工作原理" class="headerlink" title="1.1.2 工作原理"></a>1.1.2 工作原理</h4><p>当我们使用域名访问某一个网站时，实际上就是将请求包（以Http请求为例）通过网络传输给某台服务器，比如访问“<a href="http://www.baidu.com”时：" target="_blank" rel="noopener">www.baidu.com”时：</a></p>

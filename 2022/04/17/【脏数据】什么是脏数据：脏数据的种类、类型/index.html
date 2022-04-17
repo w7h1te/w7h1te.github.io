@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
   
-  <title itemprop="name">【Maven】安装与在idea上的配置和使用 | w7h1te</title>
+  <title itemprop="name">【脏数据】什么是脏数据：脏数据的种类、类型 | w7h1te</title>
   
     <link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/w7h1te/PicGoCDN/img/favicon/202203090939154.ico">
   
@@ -408,11 +408,11 @@
 
   <div class="pattern-center single-center">
     <!-- 有配图默认渲染第一张 -->
-    <div class="pattern-attachment-img lazyload" style="background-image: url(https://cdn.jsdelivr.net/gh/w7h1te/PicGoCDN/img/bolg/cover001.png);" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://cdn.jsdelivr.net/gh/w7h1te/PicGoCDN/img/bolg/cover001.png">
+    <div class="pattern-attachment-img lazyload" style="background-image: url(https://cdn.jsdelivr.net/gh/w7h1te/PicGoCDN/img/bolg/cover002.png);" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://cdn.jsdelivr.net/gh/w7h1te/PicGoCDN/img/bolg/cover002.png">
     </div>
     <header class="pattern-header single-header">
       <h1 class="entry-title">
-      【Maven】安装与在idea上的配置和使用</h1>
+      【脏数据】什么是脏数据：脏数据的种类、类型</h1>
       <p class="entry-census">
         <span>
           <a href="w7h1te.cn">
@@ -424,7 +424,7 @@
         </span>
         <span class="bull">
         ·</span>
-        2020-4-2<span class="bull">
+        2022-4-17<span class="bull">
         ·</span>
       <span id="busuanzi_value_page_pv"></span>次阅读</p>
     </header>
@@ -438,110 +438,19 @@
         <!--<div class="toc-entry-content"><!-- 套嵌目录使用（主要为了支援评论）-->
         
         <div class="entry-content">
-          <h1 id="Maven安装与配置"><a href="#Maven安装与配置" class="headerlink" title="Maven安装与配置"></a>Maven安装与配置</h1><p>当进入到一个新的工作地点，第一件事情就是配置环境变量。先来快速配置一下maven吧。</p>
-<h2 id="一、官网下载"><a href="#一、官网下载" class="headerlink" title="一、官网下载"></a><a href="https://maven.apache.org/download.cgi" target="_blank" rel="noopener">一、官网下载</a></h2><p><img src="https://img-blog.csdnimg.cn/24a4cbaaec554545bb61de53be6a3ea2.png" alt="在这里插入图片描述"><br>注意：</p>
-<ul>
-<li>Binary是可执行版本，已经编译好可以直接使用。<ul>
-<li>Source是源代码版本，需要自己编译成可执行软件才可使用。</li>
-<li>tar.gz和zip两种压缩格式,其实这两个压缩文件里面包含的内容是同样的,只是压缩格式不同</li>
-</ul>
-</li>
-<li>tar.gz格式的文件比zip文件小很多,用于unix操作系统。<br>zip格式用于Windows操作系统,但在Windows系统使用WinRar工具一样能够解压缩tar.gz格式</li>
-</ul>
-<p>下载完成后，解压到某一路径下。本文以D:\soft46\maven3.8.5\apache-maven-3.8.5为例，实际配置环境变量时以自己安装的路径为准。</p>
-<p><img src="https://img-blog.csdnimg.cn/138b8c6f1e8b438183d0eea95499a50c.png" alt="在这里插入图片描述"></p>
-<h2 id="二、配置环境变量"><a href="#二、配置环境变量" class="headerlink" title="二、配置环境变量"></a>二、配置环境变量</h2><p>右键此电脑–&gt;属性–&gt;高级系统设置–&gt;环境变量<br>或者直接就在搜索窗搜索<br><img src="https://img-blog.csdnimg.cn/2483ac6142484a0081fbab0a6944da0b.png" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/d75c094af7e94759b18f63e565fa1c92.png" alt="在这里插入图片描述"></p>
-<p>新建变量MAVEN_HOME = D:\soft46\maven3.8.5\apache-maven-3.8.5（以自己的安装路径为准）</p>
-<p><img src="https://img-blog.csdnimg.cn/0c836b46cfb64fae81d392496b7e09c7.png" alt="在这里插入图片描述"></p>
-<p>编辑变量Path，添加变量值%MAVEN_HOME%\bin或者D:\soft46\maven3.8.5\apache-maven-3.8.5\bin</p>
-<p><img src="https://img-blog.csdnimg.cn/0b5692452aad439bb4bb23c290a9e422.png" alt="在这里插入图片描述"><br>然后win+R运行cmd，输入mvn -version，如图所示则配置成功</p>
-<p><img src="https://img-blog.csdnimg.cn/c80edb3c1aef4669bfd851dbb6306587.png" alt="在这里插入图片描述"></p>
-<h2 id="三、配置本地仓库"><a href="#三、配置本地仓库" class="headerlink" title="三、配置本地仓库"></a>三、配置本地仓库</h2><p>在D:\soft46\maven3.8.5路径下新建maven-repository文件夹，用作maven的本地库。</p>
-<p>在路径D:\soft46\maven3.8.5\apache-maven-3.8.5\conf下找到settings.xml文件</p>
-<p><img src="https://img-blog.csdnimg.cn/7c9ccb21ef604addb3b2f2346ce329f4.png" alt="在这里插入图片描述"><br>找到节点localRepository，在注释外添加（大概五十多行）</p>
-<p> <localrepository>D:\soft46\maven3.8.5\maven-repository</localrepository><br><img src="https://img-blog.csdnimg.cn/3b906f45779f42f19765985ddf80208a.png" alt="在这里插入图片描述"></p>
-<blockquote>
-<p>localRepository节点用于配置本地仓库，本地仓库其实起到了一个缓存的作用，它的默认地址是 C:\Users\用户名.m2。<br>当我们从maven中获取jar包的时候，maven首先会在本地仓库中查找，如果本地仓库有则返回；如果没有则从远程仓库中获取包，并在本地库中保存。<br>此外，我们在maven项目中运行mvn install，项目将会自动打包并安装到本地仓库中。</p>
+          <blockquote>
+<p>什么是“脏”数据？通俗来说，它是因数据重复录入、共同处理等不规范操作而产生的混乱、无效数据。这些数据不能为企业带来价值，反而会占据存储空间，浪费企业的资源。因此，这些数据被称为“脏”数据，不仅没有价值，还会“污染”其他的数据。</p>
 </blockquote>
-<h2 id="四、配置镜像"><a href="#四、配置镜像" class="headerlink" title="四、配置镜像"></a>四、配置镜像</h2><ul>
-<li>在settings.xml配置文件中找到mirrors节点</li>
-<li>添加如下配置（注意要添加在<mirrors>和</mirrors>两个标签之间，其它配置同理）</li>
-</ul>
-<pre><code class="xml">&lt;!-- 阿里云仓库 --&gt;
-&lt;mirror&gt;
-    &lt;id&gt;alimaven&lt;/id&gt;
-    &lt;mirrorOf&gt;central&lt;/mirrorOf&gt;
-    &lt;name&gt;aliyun maven&lt;/name&gt;
-    &lt;url&gt;http://maven.aliyun.com/nexus/content/repositories/central/&lt;/url&gt;
-&lt;/mirror&gt;
-
-</code></pre>
-<p><img src="https://img-blog.csdnimg.cn/c733f8966aa54d8096b53bd5941996da.png" alt="在这里插入图片描述"></p>
-<h2 id="五、配置JDK"><a href="#五、配置JDK" class="headerlink" title="五、配置JDK"></a>五、配置JDK</h2><ul>
-<li>在settings.xml配置文件中找到profiles节点</li>
-<li>添加如下配置</li>
-</ul>
-<pre><code class="xml">&lt;!-- java版本 --&gt; 
-&lt;profile&gt;
-      &lt;id&gt;jdk-1.8&lt;/id&gt;
-      &lt;activation&gt;
-        &lt;activeByDefault&gt;true&lt;/activeByDefault&gt;
-        &lt;jdk&gt;1.8&lt;/jdk&gt;
-      &lt;/activation&gt;
-
-      &lt;properties&gt;
-        &lt;maven.compiler.source&gt;1.8&lt;/maven.compiler.source&gt;
-        &lt;maven.compiler.target&gt;1.8&lt;/maven.compiler.target&gt;
-        &lt;maven.compiler.compilerVersion&gt;1.8&lt;/maven.compiler.compilerVersion&gt;
-      &lt;/properties&gt;
-&lt;/profile&gt;
-
-</code></pre>
-<p><img src="https://img-blog.csdnimg.cn/99d929d6f4b24c62aae6f5c3b000bac0.png" alt="在这里插入图片描述"></p>
-<p>配置完成，win+R运行cmd，输入mvn help:system测试，配置成功则本地仓库（E:\Tools\Maven\maven-repository）中会出现一些文件</p>
-<blockquote>
-<p>首次执行 mvn help:system 命令，Maven相关工具自动帮我们到Maven中央仓库下载缺省的或者Maven中央仓库更新的各种配置文件和类库（jar包)到Maven本地仓库中。<br>下载完各种文件后， mvn help:system 命令会打印出所有的Java系统属性和环境变量，这些信息对我们日常的编程工作很有帮助。</p>
-</blockquote>
-<p><img src="https://img-blog.csdnimg.cn/e25b9a8489274e558cd9b0429ed2535d.png" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/88f7a1f2d13844ee95d8d6a923ec4e71.png" alt="在这里插入图片描述"></p>
-<h2 id="六、IDEA集成Maven插件"><a href="#六、IDEA集成Maven插件" class="headerlink" title="六、IDEA集成Maven插件"></a>六、IDEA集成Maven插件</h2><p><img src="https://img-blog.csdnimg.cn/2d29e8d12ba54b08bc796a0d78090c02.png" alt="在这里插入图片描述"></p>
-<blockquote>
-<p>推荐配置：设置maven在不联网的情况下使用本地插件</p>
-<p>一般使用maven为我们提供好的骨架时，是需要联网的，配置这个，可以在没有网路的情况下，我们可以正常创建工程，并从之前已经使用过的工程中找到相应的骨架。</p>
-<p>输入内容：<code>-DarchetypeCatalog=internal</code></p>
-</blockquote>
-<p><img src="https://img-blog.csdnimg.cn/3494750d5289423f939ed6da2dcc608a.png" alt="在这里插入图片描述"></p>
-<p>接下来的基本使用就没有问题了。</p>
-<h2 id="七、IDEA使用Maven命令"><a href="#七、IDEA使用Maven命令" class="headerlink" title="七、IDEA使用Maven命令"></a>七、IDEA使用Maven命令</h2><p>前提条件：maven配置环境变量。</p>
-<p>在保证环境变量配置没问题的情况下执行过程出现mvn不是内部命令类似的错误，建议重启编译器或者命令窗口。</p>
-<p>IntelliJ IDEA自身已经集成了maven，不需要再去下载！</p>
-<pre><code class="bash">//常用maven命令
-
-mvn -v //查看版本
-mvn archetype:create //创建 Maven 项目
-mvn compile //编译源代码
-mvn test-compile //编译测试代码
-mvn test //运行应用程序中的单元测试
-mvn site //生成项目相关信息的网站
-mvn package //依据项目生成 jar 文件
-mvn install //在本地 Repository 中安装 jar
-mvn -Dmaven.test.skip=true //忽略测试文档编译
-mvn clean //清除目标目录中的生成结果
-mvn clean compile //将.java类编译为.class文件
-mvn clean package //进行打包
-mvn clean test //执行单元测试
-mvn clean deploy //部署到版本仓库
-mvn clean install //使其他项目使用这个jar,会安装到maven本地仓库中
-mvn archetype:generate //创建项目架构
-mvn dependency:list //查看已解析依赖
-mvn dependency:tree //看到依赖树
-mvn dependency:analyze //查看依赖的工具
-mvn help:system //从中央仓库下载文件至本地仓库
-mvn help:active-profiles //查看当前激活的profiles
-mvn help:all-profiles //查看所有profiles
-mvn help:effective -pom //查看完整的pom信息
-
-</code></pre>
-<p>可以直接在idea上面打开控制台，输入命令<br><img src="https://img-blog.csdnimg.cn/5b3d0ce4293b442ba05d64e9df5cdf07.png" alt="在这里插入图片描述"></p>
+<p>某些“脏”数据还可能给企业带来重大损失。曾经有一家保险公司，把客户的资料存储在数据库中，并进行了如下规定：在存入新的数据之前，要对数据库进行检索，以查看其中是否存在相关记录。</p>
+<p>然而，一些数据员偷懒，擅自跳过搜索环节，直接存入了新的数据，导致数据的重复录入。久而久之，系统运行越来越缓慢，搜索结果越来越不准确，最终数据库完全失灵，给公司造成巨大的经济损失。这个时候，保险公司才如梦初醒，决定解决这个问题。公司花费了一个星期的时间，将这些积存在数据库中的“脏”数据全部清除。</p>
+<p>当数据出现问题的时候，苦心构建的数据库就失去了原有价值。正因如此，处理“脏”数据的工作就变得十分重要，而且越早开始越好。因此，我们有必要了解一下“脏”数据的种类。</p>
+<h2 id="1-缺失数据"><a href="#1-缺失数据" class="headerlink" title="1.缺失数据"></a>1.缺失数据</h2><p>导致数据缺失的原因有很多种，例如系统问题、人为问题等。假如出现了数据缺失情况，为了不影响数据分析结果的准确性，在数据分析时就需要进行补值，或者将空值排除在分析范围之外。</p>
+<p>排除空值会减少数据分析的样本总量，这个时候可以选择性地纳入一些平均数、比例随机数等。若系统中还留有缺失数据的相关记录，可以通过系统再次引入，若系统中也没有这些数据记录，就只能通过补录或者直接放弃这部分数据来解决。</p>
+<h2 id="2-重复数据"><a href="#2-重复数据" class="headerlink" title="2.重复数据"></a>2.重复数据</h2><p>相同的数据出现多次的情况相对而言更容易处理，因为只需要去除重复数据即可。但假如数据出现不完全重复的情况，例如某酒店VIP会员数据中，除了住址、姓名不一样，其余的大多数数据都是一样的，这种重复数据的处理就比较麻烦了。假如数据中有时间、日期，仍然可以以此作为判断标准来解决，但假如没有时间、日期这些数据，就只能通过人工筛选来处理。</p>
+<h2 id="3-错误数据"><a href="#3-错误数据" class="headerlink" title="3.错误数据"></a>3.错误数据</h2><p>错误数据一般是因为数据没有按照规定程序进行记录而出现的。例如异常值，某个产品价格为1到100元，而统计中偏偏出现200这个值；例如格式错误，将文字录成了日期格式；例如数据不统一，关于天津的记录有天津、tianjin。</p>
+<p>对于异常值，可以通过限定区间的方法进行排除；对于格式错误，需要通过系统内部逻辑结构进行查找；对于数据不统一，无法从系统方面去解决，因为它并不属于真正的“错误”，系统并不能判断出天津和tianjin属于同一“事物”，因此只能通过人工干预的方法，做出匹配规则，用规则表去关联原始表。例如，一旦出现tianjin这个数据就直接匹配到天津。</p>
+<h2 id="4-不可用数据"><a href="#4-不可用数据" class="headerlink" title="4.不可用数据"></a>4.不可用数据</h2><p>有些数据虽然正确但却无法使用。例如地址为“上海浦东新区”，想要对“区”级别的数据进行分析时，还需要将“浦东”拆出来。这种情况的解决方案只能用关键词匹配的方法，而且不一定能够得到完美解决。</p>
+<p><a href="http://www.tjxzj.net/1238.html" target="_blank" rel="noopener">转载原文</a></p>
 
         </div>
         <!-- .entry-content -->
@@ -570,36 +479,19 @@ mvn help:effective -pom //查看完整的pom信息
       <div class="toc" style="background: none;"></div>
       <section class="post-squares nextprev">
         
-          
-            <div class="post-nepre half previous">
-          
-            <a href="/2020/04/10/【正则表达式】详解及常用的使用方法详解/" rel="prev">
-              <div class="background">
-                <img class="lazyload" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://cdn.jsdelivr.net/gh/w7h1te/PicGoCDN/img/bolg/cover012.png" style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;" onerror="imgError(this,3)" src="https://cdn.jsdelivr.net/gh/w7h1te/PicGoCDN/img/bolg/cover012.png">
-              </div>
-              <span class="label">
-              Previous Post</span>
-              <div class="info">
-                <h3>
-                【正则表达式】详解及常用的使用方法详解</h3>
-                <hr>
-              </div>
-            </a>
-          </div>
-        
         
           
-            <div class="post-nepre half next">
+            <div class="post-nepre full next">
           
-            <a href="/2019/12/12/bibilink/" rel="next">
+            <a href="/2022/04/15/【Redis】持久化机制RDB、AOF/" rel="next">
               <div class="background">
-                <img class="lazyload" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://cdn.jsdelivr.net/gh/w7h1te/PicGoCDN/img/bolg/202203111737972.jpg" style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;" onerror="imgError(this,3)" src="https://cdn.jsdelivr.net/gh/w7h1te/PicGoCDN/img/bolg/202203111737972.jpg">
+                <img class="lazyload" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://cdn.jsdelivr.net/gh/w7h1te/PicGoCDN/img/bolg/cover3.jpg" style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;" onerror="imgError(this,3)" src="https://cdn.jsdelivr.net/gh/w7h1te/PicGoCDN/img/bolg/cover3.jpg">
               </div>
               <span class="label">
               Next Post</span>
               <div class="info">
                 <h3>
-                哔哩哔哩外链插入</h3>
+                【Redis】持久化机制RDB、AOF</h3>
                 <hr>
               </div>
             </a>
@@ -621,7 +513,7 @@ mvn help:effective -pom //查看完整的pom信息
           </div>
         </div>
         <hr>
-        <p><i class="iconfont icon-write"></i>我认为所谓技术的革新，就是在不断试错中形成更好的方案！</p>
+        <p><i class="iconfont icon-write"></i>至今为止我仍觉得分享欲是最高级别的浪漫！</p>
       </section>
     </main><!-- #main -->
   </div><!-- #primary -->

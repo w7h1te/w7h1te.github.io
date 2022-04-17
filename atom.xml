@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="/"/>
-  <updated>2022-04-11T14:32:03.046Z</updated>
+  <updated>2022-04-17T15:07:40.941Z</updated>
   <id>/</id>
   
   <author>
@@ -15,6 +15,54 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>【脏数据】什么是脏数据：脏数据的种类、类型</title>
+    <link href="/2022/04/17/%E3%80%90%E8%84%8F%E6%95%B0%E6%8D%AE%E3%80%91%E4%BB%80%E4%B9%88%E6%98%AF%E8%84%8F%E6%95%B0%E6%8D%AE%EF%BC%9A%E8%84%8F%E6%95%B0%E6%8D%AE%E7%9A%84%E7%A7%8D%E7%B1%BB%E3%80%81%E7%B1%BB%E5%9E%8B/"/>
+    <id>/2022/04/17/【脏数据】什么是脏数据：脏数据的种类、类型/</id>
+    <published>2022-04-17T15:04:57.000Z</published>
+    <updated>2022-04-17T15:07:40.941Z</updated>
+    
+    <summary type="html">
+    
+      什么是“脏”数据？通俗来说，它是因数据重复录入、共同处理等不规范操作而产生的混乱、无效数据。
+    
+    </summary>
+    
+      <category term="技术" scheme="/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+      <category term="技术" scheme="/tags/%E6%8A%80%E6%9C%AF/"/>
+    
+      <category term="转载" scheme="/tags/%E8%BD%AC%E8%BD%BD/"/>
+    
+      <category term="Mysql" scheme="/tags/Mysql/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>【Redis】持久化机制RDB、AOF</title>
+    <link href="/2022/04/15/%E3%80%90Redis%E3%80%91%E6%8C%81%E4%B9%85%E5%8C%96%E6%9C%BA%E5%88%B6RDB%E3%80%81AOF/"/>
+    <id>/2022/04/15/【Redis】持久化机制RDB、AOF/</id>
+    <published>2022-04-15T15:49:32.000Z</published>
+    <updated>2022-04-17T15:04:39.161Z</updated>
+    
+    <summary type="html">
+    
+      持久化机制RDB、AOF
+    
+    </summary>
+    
+      <category term="技术" scheme="/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+      <category term="技术" scheme="/tags/%E6%8A%80%E6%9C%AF/"/>
+    
+      <category term="转载" scheme="/tags/%E8%BD%AC%E8%BD%BD/"/>
+    
+      <category term="数据结构" scheme="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
+    
+  </entry>
   
   <entry>
     <title>【正则表达式】详解及常用的使用方法详解</title>
@@ -167,7 +215,7 @@
     <link href="/2022/03/30/jsdelivr%E6%98%AF%E4%BB%80%E4%B9%88%E4%BB%A5%E5%8F%8A%E5%88%A9%E7%94%A8GitHub+jsdelivr%E6%90%AD%E5%BB%BA%E4%B8%80%E4%B8%AA%E9%AB%98%E9%80%9F%E5%9B%BE%E5%BA%8A/"/>
     <id>/2022/03/30/jsdelivr是什么以及利用GitHub+jsdelivr搭建一个高速图床/</id>
     <published>2022-03-30T07:34:06.000Z</published>
-    <updated>2022-03-30T07:34:51.232Z</updated>
+    <updated>2022-04-17T15:05:44.033Z</updated>
     
     <summary type="html">
     
@@ -315,7 +363,7 @@
     <link href="/2022/02/15/git%E6%8F%90%E4%BA%A4%E4%B8%8E%E5%9B%9E%E9%80%80/"/>
     <id>/2022/02/15/git提交与回退/</id>
     <published>2022-02-15T02:21:24.000Z</published>
-    <updated>2022-03-30T04:40:05.871Z</updated>
+    <updated>2022-04-16T15:50:47.432Z</updated>
     
     <summary type="html">
     
@@ -463,60 +511,6 @@
       <category term="转载" scheme="/tags/%E8%BD%AC%E8%BD%BD/"/>
     
       <category term="Mysql" scheme="/tags/Mysql/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>jvm调优——栈上分配</title>
-    <link href="/2021/10/12/jvm%E7%9A%84%E9%83%A8%E5%88%86%E6%93%8D%E4%BD%9C%EF%BC%8Cjvm%E8%B0%83%E4%BC%98%E2%80%94%E2%80%94%E6%A0%88%E4%B8%8A%E5%88%86%E9%85%8D%E3%80%82/"/>
-    <id>/2021/10/12/jvm的部分操作，jvm调优——栈上分配。/</id>
-    <published>2021-10-12T01:16:01.000Z</published>
-    <updated>2022-03-30T04:15:44.751Z</updated>
-    
-    <summary type="html">
-    
-      谁的生活会索然无味？当然没有。谁会一整天都敲代码啊？不得躺下来想想么.......
-    
-    </summary>
-    
-      <category term="技术" scheme="/categories/%E6%8A%80%E6%9C%AF/"/>
-    
-    
-      <category term="技术" scheme="/tags/%E6%8A%80%E6%9C%AF/"/>
-    
-      <category term="转载" scheme="/tags/%E8%BD%AC%E8%BD%BD/"/>
-    
-      <category term="IDEA" scheme="/tags/IDEA/"/>
-    
-      <category term="JVM" scheme="/tags/JVM/"/>
-    
-      <category term="JAVA" scheme="/tags/JAVA/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>人家问你：什么是JVM内存结构 、 Java内存模型 、 Java对象模型？</title>
-    <link href="/2021/10/09/%E4%BA%BA%E5%AE%B6%E9%97%AE%E4%BD%A0%EF%BC%9A%E4%BB%80%E4%B9%88%E6%98%AFJVM%E5%86%85%E5%AD%98%E7%BB%93%E6%9E%84%20%E3%80%81%20Java%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B%20%E3%80%81%20Java%E5%AF%B9%E8%B1%A1%E6%A8%A1%E5%9E%8B/"/>
-    <id>/2021/10/09/人家问你：什么是JVM内存结构 、 Java内存模型 、 Java对象模型/</id>
-    <published>2021-10-09T08:56:08.000Z</published>
-    <updated>2022-03-30T05:05:17.173Z</updated>
-    
-    <summary type="html">
-    
-      Mysql调优
-    
-    </summary>
-    
-      <category term="技术" scheme="/categories/%E6%8A%80%E6%9C%AF/"/>
-    
-    
-      <category term="技术" scheme="/tags/%E6%8A%80%E6%9C%AF/"/>
-    
-      <category term="转载" scheme="/tags/%E8%BD%AC%E8%BD%BD/"/>
-    
-      <category term="JVM" scheme="/tags/JVM/"/>
-    
-      <category term="JAVA" scheme="/tags/JAVA/"/>
     
   </entry>
   
