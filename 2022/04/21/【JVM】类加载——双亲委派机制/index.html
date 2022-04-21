@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
   
-  <title itemprop="name">Category: 技术 | w7h1te</title>
+  <title itemprop="name">【JVM】类加载——双亲委派机制 | w7h1te</title>
   
     <link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/w7h1te/PicGoCDN/img/favicon/202203090939154.ico">
   
@@ -402,706 +402,177 @@
   </div>
 </header>
 
-      
+      <link rel="stylesheet" type="text/css" href="/css/sharejs.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css">
 <div class="pattern-center-blank"></div>
-<div class="pattern-center ">
-  <div class="pattern-attachment-img">
-    <img data-src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/banner/coding.jpg" class="lazyload" onerror="imgError(this,3)" style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;">
+
+  <div class="pattern-center single-center">
+    <!-- 有配图默认渲染第一张 -->
+    <div class="pattern-attachment-img lazyload" style="background-image: url(https://cdn.jsdelivr.net/gh/w7h1te/PicGoCDN/img/bolg/cover20.png);" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://cdn.jsdelivr.net/gh/w7h1te/PicGoCDN/img/bolg/cover20.png">
+    </div>
+    <header class="pattern-header single-header">
+      <h1 class="entry-title">
+      【JVM】类加载——双亲委派机制</h1>
+      <p class="entry-census">
+        <span>
+          <a href="w7h1te.cn">
+            <img src="https://cdn.jsdelivr.net/gh/w7h1te/PicGoCDN/img/custom/202203090940373.jpeg">
+          </a>
+        </span>
+        <span>
+          <a href="w7h1te.cn">w7h1te</a>
+        </span>
+        <span class="bull">
+        ·</span>
+        2022-4-21<span class="bull">
+        ·</span>
+      <span id="busuanzi_value_page_pv"></span>次阅读</p>
+    </header>
   </div>
-  <header class="pattern-header ">
-    <h1 class="cat-title">野生技术协会</h1>
-    <span class="cat-des">
-      <p>Wildlife Technology Association</p>
-    </span>
-  </header>
-</div>
+
 <div id="content" class="site-content">
   <div id="primary" class="content-area">
     <main id="main" class="site-main" role="main">
-      
-  <!-- 首页默认取最最新文章集 -->
-  
-    <article class="post post-list" itemscope="" itemtype="https://schema.org/BlogPosting">
-  <div class="post-entry">
-    <div class="feature">
-      <a href="/2021/10/12/jvm的部分操作，jvm调优——栈上分配。/">
-        <div class="overlay">
-          <i class="iconfont icon-text">
-          </i>
-        </div>
-        <img width="150" height="150" src="https://s2.loli.net/2022/03/30/ckbDWQjiwYxLJoa.jpg" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="" >
-      </a>
-    </div>
-    <h1 class="entry-title">
-    <a href="/2021/10/12/jvm的部分操作，jvm调优——栈上分配。/">
-    jvm调优——栈上分配</a>
-    </h1>
-    <div class="p-time">
-      <i class="iconfont icon-time">
-      </i>
-    2021-10-12</div>
-    <p>
-    谁的生活会索然无味？当然没有。谁会一整天都敲代码啊？不得躺下来想想么.......</p>
-    <footer class="entry-footer">
-      <div class="post-more">
-        <a href="/2021/10/12/jvm的部分操作，jvm调优——栈上分配。/">
-          <i class="iconfont icon-caidan">
-          </i>
-        </a>
-      </div>
-    </footer>
-  </div>
-  <hr>
-</article>
-  
-    <article class="post post-list" itemscope="" itemtype="https://schema.org/BlogPosting">
-  <div class="post-entry">
-    <div class="feature">
-      <a href="/2021/10/09/人家问你：什么是JVM内存结构 、 Java内存模型 、 Java对象模型/">
-        <div class="overlay">
-          <i class="iconfont icon-text">
-          </i>
-        </div>
-        <img width="150" height="150" src="https://cdn.jsdelivr.net/gh/w7h1te/PicGoCDN/img/bolg/cover17.jpg" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="" >
-      </a>
-    </div>
-    <h1 class="entry-title">
-    <a href="/2021/10/09/人家问你：什么是JVM内存结构 、 Java内存模型 、 Java对象模型/">
-    人家问你：什么是JVM内存结构 、 Java内存模型 、 Java对象模型？</a>
-    </h1>
-    <div class="p-time">
-      <i class="iconfont icon-time">
-      </i>
-    2021-10-9</div>
-    <p>
-    Mysql调优</p>
-    <footer class="entry-footer">
-      <div class="post-more">
-        <a href="/2021/10/09/人家问你：什么是JVM内存结构 、 Java内存模型 、 Java对象模型/">
-          <i class="iconfont icon-caidan">
-          </i>
-        </a>
-      </div>
-    </footer>
-  </div>
-  <hr>
-</article>
-  
-    <article class="post post-list" itemscope="" itemtype="https://schema.org/BlogPosting">
-  <div class="post-entry">
-    <div class="feature">
-      <a href="/2021/09/20/Mysql调优（一）/">
-        <div class="overlay">
-          <i class="iconfont icon-text">
-          </i>
-        </div>
-        <img width="150" height="150" src="https://cdn.jsdelivr.net/gh/w7h1te/PicGoCDN/img/bolg/cover3.jpg" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="" >
-      </a>
-    </div>
-    <h1 class="entry-title">
-    <a href="/2021/09/20/Mysql调优（一）/">
-    Mysql调优(一)</a>
-    </h1>
-    <div class="p-time">
-      <i class="iconfont icon-time">
-      </i>
-    2021-9-20</div>
-    <p>
-    Mysql调优</p>
-    <footer class="entry-footer">
-      <div class="post-more">
-        <a href="/2021/09/20/Mysql调优（一）/">
-          <i class="iconfont icon-caidan">
-          </i>
-        </a>
-      </div>
-    </footer>
-  </div>
-  <hr>
-</article>
-  
-    <article class="post post-list" itemscope="" itemtype="https://schema.org/BlogPosting">
-  <div class="post-entry">
-    <div class="feature">
-      <a href="/2021/07/15/【Spring】Spring中的Bean是线程安全的吗？/">
-        <div class="overlay">
-          <i class="iconfont icon-text">
-          </i>
-        </div>
-        <img width="150" height="150" src="https://cdn.jsdelivr.net/gh/w7h1te/PicGoCDN/img/bolg/cover007.png" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="" >
-      </a>
-    </div>
-    <h1 class="entry-title">
-    <a href="/2021/07/15/【Spring】Spring中的Bean是线程安全的吗？/">
-    【Spring】Spring中的Bean是线程安全的吗？</a>
-    </h1>
-    <div class="p-time">
-      <i class="iconfont icon-time">
-      </i>
-    2021-7-15</div>
-    <p>
-    面试题中关于线程安全的问题：【Spring】Spring中的Bean是线程安全的吗？</p>
-    <footer class="entry-footer">
-      <div class="post-more">
-        <a href="/2021/07/15/【Spring】Spring中的Bean是线程安全的吗？/">
-          <i class="iconfont icon-caidan">
-          </i>
-        </a>
-      </div>
-    </footer>
-  </div>
-  <hr>
-</article>
-  
-    <article class="post post-list" itemscope="" itemtype="https://schema.org/BlogPosting">
-  <div class="post-entry">
-    <div class="feature">
-      <a href="/2021/06/27/阿里云OSSUtil在win环境下的使用/">
-        <div class="overlay">
-          <i class="iconfont icon-text">
-          </i>
-        </div>
-        <img width="150" height="150" src="https://s2.loli.net/2022/03/30/4rLSwPRQbx72Mqk.jpg" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="" >
-      </a>
-    </div>
-    <h1 class="entry-title">
-    <a href="/2021/06/27/阿里云OSSUtil在win环境下的使用/">
-    阿里云OSSUtil在win环境下的使用</a>
-    </h1>
-    <div class="p-time">
-      <i class="iconfont icon-time">
-      </i>
-    2021-6-27</div>
-    <p>
-    因为在项目中使用到阿里云的OSS，在使用中做了一个总结。</p>
-    <footer class="entry-footer">
-      <div class="post-more">
-        <a href="/2021/06/27/阿里云OSSUtil在win环境下的使用/">
-          <i class="iconfont icon-caidan">
-          </i>
-        </a>
-      </div>
-    </footer>
-  </div>
-  <hr>
-</article>
-  
-    <article class="post post-list" itemscope="" itemtype="https://schema.org/BlogPosting">
-  <div class="post-entry">
-    <div class="feature">
-      <a href="/2021/06/04/【从零开始的Springboot学习（三）】SpringBoot中的默认配置/">
-        <div class="overlay">
-          <i class="iconfont icon-text">
-          </i>
-        </div>
-        <img width="150" height="150" src="https://cdn.jsdelivr.net/gh/w7h1te/PicGoCDN/img/bolg/cover006.jpg" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="" >
-      </a>
-    </div>
-    <h1 class="entry-title">
-    <a href="/2021/06/04/【从零开始的Springboot学习（三）】SpringBoot中的默认配置/">
-    【从零开始的Springboot学习（三）】SpringBoot中的默认配置</a>
-    </h1>
-    <div class="p-time">
-      <i class="iconfont icon-time">
-      </i>
-    2021-6-4</div>
-    <p>
-    SpringBoot中的默认配置原理</p>
-    <footer class="entry-footer">
-      <div class="post-more">
-        <a href="/2021/06/04/【从零开始的Springboot学习（三）】SpringBoot中的默认配置/">
-          <i class="iconfont icon-caidan">
-          </i>
-        </a>
-      </div>
-    </footer>
-  </div>
-  <hr>
-</article>
-  
-    <article class="post post-list" itemscope="" itemtype="https://schema.org/BlogPosting">
-  <div class="post-entry">
-    <div class="feature">
-      <a href="/2021/06/03/【从零开始的Springboot学习（二）】属性注入方法对比，以及SpringBoot是如何优化的/">
-        <div class="overlay">
-          <i class="iconfont icon-text">
-          </i>
-        </div>
-        <img width="150" height="150" src="https://cdn.jsdelivr.net/gh/w7h1te/PicGoCDN/img/bolg/cover005.png" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="" >
-      </a>
-    </div>
-    <h1 class="entry-title">
-    <a href="/2021/06/03/【从零开始的Springboot学习（二）】属性注入方法对比，以及SpringBoot是如何优化的/">
-    【从零开始的Springboot学习（二）】属性注入方法对比，以及SpringBoot是如何优化的</a>
-    </h1>
-    <div class="p-time">
-      <i class="iconfont icon-time">
-      </i>
-    2021-6-3</div>
-    <p>
-    属性注入方法对比，以及SpringBoot是如何优化的</p>
-    <footer class="entry-footer">
-      <div class="post-more">
-        <a href="/2021/06/03/【从零开始的Springboot学习（二）】属性注入方法对比，以及SpringBoot是如何优化的/">
-          <i class="iconfont icon-caidan">
-          </i>
-        </a>
-      </div>
-    </footer>
-  </div>
-  <hr>
-</article>
-  
-    <article class="post post-list" itemscope="" itemtype="https://schema.org/BlogPosting">
-  <div class="post-entry">
-    <div class="feature">
-      <a href="/2021/06/02/【从零开始的Springboot学习（一）】入门demo/">
-        <div class="overlay">
-          <i class="iconfont icon-text">
-          </i>
-        </div>
-        <img width="150" height="150" src="https://cdn.jsdelivr.net/gh/w7h1te/PicGoCDN/img/bolg/cover004.png" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="" >
-      </a>
-    </div>
-    <h1 class="entry-title">
-    <a href="/2021/06/02/【从零开始的Springboot学习（一）】入门demo/">
-    【从零开始的Springboot学习（一）】入门demo</a>
-    </h1>
-    <div class="p-time">
-      <i class="iconfont icon-time">
-      </i>
-    2021-6-2</div>
-    <p>
-    我说这是第二次的学习与总结你会相信嘛</p>
-    <footer class="entry-footer">
-      <div class="post-more">
-        <a href="/2021/06/02/【从零开始的Springboot学习（一）】入门demo/">
-          <i class="iconfont icon-caidan">
-          </i>
-        </a>
-      </div>
-    </footer>
-  </div>
-  <hr>
-</article>
-  
-    <article class="post post-list" itemscope="" itemtype="https://schema.org/BlogPosting">
-  <div class="post-entry">
-    <div class="feature">
-      <a href="/2021/03/18/【计网】TCP协议（四）/">
-        <div class="overlay">
-          <i class="iconfont icon-text">
-          </i>
-        </div>
-        <img width="150" height="150" src="https://cdn.jsdelivr.net/gh/w7h1te/PicGoCDN/img/bolg/bbc58c3d998d4f389fdae649334873f7.jpg" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="" >
-      </a>
-    </div>
-    <h1 class="entry-title">
-    <a href="/2021/03/18/【计网】TCP协议（四）/">
-    【计网】TCP协议20问（四）</a>
-    </h1>
-    <div class="p-time">
-      <i class="iconfont icon-time">
-      </i>
-    2021-3-18</div>
-    <p>
-    对于TCP协议的知识总结与思考。</p>
-    <footer class="entry-footer">
-      <div class="post-more">
-        <a href="/2021/03/18/【计网】TCP协议（四）/">
-          <i class="iconfont icon-caidan">
-          </i>
-        </a>
-      </div>
-    </footer>
-  </div>
-  <hr>
-</article>
-  
-    <article class="post post-list" itemscope="" itemtype="https://schema.org/BlogPosting">
-  <div class="post-entry">
-    <div class="feature">
-      <a href="/2021/03/02/【计网】TCP协议（三）/">
-        <div class="overlay">
-          <i class="iconfont icon-text">
-          </i>
-        </div>
-        <img width="150" height="150" src="https://cdn.jsdelivr.net/gh/w7h1te/PicGoCDN/img/bolg/836713b152b64b809fe409cdf1008fae.png" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="" >
-      </a>
-    </div>
-    <h1 class="entry-title">
-    <a href="/2021/03/02/【计网】TCP协议（三）/">
-    【计网】TCP协议20问（三）</a>
-    </h1>
-    <div class="p-time">
-      <i class="iconfont icon-time">
-      </i>
-    2021-3-2</div>
-    <p>
-    对于TCP协议的知识总结与思考。</p>
-    <footer class="entry-footer">
-      <div class="post-more">
-        <a href="/2021/03/02/【计网】TCP协议（三）/">
-          <i class="iconfont icon-caidan">
-          </i>
-        </a>
-      </div>
-    </footer>
-  </div>
-  <hr>
-</article>
-  
-
-
-      <div class="clearer">
-      </div>
-    </main>
-    <!-- 
-      <nav class="navigator">
+      <article id="post-1" class="post-1 post type-post status-publish format-standard has-post-thumbnail hentry category-uncategorized">
+        <div class="toc"></div>
+        <!--<div class="toc-entry-content"><!-- 套嵌目录使用（主要为了支援评论）-->
         
-        <a class="extend prev" rel="prev" href="/categories/技术/page/2/"><i class="iconfont icon-back"></i></a><a class="page-number" href="/categories/技术/">1</a><a class="page-number" href="/categories/技术/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/categories/技术/page/4/">4</a><a class="extend next" rel="next" href="/categories/技术/page/4/"><i class="iconfont icon-right"></i></a>
-      </nav>
-     -->
-    
-      <div id="pagination"><a href="/categories/技术/page/4/" class="">Previous</a></div>
-    
-  </div>
+        <div class="entry-content">
+          <blockquote>
+<p>在面试过程中：也会被问到关于如何理解双亲委派模型这样的问题，接下来就通过这篇文章往明白了解一下。</p>
+</blockquote>
+<p><em>我们首先需要了解一下类加载阶段</em></p>
+<h2 id="类的加载阶段"><a href="#类的加载阶段" class="headerlink" title="类的加载阶段"></a>类的加载阶段</h2><p>类加载阶段分为<strong>加载</strong>、<strong>连接</strong>、<strong>初始化</strong>三个阶段，而加载阶段需要通过类的全限定名来获取定义了此类的二进制字节流。Java特意把这一步抽出来用类加载器来实现。把这一步骤抽离出来使得应用程序可以按需自定义类加载器。并且得益于类加载器，OSGI、热部署等领域才得以在JAVA中得到应用。</p>
+<p>类加载器除了能用来加载类，还能用来作为类的层次划分。Java自身提供了3种类加载器</p>
+<h2 id="类加载器"><a href="#类加载器" class="headerlink" title="类加载器"></a>类加载器</h2><p>1、启动类加载器(Bootstrap ClassLoader),它是属于虚拟机自身的一部分，用C++实现的，主要负责加载&lt;JAVA_HOME&gt;\lib目录中或被-Xbootclasspath指定的路径中的并且文件名是被虚拟机识别的文件。它等于是所有类加载器的爸爸。</p>
+<p>2、扩展类加载器(Extension ClassLoader),它是Java实现的，独立于虚拟机，主要负责加载&lt;JAVA_HOME&gt;\lib\ext目录中或被java.ext.dirs系统变量所指定的路径的类库。</p>
+<p>3、应用程序类加载器(Application ClassLoader),它是Java实现的，独立于虚拟机。主要负责加载用户类路径(classPath)上的类库，如果我们没有实现自定义的类加载器那这玩意就是我们程序中的默认加载器。</p>
+<h2 id="什么是双亲委派机制"><a href="#什么是双亲委派机制" class="headerlink" title="什么是双亲委派机制"></a>什么是双亲委派机制</h2><p>上图：<br><img src="https://img-blog.csdnimg.cn/1a962e25e4c04d25a8f88ef8b52b456f.png#pic_center" alt="在这里插入图片描述"></p>
+<p>简单来说：如果一个类加载器需要加载类，那么首先它会把这个类请求委派给父类加载器去完成，每一层都是如此。一直递归到顶层，当父加载器无法完成这个请求时，子类才会尝试去加载。这里的双亲其实就指的是父类，没有mother。父类也不是我们平日所说的那种继承关系，只是调用逻辑是这样。</p>
+<p>也就是当类加载器收到类加载的请求时候会首先调用父类（ClassLoader）的findLoadedClass方法，判断类是否加载过，如果已经加载过则直接返回，否则会将加载任务委托给成员变量parent，并不是指的父类。parent加载器在收到类加载请求后，也会先判断需要加载的类是否已经加载过，如果加载过则结束，否则也会将加载任务委托给成员变量parent去进行类加载。这里是一个循环过程，直到将加载任务委托给Bootstrap ClassLoader 结束，如果Bootstrap ClassLoader也没有找到则交给各个子类自己加载，一直到最后，如果没有任何类加载器能加载则会抛出ClassNotFoundException。</p>
+<h2 id="为什么要设计双亲委派机制？"><a href="#为什么要设计双亲委派机制？" class="headerlink" title="为什么要设计双亲委派机制？"></a>为什么要设计双亲委派机制？</h2><ol>
+<li><p>沙箱安全机制</p>
+<pre><code>自己写的java.lang.String.class类不会被加载,这样可以防止核心API库被随意篡改。
+为了不让我们写String类，类加载采用委托机制，这样可以保证爸爸们优先，爸爸们能找到的类，儿子就没有机会加载。而String类是Bootstrap加载器加载的，就算自己重写，也总是使用Java系统提供的String，自己写的String类根本没有机会得到加载。
+</code></pre></li>
+<li><p>避免类的重复加载</p>
+<pre><code>当父亲已经加载了该类, 就没必要子classLoader再加载一次,保证被加载的唯一性。
+</code></pre></li>
+</ol>
+<blockquote>
+<h2 id="引申内容（付费内容）"><a href="#引申内容（付费内容）" class="headerlink" title="引申内容（付费内容）"></a>引申内容（付费内容）</h2></blockquote>
+<h2 id="JVM-类加载器和类本身一同确立类在Java虚拟机中的唯一性"><a href="#JVM-类加载器和类本身一同确立类在Java虚拟机中的唯一性" class="headerlink" title="JVM 类加载器和类本身一同确立类在Java虚拟机中的唯一性"></a>JVM 类加载器和类本身一同确立类在Java虚拟机中的唯一性</h2><p>问题：由不同类加载器加载同一个类，实例化为对象。使用<code>instanceof</code>判断该对象与该类的归属，请问结果是<code>true</code>还是<code>false</code>？</p>
+<p>答案是<code>false</code>。</p>
+<h2 id="验证解析"><a href="#验证解析" class="headerlink" title="验证解析"></a>验证解析</h2><pre><code class="java">import java.io.IOException;
+import java.io.InputStream;
+
+public class ClassLoaderTest {
+    public static void main(String[] args) throws Exception {
+        ClassLoader myLoader = new ClassLoader() {
+            @SuppressWarnings(&quot;ResultOfMethodCallIgnored&quot;)
+            @Override
+            public Class&lt;?&gt; loadClass(String name) throws ClassNotFoundException {
+                try {
+                    String fileName = name.substring(name.lastIndexOf(&quot;.&quot;) + 1) + &quot;.class&quot;;
+                    InputStream is = getClass().getResourceAsStream(fileName);
+                    if (is == null) {
+                        return super.loadClass(name);
+                    }
+                    byte[] b = new byte[is.available()];
+                    is.read(b);
+                    return defineClass(name, b, 0, b.length);
+                } catch (IOException e) {
+                    throw new ClassNotFoundException(name);
+                }
+            }
+        };
+        Object obj = myLoader.loadClass(&quot;Practice.Java.ClassLoaderTest&quot;).newInstance();
+        System.out.println(obj.getClass());
+        System.out.println(obj instanceof Practice.Java.ClassLoaderTest);
+    }
+}
+</code></pre>
+<ul>
+<li>输出结果：</li>
+</ul>
+<pre><code class="java">class Practice.Java.ClassLoaderTest
+false
+</code></pre>
+<h2 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h2><p><strong>对于任意一个类，都需要由加载它的类加载器和这个类本身一同确立其在Java虚拟机中的唯一性，每一个类加载器，都拥有一个独立的类名称空间</strong>。这句话可以表达得更通俗一些：比较两个类是否“相等”，只有在这两个类是由同一个类加载器加载的前提下才有意义，否则，即使这两个类来源于同一个Class文件，被同一个虚拟机加载，只要加载它们的类加载器不同，那这两个类就必定不相等。</p>
+<h2 id="结果分析"><a href="#结果分析" class="headerlink" title="结果分析"></a>结果分析</h2><p>两行输出结果中，从第一句可以看出，这个对象确实是类Practice.Java.ClassLoaderTest实例化出来的对象，但从第二句可以发现，这个对象与类Practice.Java.ClassLoaderTest做所属类型检查的时候却返回了false。</p>
+<p>这是因为虚拟机中存在了两个ClassLoaderTest类，一个是由系统应用程序类加载器加载的，另外一个是由我们自定义的类加载器加载的。虽然都来自同一个Class文件，但依然是两个独立的类，做对象所属类型检查时结果自然为false。</p>
+<h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><p>Java类加载器这种特性可以简单的总结为<strong>命名空间</strong>。即在 Java 虚拟机中，类的唯一性是由类加载器实例以及类的全名一同确定的。即便是同一串字节流，经由不同的类加载器加载，也会得到两个不同的类。</p>
+<p>论证参考：《深入理解JVM虚拟机：JVM高级特性与最佳实践》<br>以及转载如下的大佬的文章内容：<br><a href="https://blog.csdn.net/qq_39431405/article/details/121612250" target="_blank" rel="noopener">https://blog.csdn.net/qq_39431405/article/details/121612250</a><br><a href="https://blog.csdn.net/Notzuonotdied/article/details/112059187" target="_blank" rel="noopener">https://blog.csdn.net/Notzuonotdied/article/details/112059187</a></p>
+
+        </div>
+        <!-- .entry-content -->
+        <div class="single-reward">
+          <div class="reward-open">赏
+            <div class="reward-main">
+              <ul class="reward-row">
+                <li class="alipay-code"><img src="https://cdn.jsdelivr.net/gh/w7h1te/PicGoCDN/img/custom/donate/202203091825000.jpg"></li>
+                <li class="wechat-code"><img src="https://cdn.jsdelivr.net/gh/w7h1te/PicGoCDN/img/custom/donate/WeChanSQ.png"></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div style="text-align:center; width: 100%" class="social-share share-mobile" data-disabled="diandian, tencent"></div>
+        <footer class="post-footer">
+          <div class="post-lincenses"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="nofollow"><i class="fa fa-creative-commons" aria-hidden="true"></i> 知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议</a></div>
+          <div class="post-tags">
+          </div>
+          <div class="post-share">
+            <div class="social-share sharehidden share-component"></div>
+            <i class="iconfont show-share icon-forward"></i>
+          </div>
+        </footer><!-- .entry-footer -->
+      </article>
+      <!-- #post-## -->
+      <div class="toc" style="background: none;"></div>
+      <section class="post-squares nextprev">
+        
+        
+          
+            <div class="post-nepre full next">
+          
+            <a href="/2022/04/20/【开发问题解决方案】java.lang.ArithmeticException_ _ by zero/" rel="next">
+              <div class="background">
+                <img class="lazyload" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://cdn.jsdelivr.net/gh/w7h1te/PicGoCDN/img/bolg/cover281.jpg" style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;" onerror="imgError(this,3)" src="https://cdn.jsdelivr.net/gh/w7h1te/PicGoCDN/img/bolg/cover281.jpg">
+              </div>
+              <span class="label">
+              Next Post</span>
+              <div class="info">
+                <h3>
+                【开发问题解决方案】java.lang.ArithmeticException_ _ by zero</h3>
+                <hr>
+              </div>
+            </a>
+          </div>
+        
+      </section>
+      
+
+
+
+      <section class="author-profile">
+        <div class="info" itemprop="author" itemscope="" itemtype="https://schema.org/Person">
+          <a href="w7h1te.cn" class="profile gravatar"><img src="https://cdn.jsdelivr.net/gh/w7h1te/PicGoCDN/img/custom/202203090940373.jpeg" itemprop="image" alt="w7h1te" height="70" width="70"></a>
+          <div class="meta">
+            <span class="title">Author</span>
+            <h3 itemprop="name">
+            <a href="w7h1te.cn" itemprop="url" rel="author">w7h1te</a>
+            </h3>
+          </div>
+        </div>
+        <hr>
+        <p><i class="iconfont icon-write"></i>把握生活，拒绝摆烂</p>
+      </section>
+    </main><!-- #main -->
+  </div><!-- #primary -->
 </div>
 
-<!-- 
-  
-    <article class="post post-list" itemscope="" itemtype="https://schema.org/BlogPosting">
-  <div class="post-entry">
-    <div class="feature">
-      <a href="/2021/10/12/jvm的部分操作，jvm调优——栈上分配。/">
-        <div class="overlay">
-          <i class="iconfont icon-text">
-          </i>
-        </div>
-        <img width="150" height="150" src="https://s2.loli.net/2022/03/30/ckbDWQjiwYxLJoa.jpg" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="" >
-      </a>
-    </div>
-    <h1 class="entry-title">
-    <a href="/2021/10/12/jvm的部分操作，jvm调优——栈上分配。/">
-    jvm调优——栈上分配</a>
-    </h1>
-    <div class="p-time">
-      <i class="iconfont icon-time">
-      </i>
-    2021-10-12</div>
-    <p>
-    谁的生活会索然无味？当然没有。谁会一整天都敲代码啊？不得躺下来想想么.......</p>
-    <footer class="entry-footer">
-      <div class="post-more">
-        <a href="/2021/10/12/jvm的部分操作，jvm调优——栈上分配。/">
-          <i class="iconfont icon-caidan">
-          </i>
-        </a>
-      </div>
-    </footer>
-  </div>
-  <hr>
-</article>
-  
-    <article class="post post-list" itemscope="" itemtype="https://schema.org/BlogPosting">
-  <div class="post-entry">
-    <div class="feature">
-      <a href="/2021/10/09/人家问你：什么是JVM内存结构 、 Java内存模型 、 Java对象模型/">
-        <div class="overlay">
-          <i class="iconfont icon-text">
-          </i>
-        </div>
-        <img width="150" height="150" src="https://cdn.jsdelivr.net/gh/w7h1te/PicGoCDN/img/bolg/cover17.jpg" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="" >
-      </a>
-    </div>
-    <h1 class="entry-title">
-    <a href="/2021/10/09/人家问你：什么是JVM内存结构 、 Java内存模型 、 Java对象模型/">
-    人家问你：什么是JVM内存结构 、 Java内存模型 、 Java对象模型？</a>
-    </h1>
-    <div class="p-time">
-      <i class="iconfont icon-time">
-      </i>
-    2021-10-9</div>
-    <p>
-    Mysql调优</p>
-    <footer class="entry-footer">
-      <div class="post-more">
-        <a href="/2021/10/09/人家问你：什么是JVM内存结构 、 Java内存模型 、 Java对象模型/">
-          <i class="iconfont icon-caidan">
-          </i>
-        </a>
-      </div>
-    </footer>
-  </div>
-  <hr>
-</article>
-  
-    <article class="post post-list" itemscope="" itemtype="https://schema.org/BlogPosting">
-  <div class="post-entry">
-    <div class="feature">
-      <a href="/2021/09/20/Mysql调优（一）/">
-        <div class="overlay">
-          <i class="iconfont icon-text">
-          </i>
-        </div>
-        <img width="150" height="150" src="https://cdn.jsdelivr.net/gh/w7h1te/PicGoCDN/img/bolg/cover3.jpg" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="" >
-      </a>
-    </div>
-    <h1 class="entry-title">
-    <a href="/2021/09/20/Mysql调优（一）/">
-    Mysql调优(一)</a>
-    </h1>
-    <div class="p-time">
-      <i class="iconfont icon-time">
-      </i>
-    2021-9-20</div>
-    <p>
-    Mysql调优</p>
-    <footer class="entry-footer">
-      <div class="post-more">
-        <a href="/2021/09/20/Mysql调优（一）/">
-          <i class="iconfont icon-caidan">
-          </i>
-        </a>
-      </div>
-    </footer>
-  </div>
-  <hr>
-</article>
-  
-    <article class="post post-list" itemscope="" itemtype="https://schema.org/BlogPosting">
-  <div class="post-entry">
-    <div class="feature">
-      <a href="/2021/07/15/【Spring】Spring中的Bean是线程安全的吗？/">
-        <div class="overlay">
-          <i class="iconfont icon-text">
-          </i>
-        </div>
-        <img width="150" height="150" src="https://cdn.jsdelivr.net/gh/w7h1te/PicGoCDN/img/bolg/cover007.png" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="" >
-      </a>
-    </div>
-    <h1 class="entry-title">
-    <a href="/2021/07/15/【Spring】Spring中的Bean是线程安全的吗？/">
-    【Spring】Spring中的Bean是线程安全的吗？</a>
-    </h1>
-    <div class="p-time">
-      <i class="iconfont icon-time">
-      </i>
-    2021-7-15</div>
-    <p>
-    面试题中关于线程安全的问题：【Spring】Spring中的Bean是线程安全的吗？</p>
-    <footer class="entry-footer">
-      <div class="post-more">
-        <a href="/2021/07/15/【Spring】Spring中的Bean是线程安全的吗？/">
-          <i class="iconfont icon-caidan">
-          </i>
-        </a>
-      </div>
-    </footer>
-  </div>
-  <hr>
-</article>
-  
-    <article class="post post-list" itemscope="" itemtype="https://schema.org/BlogPosting">
-  <div class="post-entry">
-    <div class="feature">
-      <a href="/2021/06/27/阿里云OSSUtil在win环境下的使用/">
-        <div class="overlay">
-          <i class="iconfont icon-text">
-          </i>
-        </div>
-        <img width="150" height="150" src="https://s2.loli.net/2022/03/30/4rLSwPRQbx72Mqk.jpg" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="" >
-      </a>
-    </div>
-    <h1 class="entry-title">
-    <a href="/2021/06/27/阿里云OSSUtil在win环境下的使用/">
-    阿里云OSSUtil在win环境下的使用</a>
-    </h1>
-    <div class="p-time">
-      <i class="iconfont icon-time">
-      </i>
-    2021-6-27</div>
-    <p>
-    因为在项目中使用到阿里云的OSS，在使用中做了一个总结。</p>
-    <footer class="entry-footer">
-      <div class="post-more">
-        <a href="/2021/06/27/阿里云OSSUtil在win环境下的使用/">
-          <i class="iconfont icon-caidan">
-          </i>
-        </a>
-      </div>
-    </footer>
-  </div>
-  <hr>
-</article>
-  
-    <article class="post post-list" itemscope="" itemtype="https://schema.org/BlogPosting">
-  <div class="post-entry">
-    <div class="feature">
-      <a href="/2021/06/04/【从零开始的Springboot学习（三）】SpringBoot中的默认配置/">
-        <div class="overlay">
-          <i class="iconfont icon-text">
-          </i>
-        </div>
-        <img width="150" height="150" src="https://cdn.jsdelivr.net/gh/w7h1te/PicGoCDN/img/bolg/cover006.jpg" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="" >
-      </a>
-    </div>
-    <h1 class="entry-title">
-    <a href="/2021/06/04/【从零开始的Springboot学习（三）】SpringBoot中的默认配置/">
-    【从零开始的Springboot学习（三）】SpringBoot中的默认配置</a>
-    </h1>
-    <div class="p-time">
-      <i class="iconfont icon-time">
-      </i>
-    2021-6-4</div>
-    <p>
-    SpringBoot中的默认配置原理</p>
-    <footer class="entry-footer">
-      <div class="post-more">
-        <a href="/2021/06/04/【从零开始的Springboot学习（三）】SpringBoot中的默认配置/">
-          <i class="iconfont icon-caidan">
-          </i>
-        </a>
-      </div>
-    </footer>
-  </div>
-  <hr>
-</article>
-  
-    <article class="post post-list" itemscope="" itemtype="https://schema.org/BlogPosting">
-  <div class="post-entry">
-    <div class="feature">
-      <a href="/2021/06/03/【从零开始的Springboot学习（二）】属性注入方法对比，以及SpringBoot是如何优化的/">
-        <div class="overlay">
-          <i class="iconfont icon-text">
-          </i>
-        </div>
-        <img width="150" height="150" src="https://cdn.jsdelivr.net/gh/w7h1te/PicGoCDN/img/bolg/cover005.png" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="" >
-      </a>
-    </div>
-    <h1 class="entry-title">
-    <a href="/2021/06/03/【从零开始的Springboot学习（二）】属性注入方法对比，以及SpringBoot是如何优化的/">
-    【从零开始的Springboot学习（二）】属性注入方法对比，以及SpringBoot是如何优化的</a>
-    </h1>
-    <div class="p-time">
-      <i class="iconfont icon-time">
-      </i>
-    2021-6-3</div>
-    <p>
-    属性注入方法对比，以及SpringBoot是如何优化的</p>
-    <footer class="entry-footer">
-      <div class="post-more">
-        <a href="/2021/06/03/【从零开始的Springboot学习（二）】属性注入方法对比，以及SpringBoot是如何优化的/">
-          <i class="iconfont icon-caidan">
-          </i>
-        </a>
-      </div>
-    </footer>
-  </div>
-  <hr>
-</article>
-  
-    <article class="post post-list" itemscope="" itemtype="https://schema.org/BlogPosting">
-  <div class="post-entry">
-    <div class="feature">
-      <a href="/2021/06/02/【从零开始的Springboot学习（一）】入门demo/">
-        <div class="overlay">
-          <i class="iconfont icon-text">
-          </i>
-        </div>
-        <img width="150" height="150" src="https://cdn.jsdelivr.net/gh/w7h1te/PicGoCDN/img/bolg/cover004.png" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="" >
-      </a>
-    </div>
-    <h1 class="entry-title">
-    <a href="/2021/06/02/【从零开始的Springboot学习（一）】入门demo/">
-    【从零开始的Springboot学习（一）】入门demo</a>
-    </h1>
-    <div class="p-time">
-      <i class="iconfont icon-time">
-      </i>
-    2021-6-2</div>
-    <p>
-    我说这是第二次的学习与总结你会相信嘛</p>
-    <footer class="entry-footer">
-      <div class="post-more">
-        <a href="/2021/06/02/【从零开始的Springboot学习（一）】入门demo/">
-          <i class="iconfont icon-caidan">
-          </i>
-        </a>
-      </div>
-    </footer>
-  </div>
-  <hr>
-</article>
-  
-    <article class="post post-list" itemscope="" itemtype="https://schema.org/BlogPosting">
-  <div class="post-entry">
-    <div class="feature">
-      <a href="/2021/03/18/【计网】TCP协议（四）/">
-        <div class="overlay">
-          <i class="iconfont icon-text">
-          </i>
-        </div>
-        <img width="150" height="150" src="https://cdn.jsdelivr.net/gh/w7h1te/PicGoCDN/img/bolg/bbc58c3d998d4f389fdae649334873f7.jpg" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="" >
-      </a>
-    </div>
-    <h1 class="entry-title">
-    <a href="/2021/03/18/【计网】TCP协议（四）/">
-    【计网】TCP协议20问（四）</a>
-    </h1>
-    <div class="p-time">
-      <i class="iconfont icon-time">
-      </i>
-    2021-3-18</div>
-    <p>
-    对于TCP协议的知识总结与思考。</p>
-    <footer class="entry-footer">
-      <div class="post-more">
-        <a href="/2021/03/18/【计网】TCP协议（四）/">
-          <i class="iconfont icon-caidan">
-          </i>
-        </a>
-      </div>
-    </footer>
-  </div>
-  <hr>
-</article>
-  
-    <article class="post post-list" itemscope="" itemtype="https://schema.org/BlogPosting">
-  <div class="post-entry">
-    <div class="feature">
-      <a href="/2021/03/02/【计网】TCP协议（三）/">
-        <div class="overlay">
-          <i class="iconfont icon-text">
-          </i>
-        </div>
-        <img width="150" height="150" src="https://cdn.jsdelivr.net/gh/w7h1te/PicGoCDN/img/bolg/836713b152b64b809fe409cdf1008fae.png" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="" >
-      </a>
-    </div>
-    <h1 class="entry-title">
-    <a href="/2021/03/02/【计网】TCP协议（三）/">
-    【计网】TCP协议20问（三）</a>
-    </h1>
-    <div class="p-time">
-      <i class="iconfont icon-time">
-      </i>
-    2021-3-2</div>
-    <p>
-    对于TCP协议的知识总结与思考。</p>
-    <footer class="entry-footer">
-      <div class="post-more">
-        <a href="/2021/03/02/【计网】TCP协议（三）/">
-          <i class="iconfont icon-caidan">
-          </i>
-        </a>
-      </div>
-    </footer>
-  </div>
-  <hr>
-</article>
-  
 
- -->
+
     </div>    
     <div class="ins-search">
     <div class="ins-search-mask"></div>
