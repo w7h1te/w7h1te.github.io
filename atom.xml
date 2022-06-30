@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="/"/>
-  <updated>2022-06-29T23:58:52.861Z</updated>
+  <updated>2022-06-30T22:38:42.963Z</updated>
   <id>/</id>
   
   <author>
@@ -17,11 +17,41 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>【后端实现发送Post请求】在SpringBoot下，以Content-Type_application_json示例</title>
+    <link href="/2022/07/01/%E3%80%90%E5%90%8E%E7%AB%AF%E5%AE%9E%E7%8E%B0%E5%8F%91%E9%80%81Post%E8%AF%B7%E6%B1%82%E3%80%91%E5%9C%A8SpringBoot%E4%B8%8B%EF%BC%8C%E4%BB%A5Content-Type_application_json%E7%A4%BA%E4%BE%8B/"/>
+    <id>/2022/07/01/【后端实现发送Post请求】在SpringBoot下，以Content-Type_application_json示例/</id>
+    <published>2022-06-30T22:31:53.000Z</published>
+    <updated>2022-06-30T22:38:42.963Z</updated>
+    
+    <summary type="html">
+    
+      业务背景：最近在实现微信授权登陆，并且获取授权用户的手机号码，其中是需要我们后台写工具类来模拟对接口的调用来取得相应参数，其实就是相当于实现PostMan、AirPost之类的工具对后端接口发起请求的功能。
+    
+    </summary>
+    
+      <category term="技术" scheme="/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+      <category term="技术" scheme="/tags/%E6%8A%80%E6%9C%AF/"/>
+    
+      <category term="总结" scheme="/tags/%E6%80%BB%E7%BB%93/"/>
+    
+      <category term="web" scheme="/tags/web/"/>
+    
+      <category term="IDEA" scheme="/tags/IDEA/"/>
+    
+      <category term="前端" scheme="/tags/%E5%89%8D%E7%AB%AF/"/>
+    
+      <category term="后端" scheme="/tags/%E5%90%8E%E7%AB%AF/"/>
+    
+  </entry>
+  
+  <entry>
     <title>【SVN】解决提交代码冲突</title>
     <link href="/2022/06/29/%E3%80%90SVN%E3%80%91%E8%A7%A3%E5%86%B3%E6%8F%90%E4%BA%A4%E4%BB%A3%E7%A0%81%E5%86%B2%E7%AA%81/"/>
     <id>/2022/06/29/【SVN】解决提交代码冲突/</id>
     <published>2022-06-29T14:35:09.000Z</published>
-    <updated>2022-06-29T23:58:52.861Z</updated>
+    <updated>2022-06-30T22:25:31.790Z</updated>
     
     <summary type="html">
     
@@ -406,9 +436,9 @@
     
       <category term="总结" scheme="/tags/%E6%80%BB%E7%BB%93/"/>
     
-      <category term="转载" scheme="/tags/%E8%BD%AC%E8%BD%BD/"/>
-    
       <category term="资源" scheme="/tags/%E8%B5%84%E6%BA%90/"/>
+    
+      <category term="转载" scheme="/tags/%E8%BD%AC%E8%BD%BD/"/>
     
   </entry>
   
@@ -481,30 +511,6 @@
       <category term="技术" scheme="/tags/%E6%8A%80%E6%9C%AF/"/>
     
       <category term="总结" scheme="/tags/%E6%80%BB%E7%BB%93/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Markdown编辑小技巧——图片篇（二）</title>
-    <link href="/2022/03/05/Markdown%E7%BC%96%E8%BE%91%E5%B0%8F%E6%8A%80%E5%B7%A7%E2%80%94%E2%80%94%E5%9B%BE%E7%89%87%E7%AF%87%EF%BC%88%E4%BA%8C%EF%BC%89/"/>
-    <id>/2022/03/05/Markdown编辑小技巧——图片篇（二）/</id>
-    <published>2022-03-05T02:41:24.000Z</published>
-    <updated>2022-03-30T04:52:34.811Z</updated>
-    
-    <summary type="html">
-    
-      记录生活——论如何高效使用Markdown。
-    
-    </summary>
-    
-      <category term="技术" scheme="/categories/%E6%8A%80%E6%9C%AF/"/>
-    
-    
-      <category term="技术" scheme="/tags/%E6%8A%80%E6%9C%AF/"/>
-    
-      <category term="总结" scheme="/tags/%E6%80%BB%E7%BB%93/"/>
-    
-      <category term="Markdown" scheme="/tags/Markdown/"/>
     
   </entry>
   

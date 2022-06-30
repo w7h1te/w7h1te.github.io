@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
   
-  <title itemprop="name">Tag: 前端 | w7h1te</title>
+  <title itemprop="name">【后端实现发送Post请求】在SpringBoot下，以Content-Type_application_json示例 | w7h1te</title>
   
     <link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/w7h1te/PicGoCDN/img/favicon/202203090939154.ico">
   
@@ -402,196 +402,205 @@
   </div>
 </header>
 
-      
+      <link rel="stylesheet" type="text/css" href="/css/sharejs.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css">
 <div class="pattern-center-blank"></div>
-<div class="pattern-center ">
-  <div class="pattern-attachment-img">
-    <img src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://cdn.jsdelivr.net/gh/w7h1te/PicGoCDN/img/bolg/836713b152b64b809fe409cdf1008fae.png" class="lazyload" onerror="imgError(this,3)" style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;">
+
+  <div class="pattern-center single-center">
+    <!-- 有配图默认渲染第一张 -->
+    <div class="pattern-attachment-img lazyload" style="background-image: url(https://cdn.jsdelivr.net/gh/w7h1te/PicGoCDN/img/bolg/cover8003.png);" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://cdn.jsdelivr.net/gh/w7h1te/PicGoCDN/img/bolg/cover8003.png">
+    </div>
+    <header class="pattern-header single-header">
+      <h1 class="entry-title">
+      【后端实现发送Post请求】在SpringBoot下，以Content-Type_application_json示例</h1>
+      <p class="entry-census">
+        <span>
+          <a href="w7h1te.cn">
+            <img src="https://cdn.jsdelivr.net/gh/w7h1te/PicGoCDN/img/custom/202203090940373.jpeg">
+          </a>
+        </span>
+        <span>
+          <a href="w7h1te.cn">w7h1te</a>
+        </span>
+        <span class="bull">
+        ·</span>
+        2022-7-1<span class="bull">
+        ·</span>
+      <span id="busuanzi_value_page_pv"></span>次阅读</p>
+    </header>
   </div>
-  <header class="pattern-header ">
-    <h1 class="cat-title">前端</h1>
-  </header>
-</div>
+
 <div id="content" class="site-content">
   <div id="primary" class="content-area">
     <main id="main" class="site-main" role="main">
+      <article id="post-1" class="post-1 post type-post status-publish format-standard has-post-thumbnail hentry category-uncategorized">
+        <div class="toc"></div>
+        <!--<div class="toc-entry-content"><!-- 套嵌目录使用（主要为了支援评论）-->
+        
+        <div class="entry-content">
+          <blockquote>
+<p>业务背景：最近在实现微信授权登陆，并且获取授权用户的手机号码，其中是需要我们后台写工具类来模拟对接口的调用来取得相应参数，其实就是相当于实现PostMan、AirPost之类的工具对后端接口发起请求的功能，本篇是以Post的请求方式，参数以JSON格式封装在请求体中，请求头为application/json，进行示例模拟。<br>关于获取微信授权数据的相关文章会在后续写出（先给自己挖个坑）。</p>
+</blockquote>
+<h2 id="一、导入依赖"><a href="#一、导入依赖" class="headerlink" title="一、导入依赖"></a>一、导入依赖</h2><pre><code class="xml">        &lt;!-- https://mvnrepository.com/artifact/com.alibaba/fastjson --&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;com.alibaba&lt;/groupId&gt;
+            &lt;artifactId&gt;fastjson&lt;/artifactId&gt;
+            &lt;version&gt;1.2.24&lt;/version&gt;
+        &lt;/dependency&gt;
+</code></pre>
+<h2 id="二、实现代码"><a href="#二、实现代码" class="headerlink" title="二、实现代码"></a>二、实现代码</h2><pre><code class="java">package user;
+
+import com.alibaba.fastjson.JSONObject;
+import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.ContentType;
+import org.apache.http.entity.StringEntity;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClients;
+import org.apache.http.util.EntityUtils;
+import org.junit.Test;
+
+import java.io.IOException;
+
+/**
+ * @author w7h1te
+ * @version 6月...
+ * @date 2022/6/30 11:31
+ */
+public class UserTrain {
+    /***
+     * 在咱们平常作项目的时候，有时候不免会接触到HttpClient进行一些数据的请求和传输。HttpClient默认使用的是表单提交的形式进行数据post，
+     * 有时候咱们须要使用json或者其余形式发送数据那么咱们就须要修改他的content-typejson
+     */
+    @Test
+    public void testPostRequest() {
+        //咳咳，接口地址还是要隐藏的，一个登陆接口的测试
+        String url = &quot;http://*****:8080/***/***/login&quot;;
+
+        //请求体，随便放两个参
+        JSONObject parammap = new JSONObject();
+        parammap.put(&quot;userName&quot;, &quot;1371606161111&quot;);
+        parammap.put(&quot;passWord&quot;,&quot;12332211&quot;);
+
+
+        String str = doPost(url, parammap.toJSONString());
+        // 输出响应内容
+        System.out.println(str);
+
+    }
+
+    public String doPost(String url ,String json) {
+        // 建立Httpclient对象
+        CloseableHttpClient httpClient = HttpClients.createDefault();
+        CloseableHttpResponse response = null;
+        String res = &quot;&quot;;
+
+        try {
+            // 建立Http Post请求
+            HttpPost post = new HttpPost(url);
+            // 建立请求内容 ContentType：请求格式设置
+            StringEntity entity = new StringEntity(json, ContentType.APPLICATION_JSON);
+            post.setEntity(entity);
+            // 执行http请求
+            response = httpClient.execute(post);
+
+            res = EntityUtils.toString(response.getEntity(), &quot;utf-8&quot;);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (response != null) {
+                    response.close();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        return res;
+    }
+}
+
+</code></pre>
+<h3 id="执行结果"><a href="#执行结果" class="headerlink" title="执行结果"></a>执行结果</h3><pre><code class="powershell">{&quot;success&quot;:false,&quot;resultCode&quot;:&quot;-1&quot;,&quot;resultMsg&quot;:&quot;用户名和密码不匹配,请您检查后重新登录&quot;,&quot;data&quot;:null}
+</code></pre>
+<h2 id="三、使用我们的AirPost再次做个测试"><a href="#三、使用我们的AirPost再次做个测试" class="headerlink" title="三、使用我们的AirPost再次做个测试"></a>三、使用我们的AirPost再次做个测试</h2><p>直接上图来点真实的<br><img src="https://img-blog.csdnimg.cn/90928ee7d23b4a398288c0917027be1e.png" alt="在这里插入图片描述"><br>可以看到，这个返回结果是走了我们的后台逻辑判断的，请求是成功的。</p>
+<h2 id="四、注意"><a href="#四、注意" class="headerlink" title="四、注意"></a>四、注意</h2><p>可以看到我们是请求成功的，当然这里面还是有很多点值得注意的。</p>
+<h3 id="4-1-第一点：参数传输问题"><a href="#4-1-第一点：参数传输问题" class="headerlink" title="4.1 第一点：参数传输问题"></a>4.1 第一点：参数传输问题</h3><p>Content-Type:application/json这样的请求格式，可以在上面AirPost中看到，传入的参数是以json的格式，那么我们相应的后台接收应该是 以<code>method(@RequestBody VO index)</code>的方式来接收，否则是接收不到的。</p>
+<h3 id="4-2-第二点：关于ContentType"><a href="#4-2-第二点：关于ContentType" class="headerlink" title="4.2 第二点：关于ContentType"></a>4.2 第二点：关于ContentType</h3><p>HTTP/1.1 协议规定的 HTTP 请求方法有 <strong>OPTIONS、GET、HEAD、POST、PUT、DELETE、TRACE、CONNECT</strong> 这几种。其中 POST 一般用来向服务端提交数据，本文主要讨论 POST 提交数据的几种方式。</p>
+<p>我们知道，HTTP 协议是以 ASCII 码传输，建立在 TCP/IP 协议之上的应用层规范。规范把 HTTP 请求分为三个部分：状态行、请求头、消息主体。<br>协议规定 POST 提交的数据必须放在消息主体（entity-body）中，但协议并没有规定数据必须使用什么编码方式。实际上，开发者完全可以自己决定消息主体的格式，只要最后发送的 HTTP 请求满足上面的格式就可以。</p>
+<p>服务端通常是根据请求头（headers）中的 Content-Type 字段来获知请求中的消息主体是用何种方式编码，再对主体进行解析。所以说到 POST 提交数据方案，包含了 <strong>Content-Type</strong> 和消息主体编码方式两部分。<br>|  | 前端 Content-Type  | 后端 ContentType  |json对象/字符串   |后端参数获取形式   |<br>|:——–:|:——–:|:——–:|:——–:|:——–:|<br>| 1 |application/json |APPLICATION_JSON | 字符串 | method(@RequestBody VO index) |<br>| 2 | appcalition/www-form-urlencode |APPLICATION_FORM_URLENCODED | 对象 | method(VO index) |</p>
+<h3 id="4-3-第三点：获取参数的几种常用注解"><a href="#4-3-第三点：获取参数的几种常用注解" class="headerlink" title="4.3 第三点：获取参数的几种常用注解"></a>4.3 第三点：获取参数的几种常用注解</h3><p>@PathVariable：一般我们使用URI template样式映射使用，即url/{param}这种形式，也就是一般我们使用的GET，DELETE，PUT方法会使用到的，我们可以获取URL后所跟的参数。<br>@RequestParam：一般我们使用该注解来获取多个参数，在（）内写入需要获取参数的参数名即可，一般在PUT，POST中比较常用。<br>@RequestBody：该注解和@RequestParam殊途同归，我们使用该注解将所有参数转换，在代码部分在一个个取出来，也是目前我使用到最多的注解来获取参数<br>@RequestHeader来获取头信息里的值，@CookieValue来获取Cookie值等等。在这，我也仅仅说明一些较常用的取值方法而已。</p>
+<h2 id="五、-引申扩展（文章推荐）"><a href="#五、-引申扩展（文章推荐）" class="headerlink" title="五、*引申扩展（文章推荐）"></a>五、*引申扩展（文章推荐）</h2><p><a href="https://blog.csdn.net/qq_43842093/article/details/122374173" target="_blank" rel="noopener">Json对象和Json字符串的区别</a><br><a href="https://www.jb51.net/article/240671.htm" target="_blank" rel="noopener">SpringBoot实现前后端、json数据交互以及Controller接收参数的几种常用方式</a><br><a href="https://blog.csdn.net/jiong9412/article/details/123190592" target="_blank" rel="noopener">java分别发送post请求applicationx-www-form-urlencoded和applicationjson类型数据</a><br><a href="https://www.cnblogs.com/testerlina/p/12077327.html" target="_blank" rel="noopener">HTTP Content-Type</a></p>
+
+        </div>
+        <!-- .entry-content -->
+        <div class="single-reward">
+          <div class="reward-open">赏
+            <div class="reward-main">
+              <ul class="reward-row">
+                <li class="alipay-code"><img src="https://cdn.jsdelivr.net/gh/w7h1te/PicGoCDN/img/custom/donate/202203091825000.jpg"></li>
+                <li class="wechat-code"><img src="https://cdn.jsdelivr.net/gh/w7h1te/PicGoCDN/img/custom/donate/WeChanSQ.png"></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div style="text-align:center; width: 100%" class="social-share share-mobile" data-disabled="diandian, tencent"></div>
+        <footer class="post-footer">
+          <div class="post-lincenses"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="nofollow"><i class="fa fa-creative-commons" aria-hidden="true"></i> 知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议</a></div>
+          <div class="post-tags">
+          </div>
+          <div class="post-share">
+            <div class="social-share sharehidden share-component"></div>
+            <i class="iconfont show-share icon-forward"></i>
+          </div>
+        </footer><!-- .entry-footer -->
+      </article>
+      <!-- #post-## -->
+      <div class="toc" style="background: none;"></div>
+      <section class="post-squares nextprev">
+        
+        
+          
+            <div class="post-nepre full next">
+          
+            <a href="/2022/06/29/【SVN】解决提交代码冲突/" rel="next">
+              <div class="background">
+                <img class="lazyload" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://cdn.jsdelivr.net/gh/w7h1te/PicGoCDN/img/bolg/cover8002.png" style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;" onerror="imgError(this,3)" src="https://cdn.jsdelivr.net/gh/w7h1te/PicGoCDN/img/bolg/cover8002.png">
+              </div>
+              <span class="label">
+              Next Post</span>
+              <div class="info">
+                <h3>
+                【SVN】解决提交代码冲突</h3>
+                <hr>
+              </div>
+            </a>
+          </div>
+        
+      </section>
       
-  <!-- 首页默认取最最新文章集 -->
-  
-    <article class="post post-list" itemscope="" itemtype="https://schema.org/BlogPosting">
-  <div class="post-entry">
-    <div class="feature">
-      <a href="/2022/07/01/【后端实现发送Post请求】在SpringBoot下，以Content-Type_application_json示例/">
-        <div class="overlay">
-          <i class="iconfont icon-text">
-          </i>
-        </div>
-        <img width="150" height="150" src="https://cdn.jsdelivr.net/gh/w7h1te/PicGoCDN/img/bolg/cover8003.png" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="" >
-      </a>
-    </div>
-    <h1 class="entry-title">
-    <a href="/2022/07/01/【后端实现发送Post请求】在SpringBoot下，以Content-Type_application_json示例/">
-    【后端实现发送Post请求】在SpringBoot下，以Content-Type_application_json示例</a>
-    </h1>
-    <div class="p-time">
-      <i class="iconfont icon-time">
-      </i>
-    2022-7-1</div>
-    <p>
-    业务背景：最近在实现微信授权登陆，并且获取授权用户的手机号码，其中是需要我们后台写工具类来模拟对接口的调用来取得相应参数，其实就是相当于实现PostMan、AirPost之类的工具对后端接口发起请求的功能。</p>
-    <footer class="entry-footer">
-      <div class="post-more">
-        <a href="/2022/07/01/【后端实现发送Post请求】在SpringBoot下，以Content-Type_application_json示例/">
-          <i class="iconfont icon-caidan">
-          </i>
-        </a>
-      </div>
-    </footer>
-  </div>
-  <hr>
-</article>
-  
-    <article class="post post-list" itemscope="" itemtype="https://schema.org/BlogPosting">
-  <div class="post-entry">
-    <div class="feature">
-      <a href="/2020/09/06/Vue结合项目开发 踩坑..../">
-        <div class="overlay">
-          <i class="iconfont icon-text">
-          </i>
-        </div>
-        <img width="150" height="150" src="https://cdn.jsdelivr.net/gh/w7h1te/PicGoCDN/img/bolg/cover4.jpg" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="" >
-      </a>
-    </div>
-    <h1 class="entry-title">
-    <a href="/2020/09/06/Vue结合项目开发 踩坑..../">
-    Vue结合项目开发 踩坑....</a>
-    </h1>
-    <div class="p-time">
-      <i class="iconfont icon-time">
-      </i>
-    2020-9-6</div>
-    <p>
-    对前端Vue的简单学习，与快速上手</p>
-    <footer class="entry-footer">
-      <div class="post-more">
-        <a href="/2020/09/06/Vue结合项目开发 踩坑..../">
-          <i class="iconfont icon-caidan">
-          </i>
-        </a>
-      </div>
-    </footer>
-  </div>
-  <hr>
-</article>
-  
-    <article class="post post-list" itemscope="" itemtype="https://schema.org/BlogPosting">
-  <div class="post-entry">
-    <div class="feature">
-      <a href="/2020/06/21/Vue学习疑问：你一口一个渲染、挂载所以到底应该怎么理解？/">
-        <div class="overlay">
-          <i class="iconfont icon-text">
-          </i>
-        </div>
-        <img width="150" height="150" src="https://cdn.jsdelivr.net/gh/w7h1te/PicGoCDN/img/bolg/cover5.jpg" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="" >
-      </a>
-    </div>
-    <h1 class="entry-title">
-    <a href="/2020/06/21/Vue学习疑问：你一口一个渲染、挂载所以到底应该怎么理解？/">
-    【转载及推荐】Vue，webpack，node之间的关系</a>
-    </h1>
-    <div class="p-time">
-      <i class="iconfont icon-time">
-      </i>
-    2020-6-21</div>
-    <p>
-    了解与学习以及思想的扩展。</p>
-    <footer class="entry-footer">
-      <div class="post-more">
-        <a href="/2020/06/21/Vue学习疑问：你一口一个渲染、挂载所以到底应该怎么理解？/">
-          <i class="iconfont icon-caidan">
-          </i>
-        </a>
-      </div>
-    </footer>
-  </div>
-  <hr>
-</article>
-  
-    <article class="post post-list" itemscope="" itemtype="https://schema.org/BlogPosting">
-  <div class="post-entry">
-    <div class="feature">
-      <a href="/2020/06/11/【转载及推荐】Vue，webpack，node之间的关系/">
-        <div class="overlay">
-          <i class="iconfont icon-text">
-          </i>
-        </div>
-        <img width="150" height="150" src="https://cdn.jsdelivr.net/gh/w7h1te/PicGoCDN/img/bolg/bg.png" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="" >
-      </a>
-    </div>
-    <h1 class="entry-title">
-    <a href="/2020/06/11/【转载及推荐】Vue，webpack，node之间的关系/">
-    【转载及推荐】Vue，webpack，node之间的关系</a>
-    </h1>
-    <div class="p-time">
-      <i class="iconfont icon-time">
-      </i>
-    2020-6-11</div>
-    <p>
-    对前端技术的理解与掌握！</p>
-    <footer class="entry-footer">
-      <div class="post-more">
-        <a href="/2020/06/11/【转载及推荐】Vue，webpack，node之间的关系/">
-          <i class="iconfont icon-caidan">
-          </i>
-        </a>
-      </div>
-    </footer>
-  </div>
-  <hr>
-</article>
-  
-    <article class="post post-list" itemscope="" itemtype="https://schema.org/BlogPosting">
-  <div class="post-entry">
-    <div class="feature">
-      <a href="/2020/05/06/Vue _ vue cli新手入门 详细解读/">
-        <div class="overlay">
-          <i class="iconfont icon-text">
-          </i>
-        </div>
-        <img width="150" height="150" src="https://cdn.jsdelivr.net/gh/w7h1te/PicGoCDN/img/bolg/cover13.jpg" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="" >
-      </a>
-    </div>
-    <h1 class="entry-title">
-    <a href="/2020/05/06/Vue _ vue cli新手入门 详细解读/">
-    Vue _ vue cli新手入门 详细解读</a>
-    </h1>
-    <div class="p-time">
-      <i class="iconfont icon-time">
-      </i>
-    2020-5-6</div>
-    <p>
-    对前端Vue的简单学习，与快速上手</p>
-    <footer class="entry-footer">
-      <div class="post-more">
-        <a href="/2020/05/06/Vue _ vue cli新手入门 详细解读/">
-          <i class="iconfont icon-caidan">
-          </i>
-        </a>
-      </div>
-    </footer>
-  </div>
-  <hr>
-</article>
-  
 
 
-      <div class="clearer">
-      </div>
-    </main>
-    <!--  -->
-    
-  </div>
+
+      <section class="author-profile">
+        <div class="info" itemprop="author" itemscope="" itemtype="https://schema.org/Person">
+          <a href="w7h1te.cn" class="profile gravatar"><img src="https://cdn.jsdelivr.net/gh/w7h1te/PicGoCDN/img/custom/202203090940373.jpeg" itemprop="image" alt="w7h1te" height="70" width="70"></a>
+          <div class="meta">
+            <span class="title">Author</span>
+            <h3 itemprop="name">
+            <a href="w7h1te.cn" itemprop="url" rel="author">w7h1te</a>
+            </h3>
+          </div>
+        </div>
+        <hr>
+        <p><i class="iconfont icon-write"></i>至今为止我仍觉得分享欲是最高级别的浪漫！</p>
+      </section>
+    </main><!-- #main -->
+  </div><!-- #primary -->
 </div>
+
+
+
     </div>    
     <div class="ins-search">
     <div class="ins-search-mask"></div>
