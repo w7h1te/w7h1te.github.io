@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="/"/>
-  <updated>2022-07-06T23:40:52.961Z</updated>
+  <updated>2022-08-08T14:39:53.301Z</updated>
   <id>/</id>
   
   <author>
@@ -15,6 +15,80 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>【Linux】查看日志的几种方式和使用场景</title>
+    <link href="/2022/08/08/%E3%80%90Linux%E3%80%91%E6%9F%A5%E7%9C%8B%E6%97%A5%E5%BF%97%E7%9A%84%E5%87%A0%E7%A7%8D%E6%96%B9%E5%BC%8F%E5%92%8C%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF/"/>
+    <id>/2022/08/08/【Linux】查看日志的几种方式和使用场景/</id>
+    <published>2022-08-07T23:57:44.000Z</published>
+    <updated>2022-08-08T14:39:53.301Z</updated>
+    
+    <summary type="html">
+    
+      通常在进行服务器项目bug排查时，我们会去到Linux上查看日志，像我们一般使用的是 tail -100f node.log ，那么查看日志的方式有哪些呢，怎么定制化的查看呢？
+    
+    </summary>
+    
+      <category term="原创" scheme="/categories/%E5%8E%9F%E5%88%9B/"/>
+    
+    
+      <category term="技术" scheme="/tags/%E6%8A%80%E6%9C%AF/"/>
+    
+      <category term="总结" scheme="/tags/%E6%80%BB%E7%BB%93/"/>
+    
+      <category term="JAVA" scheme="/tags/JAVA/"/>
+    
+      <category term="后端" scheme="/tags/%E5%90%8E%E7%AB%AF/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>【idea】如何通过idea偷懒来批量自动生成实体类（更新方案二）</title>
+    <link href="/2022/07/28/%E3%80%90idea%E3%80%91%E5%A6%82%E4%BD%95%E9%80%9A%E8%BF%87idea%E5%81%B7%E6%87%92%E6%9D%A5%E6%89%B9%E9%87%8F%E8%87%AA%E5%8A%A8%E7%94%9F%E6%88%90%E5%AE%9E%E4%BD%93%E7%B1%BB%EF%BC%88%E6%9B%B4%E6%96%B0%E6%96%B9%E6%A1%88%E4%BA%8C%EF%BC%89/"/>
+    <id>/2022/07/28/【idea】如何通过idea偷懒来批量自动生成实体类（更新方案二）/</id>
+    <published>2022-07-28T12:35:02.000Z</published>
+    <updated>2022-08-08T14:39:53.316Z</updated>
+    
+    <summary type="html">
+    
+      有一点值得说的是当我们在开发较大一些的项目时，可能涉及的数据库表就几十张，这时候建完表如果还要去挨个生成实体类那就太不划算了，正好有看到idea有这样的功能，能够让我们减少工作量。
+    
+    </summary>
+    
+      <category term="技术" scheme="/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+      <category term="技术" scheme="/tags/%E6%8A%80%E6%9C%AF/"/>
+    
+      <category term="JAVA" scheme="/tags/JAVA/"/>
+    
+      <category term="idea" scheme="/tags/idea/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>【MYSQL】@在sql中的应用</title>
+    <link href="/2022/07/17/%E3%80%90mysql%E3%80%91@%E5%9C%A8sql%E4%B8%AD%E7%9A%84%E5%BA%94%E7%94%A8/"/>
+    <id>/2022/07/17/【mysql】@在sql中的应用/</id>
+    <published>2022-07-17T04:28:47.000Z</published>
+    <updated>2022-08-08T14:40:29.310Z</updated>
+    
+    <summary type="html">
+    
+      关于@在SQL中的应用
+    
+    </summary>
+    
+      <category term="技术" scheme="/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+      <category term="技术" scheme="/tags/%E6%8A%80%E6%9C%AF/"/>
+    
+      <category term="转载" scheme="/tags/%E8%BD%AC%E8%BD%BD/"/>
+    
+      <category term="Mysql" scheme="/tags/Mysql/"/>
+    
+  </entry>
   
   <entry>
     <title>【后端实现发送Post请求】在SpringBoot下，以Content-Type_application_json示例</title>
@@ -36,9 +110,9 @@
     
       <category term="总结" scheme="/tags/%E6%80%BB%E7%BB%93/"/>
     
-      <category term="web" scheme="/tags/web/"/>
-    
       <category term="前端" scheme="/tags/%E5%89%8D%E7%AB%AF/"/>
+    
+      <category term="web" scheme="/tags/web/"/>
     
       <category term="后端" scheme="/tags/%E5%90%8E%E7%AB%AF/"/>
     
@@ -437,78 +511,6 @@
       <category term="转载" scheme="/tags/%E8%BD%AC%E8%BD%BD/"/>
     
       <category term="资源" scheme="/tags/%E8%B5%84%E6%BA%90/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>关于gitee禁止使用图床</title>
-    <link href="/2022/03/28/%E5%85%B3%E4%BA%8Egitee%E7%A6%81%E6%AD%A2%E4%BD%BF%E7%94%A8%E5%9B%BE%E5%BA%8A/"/>
-    <id>/2022/03/28/关于gitee禁止使用图床/</id>
-    <published>2022-03-28T08:05:24.000Z</published>
-    <updated>2022-03-30T07:34:03.640Z</updated>
-    
-    <summary type="html">
-    
-      最近两天，先是使用PicGo上传图片失败，查日志发现一直报403，换了个插件解决了。隔日更新博客时发现图片已经无法加载，排查到是图床的问题。前面，我一直是gitee作为图床，有点不解，又询问客服说是禁止使用来当图床的。好吧，gitee图床已经成为过去式了。
-    
-    </summary>
-    
-      <category term="技术" scheme="/categories/%E6%8A%80%E6%9C%AF/"/>
-    
-    
-      <category term="技术" scheme="/tags/%E6%8A%80%E6%9C%AF/"/>
-    
-      <category term="总结" scheme="/tags/%E6%80%BB%E7%BB%93/"/>
-    
-      <category term="资源" scheme="/tags/%E8%B5%84%E6%BA%90/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>【转载及推荐】JWT Token的基本使用和基本流程</title>
-    <link href="/2022/03/18/%E3%80%90%E8%BD%AC%E8%BD%BD%E3%80%91JWT%20Token%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8%E5%92%8C%E5%9F%BA%E6%9C%AC%E6%B5%81%E7%A8%8B/"/>
-    <id>/2022/03/18/【转载】JWT Token的基本使用和基本流程/</id>
-    <published>2022-03-18T08:31:24.000Z</published>
-    <updated>2022-03-30T05:04:23.785Z</updated>
-    
-    <summary type="html">
-    
-      对后端技术的理解与掌握！
-    
-    </summary>
-    
-      <category term="转载" scheme="/categories/%E8%BD%AC%E8%BD%BD/"/>
-    
-    
-      <category term="技术" scheme="/tags/%E6%8A%80%E6%9C%AF/"/>
-    
-      <category term="总结" scheme="/tags/%E6%80%BB%E7%BB%93/"/>
-    
-      <category term="JAVA" scheme="/tags/JAVA/"/>
-    
-      <category term="后端" scheme="/tags/%E5%90%8E%E7%AB%AF/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>解决端口号占用</title>
-    <link href="/2022/03/12/%E8%A7%A3%E5%86%B3%E7%AB%AF%E5%8F%A3%E5%8F%B7%E5%8D%A0%E7%94%A8/"/>
-    <id>/2022/03/12/解决端口号占用/</id>
-    <published>2022-03-12T03:27:24.000Z</published>
-    <updated>2022-03-30T05:08:06.107Z</updated>
-    
-    <summary type="html">
-    
-      对后端技术出现的问题，理解与解决！
-    
-    </summary>
-    
-      <category term="技术" scheme="/categories/%E6%8A%80%E6%9C%AF/"/>
-    
-    
-      <category term="技术" scheme="/tags/%E6%8A%80%E6%9C%AF/"/>
-    
-      <category term="总结" scheme="/tags/%E6%80%BB%E7%BB%93/"/>
     
   </entry>
   
