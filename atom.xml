@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="/"/>
-  <updated>2022-08-28T16:03:10.063Z</updated>
+  <updated>2022-10-02T02:06:09.564Z</updated>
   <id>/</id>
   
   <author>
@@ -15,6 +15,158 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>【SpringBoot】通过Filter实现整个项目接口的SQL注入拦截</title>
+    <link href="/2022/10/02/%E3%80%90SpringBoot%E3%80%91%E9%80%9A%E8%BF%87Filter%E5%AE%9E%E7%8E%B0%E6%95%B4%E4%B8%AA%E9%A1%B9%E7%9B%AE%E6%8E%A5%E5%8F%A3%E7%9A%84SQL%E6%B3%A8%E5%85%A5%E6%8B%A6%E6%88%AA/"/>
+    <id>/2022/10/02/【SpringBoot】通过Filter实现整个项目接口的SQL注入拦截/</id>
+    <published>2022-10-02T02:03:54.000Z</published>
+    <updated>2022-10-02T02:06:09.564Z</updated>
+    
+    <summary type="html">
+    
+      业务背景：一般情况下，我们的项目是需要做SQL注入、XSS拦截等安全性问题，本来是打算在网关层面做全局过滤器或者自定义过滤器，但是苦于遇到依赖问题等实在短期内无法解决，于是便在其下一层针对某个项目做SQL注入拦截。
+    
+    </summary>
+    
+      <category term="技术" scheme="/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+      <category term="web" scheme="/tags/web/"/>
+    
+      <category term="技术" scheme="/tags/%E6%8A%80%E6%9C%AF/"/>
+    
+      <category term="总结" scheme="/tags/%E6%80%BB%E7%BB%93/"/>
+    
+      <category term="JAVA" scheme="/tags/JAVA/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>【排坑】WebSocket场景下文件无法上传到服务器的解决方案</title>
+    <link href="/2022/09/29/%E3%80%90%E6%8E%92%E5%9D%91%E3%80%91websoucket%E5%9C%BA%E6%99%AF%E4%B8%8B%E6%96%87%E4%BB%B6%E6%97%A0%E6%B3%95%E4%B8%8A%E4%BC%A0%E5%88%B0%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/"/>
+    <id>/2022/09/29/【排坑】websoucket场景下文件无法上传到服务器的解决方案/</id>
+    <published>2022-09-29T04:58:43.000Z</published>
+    <updated>2022-10-02T02:01:32.996Z</updated>
+    
+    <summary type="html">
+    
+      业务背景：几乎很多app都有文件交互的功能，诸如头像管理、材料上传等等。在我们的一次在线签约场景中，需要在websoucket场景下来实现文件上传功能。也算是前一篇文章[《【JAVA、Tomcat、WebSocket】配置文件保存路径、实现前端直接访问本地文件路径，后端实时保存代码实现》](https://editor.csdn.net/md/?articleId=126768222)所遇到问题的解决方案。
+    
+    </summary>
+    
+      <category term="技术" scheme="/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+      <category term="技术" scheme="/tags/%E6%8A%80%E6%9C%AF/"/>
+    
+      <category term="总结" scheme="/tags/%E6%80%BB%E7%BB%93/"/>
+    
+      <category term="解决方案" scheme="/tags/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>【JAVA、Tomcat、WebSocket】配置文件保存路径、实现前端直接访问本地文件路径.md</title>
+    <link href="/2022/09/25/%E3%80%90JAVA%E3%80%81Tomcat%E3%80%81WebSocket%E3%80%91%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E4%BF%9D%E5%AD%98%E8%B7%AF%E5%BE%84%E3%80%81%E5%AE%9E%E7%8E%B0%E5%89%8D%E7%AB%AF%E7%9B%B4%E6%8E%A5%E8%AE%BF%E9%97%AE%E6%9C%AC%E5%9C%B0%E6%96%87%E4%BB%B6%E8%B7%AF%E5%BE%84/"/>
+    <id>/2022/09/25/【JAVA、Tomcat、WebSocket】配置文件保存路径、实现前端直接访问本地文件路径/</id>
+    <published>2022-09-24T23:24:53.000Z</published>
+    <updated>2022-10-02T02:01:32.986Z</updated>
+    
+    <summary type="html">
+    
+      业务场景：最近做了一个小的实用项目，在内网访问情况下，决定实用Tomcat作为服务器，前后端代码都部署到上面。业务比较简单，签约的签名产生的图片实时保存到本地并且返回到页面显示实时保存的实现，使用websocket
+    
+    </summary>
+    
+      <category term="转载" scheme="/categories/%E8%BD%AC%E8%BD%BD/"/>
+    
+    
+      <category term="技术" scheme="/tags/%E6%8A%80%E6%9C%AF/"/>
+    
+      <category term="总结" scheme="/tags/%E6%80%BB%E7%BB%93/"/>
+    
+      <category term="JAVA" scheme="/tags/JAVA/"/>
+    
+      <category term="后端" scheme="/tags/%E5%90%8E%E7%AB%AF/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>【JAVA日期相关】判断当前为平年还是闰年</title>
+    <link href="/2022/09/18/%E3%80%90JAVA%E6%97%A5%E6%9C%9F%E7%9B%B8%E5%85%B3%E3%80%91%E5%88%A4%E6%96%AD%E5%BD%93%E5%89%8D%E4%B8%BA%E5%B9%B3%E5%B9%B4%E8%BF%98%E6%98%AF%E9%97%B0%E5%B9%B4/"/>
+    <id>/2022/09/18/【JAVA日期相关】判断当前为平年还是闰年/</id>
+    <published>2022-09-18T06:37:36.000Z</published>
+    <updated>2022-10-02T01:59:11.603Z</updated>
+    
+    <summary type="html">
+    
+      业务场景：对于可视化、报表开发中，经常会遇到像统计一段时间，比如一个月、每月每天等时间段的数据，同时也会伴有判断当前月份有多少天，诸如2月这种可变性的天数，就引出了所谓：判断当前为平年闰年
+    
+    </summary>
+    
+      <category term="转载" scheme="/categories/%E8%BD%AC%E8%BD%BD/"/>
+    
+    
+      <category term="技术" scheme="/tags/%E6%8A%80%E6%9C%AF/"/>
+    
+      <category term="总结" scheme="/tags/%E6%80%BB%E7%BB%93/"/>
+    
+      <category term="JAVA" scheme="/tags/JAVA/"/>
+    
+      <category term="后端" scheme="/tags/%E5%90%8E%E7%AB%AF/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>【MySQL】日期函数 、group_concat函数</title>
+    <link href="/2022/09/16/%E3%80%90Mysql%E3%80%91%E6%97%A5%E6%9C%9F%E5%87%BD%E6%95%B0%20%E3%80%81group_concat%E5%87%BD%E6%95%B0/"/>
+    <id>/2022/09/16/【Mysql】日期函数 、group_concat函数/</id>
+    <published>2022-09-16T12:42:18.000Z</published>
+    <updated>2022-10-02T02:13:13.266Z</updated>
+    
+    <summary type="html">
+    
+      业务场景：业务场景：可视化图表开发，这咋写嘛，捋清思路最后本着先实现在优化的方式，先求出当前月份内每一天新增的用户数,用到了一个group_concat函数得出一个新增数量的字符串 然后再根据平年、润年去区分月份的天数
+    
+    </summary>
+    
+      <category term="技术" scheme="/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+      <category term="技术" scheme="/tags/%E6%8A%80%E6%9C%AF/"/>
+    
+      <category term="Mysql" scheme="/tags/Mysql/"/>
+    
+      <category term="总结" scheme="/tags/%E6%80%BB%E7%BB%93/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>【业务场景】项目从服务器拉下来执行本地部署</title>
+    <link href="/2022/09/04/%E3%80%90%E4%B8%9A%E5%8A%A1%E5%9C%BA%E6%99%AF%E3%80%91%E9%A1%B9%E7%9B%AE%E4%BB%8E%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%8B%89%E4%B8%8B%E6%9D%A5%E6%89%A7%E8%A1%8C%E6%9C%AC%E5%9C%B0%E9%83%A8%E7%BD%B2/"/>
+    <id>/2022/09/04/【业务场景】项目从服务器拉下来执行本地部署/</id>
+    <published>2022-09-04T04:25:36.000Z</published>
+    <updated>2022-10-02T01:51:57.608Z</updated>
+    
+    <summary type="html">
+    
+      业务场景：一般情况，当我们需要本地部署服务器的java web 项目时，我们可以通过Xftp或者Xshell。
+    
+    </summary>
+    
+      <category term="技术" scheme="/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+      <category term="技术" scheme="/tags/%E6%8A%80%E6%9C%AF/"/>
+    
+      <category term="总结" scheme="/tags/%E6%80%BB%E7%BB%93/"/>
+    
+      <category term="解决方案" scheme="/tags/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/"/>
+    
+      <category term="JAVA" scheme="/tags/JAVA/"/>
+    
+  </entry>
   
   <entry>
     <title>【Linux】等保（三级）核查の操作命令笔记（部分）</title>
@@ -154,11 +306,11 @@
       <category term="技术" scheme="/categories/%E6%8A%80%E6%9C%AF/"/>
     
     
+      <category term="web" scheme="/tags/web/"/>
+    
       <category term="技术" scheme="/tags/%E6%8A%80%E6%9C%AF/"/>
     
       <category term="总结" scheme="/tags/%E6%80%BB%E7%BB%93/"/>
-    
-      <category term="web" scheme="/tags/web/"/>
     
       <category term="前端" scheme="/tags/%E5%89%8D%E7%AB%AF/"/>
     
@@ -363,152 +515,6 @@
       <category term="转载" scheme="/tags/%E8%BD%AC%E8%BD%BD/"/>
     
       <category term="Mysql" scheme="/tags/Mysql/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>【Redis】持久化机制RDB、AOF</title>
-    <link href="/2022/04/15/%E3%80%90Redis%E3%80%91%E6%8C%81%E4%B9%85%E5%8C%96%E6%9C%BA%E5%88%B6RDB%E3%80%81AOF/"/>
-    <id>/2022/04/15/【Redis】持久化机制RDB、AOF/</id>
-    <published>2022-04-15T15:49:32.000Z</published>
-    <updated>2022-04-17T15:04:39.161Z</updated>
-    
-    <summary type="html">
-    
-      持久化机制RDB、AOF
-    
-    </summary>
-    
-      <category term="技术" scheme="/categories/%E6%8A%80%E6%9C%AF/"/>
-    
-    
-      <category term="技术" scheme="/tags/%E6%8A%80%E6%9C%AF/"/>
-    
-      <category term="转载" scheme="/tags/%E8%BD%AC%E8%BD%BD/"/>
-    
-      <category term="数据结构" scheme="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>【正则表达式】详解及常用的使用方法详解</title>
-    <link href="/2022/04/10/%E3%80%90%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E3%80%91%E8%AF%A6%E8%A7%A3%E5%8F%8A%E5%B8%B8%E7%94%A8%E7%9A%84%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95%E8%AF%A6%E8%A7%A3/"/>
-    <id>/2022/04/10/【正则表达式】详解及常用的使用方法详解/</id>
-    <published>2022-04-10T01:53:09.000Z</published>
-    <updated>2022-04-11T14:32:03.046Z</updated>
-    
-    <summary type="html">
-    
-      详解及常用的使用方法详解
-    
-    </summary>
-    
-      <category term="技术" scheme="/categories/%E6%8A%80%E6%9C%AF/"/>
-    
-    
-      <category term="技术" scheme="/tags/%E6%8A%80%E6%9C%AF/"/>
-    
-      <category term="总结" scheme="/tags/%E6%80%BB%E7%BB%93/"/>
-    
-      <category term="转载" scheme="/tags/%E8%BD%AC%E8%BD%BD/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>【注解】 @CrossOrigin</title>
-    <link href="/2022/04/09/%E3%80%90%E6%B3%A8%E8%A7%A3%E3%80%91%20@CrossOrigin/"/>
-    <id>/2022/04/09/【注解】 @CrossOrigin/</id>
-    <published>2022-04-09T07:17:02.000Z</published>
-    <updated>2022-04-11T14:32:03.071Z</updated>
-    
-    <summary type="html">
-    
-      在查看注册中心的启动代码时，发现了这个注解。
-    
-    </summary>
-    
-      <category term="技术" scheme="/categories/%E6%8A%80%E6%9C%AF/"/>
-    
-    
-      <category term="技术" scheme="/tags/%E6%8A%80%E6%9C%AF/"/>
-    
-      <category term="总结" scheme="/tags/%E6%80%BB%E7%BB%93/"/>
-    
-      <category term="web" scheme="/tags/web/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>什么是接口测试和性能测试？</title>
-    <link href="/2022/04/08/%E4%BB%80%E4%B9%88%E6%98%AF%E6%8E%A5%E5%8F%A3%E6%B5%8B%E8%AF%95%E5%92%8C%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95%EF%BC%9F/"/>
-    <id>/2022/04/08/什么是接口测试和性能测试？/</id>
-    <published>2022-04-08T01:56:12.000Z</published>
-    <updated>2022-04-11T14:08:52.978Z</updated>
-    
-    <summary type="html">
-    
-      在按照接口文档完成对应的接口实现后，我们会使用Postman做接口测试，那么什么是接口测试呢？性能测试、功能测试又是什么呢？
-    
-    </summary>
-    
-      <category term="技术" scheme="/categories/%E6%8A%80%E6%9C%AF/"/>
-    
-    
-      <category term="技术" scheme="/tags/%E6%8A%80%E6%9C%AF/"/>
-    
-      <category term="总结" scheme="/tags/%E6%80%BB%E7%BB%93/"/>
-    
-      <category term="JAVA" scheme="/tags/JAVA/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>【转载】JIT</title>
-    <link href="/2022/04/05/%E3%80%90%E8%BD%AC%E8%BD%BD%E3%80%91JIT/"/>
-    <id>/2022/04/05/【转载】JIT/</id>
-    <published>2022-04-05T08:22:19.000Z</published>
-    <updated>2022-04-11T14:12:56.241Z</updated>
-    
-    <summary type="html">
-    
-      关于java代码编译时的JIT技术的认知。
-    
-    </summary>
-    
-      <category term="转载" scheme="/categories/%E8%BD%AC%E8%BD%BD/"/>
-    
-    
-      <category term="技术" scheme="/tags/%E6%8A%80%E6%9C%AF/"/>
-    
-      <category term="总结" scheme="/tags/%E6%80%BB%E7%BB%93/"/>
-    
-      <category term="转载" scheme="/tags/%E8%BD%AC%E8%BD%BD/"/>
-    
-      <category term="JAVA" scheme="/tags/JAVA/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>【微服务注解】@EnableEurekaServer</title>
-    <link href="/2022/04/04/%E3%80%90%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%B3%A8%E8%A7%A3%E3%80%91@EnableEurekaServer/"/>
-    <id>/2022/04/04/【微服务注解】@EnableEurekaServer/</id>
-    <published>2022-04-04T05:29:34.000Z</published>
-    <updated>2022-04-11T14:32:03.080Z</updated>
-    
-    <summary type="html">
-    
-      在查看注册中心的启动代码时，发现了这个注解。
-    
-    </summary>
-    
-      <category term="技术" scheme="/categories/%E6%8A%80%E6%9C%AF/"/>
-    
-    
-      <category term="技术" scheme="/tags/%E6%8A%80%E6%9C%AF/"/>
-    
-      <category term="总结" scheme="/tags/%E6%80%BB%E7%BB%93/"/>
-    
-      <category term="web" scheme="/tags/web/"/>
     
   </entry>
   
