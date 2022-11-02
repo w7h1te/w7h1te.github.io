@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="/"/>
-  <updated>2022-10-02T02:06:09.564Z</updated>
+  <updated>2022-11-02T12:44:46.925Z</updated>
   <id>/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>【微信支付】对接app微信支付V2版本 后端代码示例</title>
+    <link href="/2022/10/28/%E3%80%90%E5%BE%AE%E4%BF%A1%E6%94%AF%E4%BB%98%E3%80%91%E5%AF%B9%E6%8E%A5app%E5%BE%AE%E4%BF%A1%E6%94%AF%E4%BB%98V2%E7%89%88%E6%9C%AC%20%E5%90%8E%E7%AB%AF%E4%BB%A3%E7%A0%81%E7%A4%BA%E4%BE%8B/"/>
+    <id>/2022/10/28/【微信支付】对接app微信支付V2版本 后端代码示例/</id>
+    <published>2022-10-28T05:21:26.000Z</published>
+    <updated>2022-11-02T12:44:46.925Z</updated>
+    
+    <summary type="html">
+    
+      业务场景：基本上做业务的话，也是逃不开对接各种支付接口的，比如数字人民币支付、农行免密支付、支付宝支付、微信支付等等。在着手开发时候，也是遇到不少阻力，微信官方提供的接口文档很散乱，如果之前没接触过，一上来就来搞微信支付，即使参考很多文档、材料，也是很令人抓狂的。在这篇文章中，主要记录的就是对接微信支付的流程，以及开发中遇到的问题。
+    
+    </summary>
+    
+      <category term="技术" scheme="/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+      <category term="技术" scheme="/tags/%E6%8A%80%E6%9C%AF/"/>
+    
+      <category term="总结" scheme="/tags/%E6%80%BB%E7%BB%93/"/>
+    
+      <category term="解决方案" scheme="/tags/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/"/>
+    
+  </entry>
   
   <entry>
     <title>【SpringBoot】通过Filter实现整个项目接口的SQL注入拦截</title>
@@ -67,11 +91,11 @@
   </entry>
   
   <entry>
-    <title>【JAVA、Tomcat、WebSocket】配置文件保存路径、实现前端直接访问本地文件路径.md</title>
+    <title>【JAVA、Tomcat、WebSocket】配置文件保存路径、实现前端直接访问本地文件路径</title>
     <link href="/2022/09/25/%E3%80%90JAVA%E3%80%81Tomcat%E3%80%81WebSocket%E3%80%91%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E4%BF%9D%E5%AD%98%E8%B7%AF%E5%BE%84%E3%80%81%E5%AE%9E%E7%8E%B0%E5%89%8D%E7%AB%AF%E7%9B%B4%E6%8E%A5%E8%AE%BF%E9%97%AE%E6%9C%AC%E5%9C%B0%E6%96%87%E4%BB%B6%E8%B7%AF%E5%BE%84/"/>
     <id>/2022/09/25/【JAVA、Tomcat、WebSocket】配置文件保存路径、实现前端直接访问本地文件路径/</id>
     <published>2022-09-24T23:24:53.000Z</published>
-    <updated>2022-10-02T02:01:32.986Z</updated>
+    <updated>2022-11-02T12:40:46.616Z</updated>
     
     <summary type="html">
     
@@ -491,30 +515,6 @@
       <category term="总结" scheme="/tags/%E6%80%BB%E7%BB%93/"/>
     
       <category term="解决方案" scheme="/tags/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>【脏数据】什么是脏数据：脏数据的种类、类型</title>
-    <link href="/2022/04/17/%E3%80%90%E8%84%8F%E6%95%B0%E6%8D%AE%E3%80%91%E4%BB%80%E4%B9%88%E6%98%AF%E8%84%8F%E6%95%B0%E6%8D%AE%EF%BC%9A%E8%84%8F%E6%95%B0%E6%8D%AE%E7%9A%84%E7%A7%8D%E7%B1%BB%E3%80%81%E7%B1%BB%E5%9E%8B/"/>
-    <id>/2022/04/17/【脏数据】什么是脏数据：脏数据的种类、类型/</id>
-    <published>2022-04-17T15:04:57.000Z</published>
-    <updated>2022-04-17T15:07:40.941Z</updated>
-    
-    <summary type="html">
-    
-      什么是“脏”数据？通俗来说，它是因数据重复录入、共同处理等不规范操作而产生的混乱、无效数据。
-    
-    </summary>
-    
-      <category term="技术" scheme="/categories/%E6%8A%80%E6%9C%AF/"/>
-    
-    
-      <category term="技术" scheme="/tags/%E6%8A%80%E6%9C%AF/"/>
-    
-      <category term="转载" scheme="/tags/%E8%BD%AC%E8%BD%BD/"/>
-    
-      <category term="Mysql" scheme="/tags/Mysql/"/>
     
   </entry>
   
