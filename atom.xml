@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="/"/>
-  <updated>2022-11-02T12:44:46.925Z</updated>
+  <updated>2023-01-10T12:51:38.979Z</updated>
   <id>/</id>
   
   <author>
@@ -15,6 +15,78 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>【Excel导出】（亲测可用）使用实现Hutool工具类将list对象数组导出的简单实现</title>
+    <link href="/2023/01/10/%E3%80%90Excel%E5%AF%BC%E5%87%BA%E3%80%91%EF%BC%88%E4%BA%B2%E6%B5%8B%E5%8F%AF%E7%94%A8%EF%BC%89%E4%BD%BF%E7%94%A8%E5%AE%9E%E7%8E%B0Hutool%E5%B7%A5%E5%85%B7%E7%B1%BB%E5%B0%86list%E5%AF%B9%E8%B1%A1%E6%95%B0%E7%BB%84%E5%AF%BC%E5%87%BA%E7%9A%84%E7%AE%80%E5%8D%95%E5%AE%9E%E7%8E%B0/"/>
+    <id>/2023/01/10/【Excel导出】（亲测可用）使用实现Hutool工具类将list对象数组导出的简单实现/</id>
+    <published>2023-01-10T12:48:06.000Z</published>
+    <updated>2023-01-10T12:51:38.979Z</updated>
+    
+    <summary type="html">
+    
+      有一点值得说的是当我们在开发较大一些的项目时，可能涉及的数据库表就几十张，这时候建完表如果还要去挨个生成实体类那就太不划算了，正好有看到idea有这样的功能，能够让我们减少工作量。
+    
+    </summary>
+    
+      <category term="技术" scheme="/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+      <category term="技术" scheme="/tags/%E6%8A%80%E6%9C%AF/"/>
+    
+      <category term="JAVA" scheme="/tags/JAVA/"/>
+    
+      <category term="后端" scheme="/tags/%E5%90%8E%E7%AB%AF/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>【Linux&amp;Win】远程连接命令telnet，解决‘telnet‘ 不是内部或外部命令，也不是可运行的程序</title>
+    <link href="/2022/12/29/%E3%80%90Linux&amp;Win%E3%80%91%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5%E5%91%BD%E4%BB%A4telnet%EF%BC%8C%E8%A7%A3%E5%86%B3%E2%80%98telnet%E2%80%98%20%E4%B8%8D%E6%98%AF%E5%86%85%E9%83%A8%E6%88%96%E5%A4%96%E9%83%A8%E5%91%BD%E4%BB%A4%EF%BC%8C%E4%B9%9F%E4%B8%8D%E6%98%AF%E5%8F%AF%E8%BF%90%E8%A1%8C%E7%9A%84%E7%A8%8B%E5%BA%8F/"/>
+    <id>/2022/12/29/【Linux&amp;Win】远程连接命令telnet，解决‘telnet‘ 不是内部或外部命令，也不是可运行的程序/</id>
+    <published>2022-12-29T13:38:17.000Z</published>
+    <updated>2023-01-10T12:46:19.589Z</updated>
+    
+    <summary type="html">
+    
+      通常在进行服务器项目bug排查时，我们会去到Linux上查看日志，像我们一般使用的是 tail -100f node.log ，那么查看日志的方式有哪些呢，怎么定制化的查看呢？
+    
+    </summary>
+    
+      <category term="原创" scheme="/categories/%E5%8E%9F%E5%88%9B/"/>
+    
+    
+      <category term="技术" scheme="/tags/%E6%8A%80%E6%9C%AF/"/>
+    
+      <category term="总结" scheme="/tags/%E6%80%BB%E7%BB%93/"/>
+    
+      <category term="后端" scheme="/tags/%E5%90%8E%E7%AB%AF/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>【Linux】curl 命令 在服务器上测试接口</title>
+    <link href="/2022/11/18/%E3%80%90Linux%E3%80%91curl%20%E5%91%BD%E4%BB%A4%20%E5%9C%A8%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8A%E6%B5%8B%E8%AF%95%E6%8E%A5%E5%8F%A3/"/>
+    <id>/2022/11/18/【Linux】curl 命令 在服务器上测试接口/</id>
+    <published>2022-11-18T01:39:21.000Z</published>
+    <updated>2023-01-10T12:41:21.156Z</updated>
+    
+    <summary type="html">
+    
+      通常在进行服务器项目bug排查时，我们会去到Linux上查看日志，像我们一般使用的是 tail -100f node.log ，那么查看日志的方式有哪些呢，怎么定制化的查看呢？
+    
+    </summary>
+    
+      <category term="原创" scheme="/categories/%E5%8E%9F%E5%88%9B/"/>
+    
+    
+      <category term="技术" scheme="/tags/%E6%8A%80%E6%9C%AF/"/>
+    
+      <category term="总结" scheme="/tags/%E6%80%BB%E7%BB%93/"/>
+    
+      <category term="后端" scheme="/tags/%E5%90%8E%E7%AB%AF/"/>
+    
+  </entry>
   
   <entry>
     <title>【微信支付】对接app微信支付V2版本 后端代码示例</title>
@@ -245,7 +317,7 @@
     <link href="/2022/08/08/%E3%80%90Linux%E3%80%91%E6%9F%A5%E7%9C%8B%E6%97%A5%E5%BF%97%E7%9A%84%E5%87%A0%E7%A7%8D%E6%96%B9%E5%BC%8F%E5%92%8C%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF/"/>
     <id>/2022/08/08/【Linux】查看日志的几种方式和使用场景/</id>
     <published>2022-08-07T23:57:44.000Z</published>
-    <updated>2022-08-08T14:39:53.301Z</updated>
+    <updated>2023-01-10T12:41:21.148Z</updated>
     
     <summary type="html">
     
@@ -439,82 +511,6 @@
       <category term="转载" scheme="/tags/%E8%BD%AC%E8%BD%BD/"/>
     
       <category term="Mysql" scheme="/tags/Mysql/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>【字符串截取】String类下的字符串内容截取手段</title>
-    <link href="/2022/05/03/%E5%85%B3%E4%BA%8EString%E7%B1%BB%E4%B8%8B%E7%9A%84%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%86%85%E5%AE%B9%E6%88%AA%E5%8F%96%E6%89%8B%E6%AE%B5/"/>
-    <id>/2022/05/03/关于String类下的字符串内容截取手段/</id>
-    <published>2022-05-03T01:32:53.000Z</published>
-    <updated>2022-06-24T00:03:23.719Z</updated>
-    
-    <summary type="html">
-    
-      对后端技术的理解与掌握！
-    
-    </summary>
-    
-      <category term="原创" scheme="/categories/%E5%8E%9F%E5%88%9B/"/>
-    
-    
-      <category term="技术" scheme="/tags/%E6%8A%80%E6%9C%AF/"/>
-    
-      <category term="总结" scheme="/tags/%E6%80%BB%E7%BB%93/"/>
-    
-      <category term="JAVA" scheme="/tags/JAVA/"/>
-    
-      <category term="后端" scheme="/tags/%E5%90%8E%E7%AB%AF/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>【JVM】类加载——双亲委派机制</title>
-    <link href="/2022/04/21/%E3%80%90JVM%E3%80%91%E7%B1%BB%E5%8A%A0%E8%BD%BD%E2%80%94%E2%80%94%E5%8F%8C%E4%BA%B2%E5%A7%94%E6%B4%BE%E6%9C%BA%E5%88%B6/"/>
-    <id>/2022/04/21/【JVM】类加载——双亲委派机制/</id>
-    <published>2022-04-21T12:35:02.000Z</published>
-    <updated>2022-04-21T15:11:20.163Z</updated>
-    
-    <summary type="html">
-    
-      在面试过程中：也会被问到关于如何理解双亲委派模型这样的问题，接下来就通过这篇文章往明白了解一下。
-    
-    </summary>
-    
-      <category term="技术" scheme="/categories/%E6%8A%80%E6%9C%AF/"/>
-    
-    
-      <category term="技术" scheme="/tags/%E6%8A%80%E6%9C%AF/"/>
-    
-      <category term="转载" scheme="/tags/%E8%BD%AC%E8%BD%BD/"/>
-    
-      <category term="JVM" scheme="/tags/JVM/"/>
-    
-      <category term="JAVA" scheme="/tags/JAVA/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>【开发问题解决方案】java.lang.ArithmeticException_ _ by zero</title>
-    <link href="/2022/04/20/%E3%80%90%E5%BC%80%E5%8F%91%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%E3%80%91java.lang.ArithmeticException_%20_%20by%20zero/"/>
-    <id>/2022/04/20/【开发问题解决方案】java.lang.ArithmeticException_ _ by zero/</id>
-    <published>2022-04-20T04:58:43.000Z</published>
-    <updated>2022-04-21T15:15:31.900Z</updated>
-    
-    <summary type="html">
-    
-      问题背景：在做查询多条数据结果的柱状图百分比时候，由于有的查询结果值是&quot;0&quot;，后台报错
-    
-    </summary>
-    
-      <category term="技术" scheme="/categories/%E6%8A%80%E6%9C%AF/"/>
-    
-    
-      <category term="技术" scheme="/tags/%E6%8A%80%E6%9C%AF/"/>
-    
-      <category term="总结" scheme="/tags/%E6%80%BB%E7%BB%93/"/>
-    
-      <category term="解决方案" scheme="/tags/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/"/>
     
   </entry>
   
